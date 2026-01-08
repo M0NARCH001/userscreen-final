@@ -28,7 +28,7 @@ export function EventCard({ title, location, price, discount, date, image }: Eve
           </Badge>
         )}
       </div>
-      <CardContent className="p-4">
+      <CardContent className="p-4 hidden md:block">
         <div className="mb-2 flex items-start gap-2">
           <Calendar className="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground" />
           <p className="text-xs text-muted-foreground">{date}</p>

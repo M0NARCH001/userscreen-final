@@ -69,8 +69,8 @@ export function HandpickedEventCard({
                 </Card>
             </Link>
 
-            {/* Details Panel - Mobile (Visible below) & Desktop (Slide-out) */}
-            <div className="w-[300px] md:w-0 opacity-100 md:opacity-0 md:group-hover:w-[340px] md:group-hover:opacity-100 transition-all duration-500 ease-in-out bg-white rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-gray-100 shadow-xl overflow-hidden flex flex-col md:-ml-6 md:group-hover:ml-0 z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0">
+            {/* Details Panel - Mobile (Hidden) & Desktop (Slide-out) */}
+            <div className="hidden md:flex w-[300px] md:w-0 opacity-100 md:opacity-0 md:group-hover:w-[340px] md:group-hover:opacity-100 transition-all duration-500 ease-in-out bg-white rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-gray-100 shadow-xl overflow-hidden flex-col md:-ml-6 md:group-hover:ml-0 z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0">
                 <div className="min-w-[300px] md:min-w-[340px] p-6 flex flex-col h-full justify-between">
                     <div className="space-y-4">
                         {/* Tag */}

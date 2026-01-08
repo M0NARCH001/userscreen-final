@@ -1,0 +1,4 @@
+git add .                          # stage all files
+git commit -m "Initial commit"     # commit with a message
+git branch -M main                 # ensure branch is named 'main'
+git push -u origin main            # push to GitHub
