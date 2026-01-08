@@ -1,3 +1,5 @@
+"use client"
+
 import { EventCard } from "@/components/landing/event-card"
 
 interface EventSectionProps {

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Performer = {
   title: string;
@@ -29,25 +30,40 @@ const performers: Performer[] = [
 ];
 
 export default function Performers() {
-  const [active, setActive] = useState(1);
-  const isLocked = useRef(false);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [activeDirection, setActiveDirection] = useState<"left" | "right">("right");
 
-  const prev = () =>
-    setActive((i) => (i === 0 ? performers.length - 1 : i - 1));
+  const totalCards = performers.length;
 
-  const next = () =>
-    setActive((i) => (i === performers.length - 1 ? 0 : i + 1));
+  const getPosition = (index: number) => {
+    let diff = index - activeIndex;
+    if (diff > totalCards / 2) diff -= totalCards;
+    if (diff < -totalCards / 2) diff += totalCards;
+    return diff;
+  };
 
-  const onWheel = (e: React.WheelEvent) => {
-    if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
-    e.preventDefault();
+  const navigate = (direction: "left" | "right") => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveDirection(direction);
 
-    if (isLocked.current || Math.abs(e.deltaX) < 40) return;
+    if (direction === "right") {
+      setActiveIndex((prev) => (prev + 1) % totalCards);
+    } else {
+      setActiveIndex((prev) => (prev - 1 + totalCards) % totalCards);
+    }
 
-    isLocked.current = true;
-    e.deltaX > 0 ? next() : prev();
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 500);
+  };
 
-    setTimeout(() => (isLocked.current = false), 600);
+  const handleCardClick = (index: number) => {
+    if (isAnimating) return;
+    const position = getPosition(index);
+    if (position === 0) return;
+    position > 0 ? navigate("right") : navigate("left");
   };
 
   return (
@@ -68,66 +84,50 @@ export default function Performers() {
           Calling All Performers!
         </h2>
 
-        {/* Carousel */}
-        <motion.div
-          onWheel={onWheel}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0}
-          dragMomentum={false}
-          onDragEnd={(_, info) => {
-            if (info.offset.x < -80) next();
-            if (info.offset.x > 80) prev();
-          }}
-          className="relative h-[520px] flex items-center justify-center"
-        >
+        {/* 3D Carousel Container */}
+        <div className="relative h-[470px] flex items-center justify-center">
           {performers.map((item, index) => {
-            const offset = index - active;
-            const isActive = offset === 0;
+            const position = getPosition(index);
+            const isActive = position === 0;
 
             return (
-              <motion.div
+              <div
                 key={index}
-                animate={{
-                  x: offset * 420,
-                  scale: isActive ? 1 : 0.85,
-                  opacity: isActive ? 1 : 0.15,
+                onClick={() => handleCardClick(index)}
+                style={{
+                  transform: `translateX(${position * 420}px) scale(${isActive ? 1 : 0.85})`, // 420px spacing
+                  zIndex: isActive ? 30 : 20,
+                  opacity: isActive ? 1 : 0.6,
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="absolute pointer-events-none"
-              >
-                <motion.div
-                  onClick={() => !isActive && setActive(index)}
-                  className={`
-                    pointer-events-auto
+                className={`
+                    absolute
+                    w-[380px] h-[420px]
+                    rounded-2xl bg-white 
                     cursor-pointer
-                    w-[380px] h-[470px]
-                    rounded-2xl
-                    bg-white
+                    transition-all duration-700 ease-out
                     border
-                    ${
-                      isActive
-                        ? "border-[#6FA3FF]"
-                        : "border-gray-200"
-                    }
+                    ${isActive
+                    ? "border-[#6FA3FF] shadow-[0_25px_60px_rgba(37,99,235,0.35)]"
+                    : "border-gray-200 shadow-xl"
+                  }
                   `}
-                >
-                  {/* Image */}
-                  <div className="relative w-full h-56 rounded-t-2xl overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-contain"
-                      priority={isActive}
-                    />
-                  </div>
+              >
+                {/* Image */}
+                <div className="relative w-full h-56 rounded-t-2xl overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className={`object-contain transition-transform duration-1000 ease-out ${isActive ? "scale-105" : "scale-100"}`}
+                    priority={isActive}
+                  />
+                </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    {/* Card Title */}
-                    <h3
-                      className="
+                {/* Content */}
+                <div className="p-6">
+                  {/* Card Title */}
+                  <h3
+                    className="
                         font-albert
                         font-[500]
                         text-[24px]
@@ -136,13 +136,13 @@ export default function Performers() {
                         text-[#141414]
                         mb-2
                       "
-                    >
-                      {item.title}
-                    </h3>
+                  >
+                    {item.title}
+                  </h3>
 
-                    {/* Card Description */}
-                    <p
-                      className="
+                  {/* Card Description */}
+                  <p
+                    className="
                         font-albert
                         font-[400]
                         text-[16px]
@@ -150,53 +150,61 @@ export default function Performers() {
                         tracking-[0.005em]
                         text-[#141414]
                       "
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              </motion.div>
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
+
 
         {/* Navigation Arrows */}
         <div className="absolute right-6 bottom-24 flex gap-4">
           <button
-            onClick={prev}
-            className="w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:bg-gray-100 transition"
+            onClick={() => navigate("left")}
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition border ${activeDirection === "left"
+              ? "bg-[#0C1D37] text-white border-[#0C1D37] hover:bg-[#0C1D37]/90"
+              : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+              }`}
           >
-            &lt;
+            <ChevronLeft className="h-6 w-6" />
           </button>
 
           <button
-            onClick={next}
-            className="w-12 h-12 rounded-full bg-[#0C1D37] text-white flex items-center justify-center hover:bg-[#0C1D37]/90 transition"
+            onClick={() => navigate("right")}
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition border ${activeDirection === "right"
+              ? "bg-[#0C1D37] text-white border-[#0C1D37] hover:bg-[#0C1D37]/90"
+              : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+              }`}
           >
-            &gt;
+            <ChevronRight className="h-6 w-6" />
           </button>
         </div>
 
         {/* CTA */}
         <div className="flex justify-center mt-20">
-          <button
-            className="
-              font-albert
-              font-[500]
-              text-[18px]
-              leading-[24px]
-              tracking-[0]
-              text-[#F6F6F6]
-              px-10
-              py-4
-              rounded-full
-              bg-[#0C1D37]
-              hover:bg-[#0C1D37]/90
-              transition
-            "
-          >
-            Showcase your Talent
-          </button>
+          <Link href="/talent">
+            <button
+              className="
+                font-albert
+                font-[500]
+                text-[18px]
+                leading-[24px]
+                tracking-[0]
+                text-[#F6F6F6]
+                px-10
+                py-4
+                rounded-full
+                bg-[#0C1D37]
+                hover:bg-[#0C1D37]/90
+                transition
+              "
+            >
+              Showcase your Talent
+            </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -39,13 +39,13 @@ export default function Header() {
               About us
             </Link>
             <Link
-              href="#"
+              href="/events"
               className="font-poppins text-[18px] leading-[24px] font-[500] hover:text-white/80 transition"
             >
               Events
             </Link>
             <Link
-              href="#"
+              href="/talent"
               className="font-poppins text-[18px] leading-[24px] font-[500] hover:text-white/80 transition"
             >
               Talent
@@ -82,13 +82,13 @@ export default function Header() {
               About us
             </Link>
             <Link
-              href="#"
+              href="/events"
               className="block px-6 py-4 text-gray-900 font-poppins text-[18px] leading-[24px] font-[500]"
             >
               Events
             </Link>
             <Link
-              href="#"
+              href="/talent"
               className="block px-6 py-4 text-gray-900 font-poppins text-[18px] leading-[24px] font-[500]"
             >
               Talent

@@ -22,6 +22,7 @@ function Calendar({
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>['variant']
+  captionLayout?: 'label' | 'dropdown'
 }) {
   const defaultClassNames = getDefaultClassNames()
 
@@ -74,14 +75,14 @@ function Calendar({
           defaultClassNames.dropdown_root,
         ),
         dropdown: cn(
-          'absolute bg-popover inset-0 opacity-0',
+          'bg-background p-1',
           defaultClassNames.dropdown,
         ),
         caption_label: cn(
           'select-none font-medium',
-          captionLayout === 'label'
-            ? 'text-sm'
-            : 'rounded-md pl-2 pr-1 flex items-center gap-1 text-sm h-8 [&>svg]:text-muted-foreground [&>svg]:size-3.5',
+          captionLayout === 'dropdown'
+            ? 'hidden'
+            : 'text-sm',
           defaultClassNames.caption_label,
         ),
         table: 'w-full border-collapse',

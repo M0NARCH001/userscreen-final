@@ -1,3 +1,5 @@
+"use client";
+
 const artists = [
   { name: "Karan Aujla", image: "karan+aujla+singer" },
   { name: "Shreya Ghoshal", image: "shreya+ghoshal+singer" },

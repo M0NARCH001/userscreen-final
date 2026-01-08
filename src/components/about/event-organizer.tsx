@@ -15,7 +15,7 @@ export default function EventOrganizer() {
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
-          
+
           {/* Text Content */}
           <motion.div
             className="lg:w-1/2"
@@ -39,8 +39,19 @@ export default function EventOrganizer() {
               Are you an Event Organizer?
             </h2>
 
+            {/* Mobile Image (Visible on mobile, hidden on lg) */}
+            <div className="relative w-full h-64 mb-8 lg:hidden">
+              <Image
+                src="event-org.png"
+                alt="Event Organizer Illustration"
+                fill
+                className="object-contain" // Changed to contain for better mobile fit, or cover if preferred
+              />
+            </div>
+
             {/* Subheading */}
             <p
+              // ... existing content ...
               className="
                 font-albert
                 font-[500]
@@ -92,15 +103,15 @@ export default function EventOrganizer() {
             </button>
           </motion.div>
 
-          {/* Image */}
+          {/* Desktop Image (Hidden on mobile, block on lg) */}
           <motion.div
-            className="lg:w-1/2 w-full"
+            className="lg:w-1/2 w-full hidden lg:block"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative w-full h-96">
               <Image
                 src="event-org.png"
                 alt="Event Organizer Illustration"

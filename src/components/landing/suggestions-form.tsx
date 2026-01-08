@@ -1,6 +1,54 @@
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Combobox } from "@/components/ui/combobox"
+
 export default function SuggestionsForm() {
+  const router = useRouter()
+  const [location, setLocation] = useState("")
+  const [category, setCategory] = useState("")
+  const [month, setMonth] = useState("")
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    router.push("/onboarding")
+  }
+
+  const locations = [
+    { value: "visakhapatnam", label: "Visakhapatnam" },
+    { value: "hyderabad", label: "Hyderabad" },
+    { value: "bangalore", label: "Bangalore" },
+    { value: "vijayawada", label: "Vijayawada" },
+  ]
+
+  const categories = [
+    { value: "events", label: "Events" },
+    { value: "food", label: "Food" },
+    { value: "movies", label: "Movies" },
+    { value: "comedy", label: "Comedy" },
+    { value: "sports", label: "Sports" },
+  ]
+
+  const months = [
+    { value: "january", label: "January" },
+    { value: "february", label: "February" },
+    { value: "march", label: "March" },
+    { value: "april", label: "April" },
+    { value: "may", label: "May" },
+    { value: "june", label: "June" },
+    { value: "july", label: "July" },
+    { value: "august", label: "August" },
+    { value: "september", label: "September" },
+    { value: "october", label: "October" },
+    { value: "november", label: "November" },
+    { value: "december", label: "December" },
+  ]
+
+  // Reusing the same style logic via className prop on Combobox
+  // h-8 md:h-auto ensures 32px height on mobile
   const inputClass =
-    "w-full px-5 py-3 rounded-lg bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/40";
+    "w-full px-5 py-1 md:py-3 h-8 md:h-auto rounded-lg bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/40 text-sm md:text-base border-0";
 
   const labelClass =
     "font-albert font-[500] text-[16px] leading-[24px] tracking-[0] text-white mb-[14px] block";
@@ -58,7 +106,7 @@ export default function SuggestionsForm() {
         </div>
 
         {/* Form */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Top row */}
           <div className="grid md:grid-cols-4 gap-6">
             <div>
@@ -72,8 +120,10 @@ export default function SuggestionsForm() {
 
             <div>
               <label className={labelClass}>Location</label>
-              <input
-                type="text"
+              <Combobox
+                items={locations}
+                value={location}
+                onChange={setLocation}
                 placeholder="Select Location"
                 className={inputClass}
               />
@@ -81,8 +131,10 @@ export default function SuggestionsForm() {
 
             <div>
               <label className={labelClass}>Category</label>
-              <input
-                type="text"
+              <Combobox
+                items={categories}
+                value={category}
+                onChange={setCategory}
                 placeholder="Select Category"
                 className={inputClass}
               />
@@ -90,8 +142,10 @@ export default function SuggestionsForm() {
 
             <div>
               <label className={labelClass}>Month</label>
-              <input
-                type="text"
+              <Combobox
+                items={months}
+                value={month}
+                onChange={setMonth}
                 placeholder="Select Month"
                 className={inputClass}
               />
@@ -104,7 +158,7 @@ export default function SuggestionsForm() {
             <textarea
               rows={4}
               placeholder="Ex: I would like to have an art event at RK Beach..."
-              className={`${inputClass} resize-none`}
+              className={`${inputClass} resize-none h-auto md:h-auto py-3`} // Override height for textarea
             />
           </div>
 

@@ -8,7 +8,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Soulseeker - Discover More in Your City",
+  title: "Baatasari - Discover More in Your City",
   description:
     "New experiences, local sounds, events and more! Connect with event organizers, restaurants, and performers in your city.",
   generator: "v0.app",
@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   },
 }
 
+import { AuthProvider } from "@/context/auth-context"
+
+// ... imports ...
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,8 +43,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-        {children}
-        <Analytics />
+        <AuthProvider>
+          {children}
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   )

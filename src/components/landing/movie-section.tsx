@@ -1,3 +1,5 @@
+"use client"
+
 import { MovieCard } from "@/components/landing/movie-card"
 
 interface MovieSectionProps {

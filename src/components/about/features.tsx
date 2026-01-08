@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Feature = {
   title: string;
@@ -32,33 +32,51 @@ const features: Feature[] = [
 ];
 
 export default function Features() {
-  const [active, setActive] = useState(1);
-  const isLocked = useRef(false);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [activeDirection, setActiveDirection] = useState<"left" | "right">("right"); // Keep for button styling if needed, or remove. Keeping for button state logic.
 
-  const prev = () =>
-    setActive((i) => (i === 0 ? features.length - 1 : i - 1));
+  const totalCards = features.length;
 
-  const next = () =>
-    setActive((i) => (i === features.length - 1 ? 0 : i + 1));
+  const getPosition = (index: number) => {
+    let diff = index - activeIndex;
+    if (diff > totalCards / 2) diff -= totalCards;
+    if (diff < -totalCards / 2) diff += totalCards;
+    return diff;
+  };
 
-  const onWheel = (e: React.WheelEvent) => {
-    if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+  const navigate = (direction: "left" | "right") => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveDirection(direction);
 
-    e.preventDefault();
+    // Small timeout to prevent rapid clicking glitches, similar to reference
+    // logic allows standard state update
+    if (direction === "right") {
+      setActiveIndex((prev) => (prev + 1) % totalCards);
+    } else {
+      setActiveIndex((prev) => (prev - 1 + totalCards) % totalCards);
+    }
 
-    if (isLocked.current) return;
-    if (Math.abs(e.deltaX) < 40) return;
-
-    isLocked.current = true;
-    e.deltaX > 0 ? next() : prev();
-
+    // Release lock after transition duration usually, but here we just lock briefly 
+    // The reference used 100ms timeout for setting state? 
+    // Reference: setTimeout(() => { updateState; setIsAnimating(false) }, 100)
+    // Actually standard CSS transition handles the smooth move. 
+    // We'll mimic the reference exactly.
     setTimeout(() => {
-      isLocked.current = false;
-    }, 600);
+      setIsAnimating(false);
+    }, 500); // 500ms matches the transition duration approximately
+  };
+
+  const handleCardClick = (index: number) => {
+    if (isAnimating) return;
+    const position = getPosition(index);
+    if (position === 0) return;
+    position > 0 ? navigate("right") : navigate("left");
   };
 
   return (
-    <section id="features" className="py-24 bg-white overflow-hidden relative">
+    <section id="features" className="pt-6 pb-24 bg-white overflow-hidden relative">
       <div className="container mx-auto px-4 relative">
         {/* Section Heading */}
         <h2
@@ -75,78 +93,52 @@ export default function Features() {
           What&apos;s so special about us?
         </h2>
 
-        {/* Animated carousel */}
-        <motion.div
-          onWheel={onWheel}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0}
-          dragMomentum={false}
-          onDragEnd={(_, info) => {
-            if (info.offset.x < -80) next();
-            if (info.offset.x > 80) prev();
-          }}
-          className="relative h-[540px] flex items-center justify-center"
-          style={{
-            overscrollBehavior: "contain",
-            touchAction: "pan-x",
-          }}
-        >
+        {/* 3D Carousel Container */}
+        <div className="relative h-[540px] flex items-center justify-center">
           {features.map((item, index) => {
-            const offset = index - active;
-            const isActive = offset === 0;
+            const position = getPosition(index);
+            const isActive = position === 0;
+
+            // Render only if visible/near center to avoid glitches if list is large (optional, but good practice from reference)
+            // But with 3 items, all are visible.
 
             return (
-              <motion.div
+              <div
                 key={index}
-                animate={{
-                  x: offset * 420,
-                  scale: isActive ? 1 : 0.88,
-                  opacity: isActive ? 1 : 0.35,
+                onClick={() => handleCardClick(index)}
+                style={{
+                  transform: `translateX(${position * 420}px) scale(${isActive ? 1 : 0.85})`, // 420px spacing
+                  zIndex: isActive ? 30 : 20,
+                  opacity: isActive ? 1 : 0.6,
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="absolute pointer-events-none"
-              >
-                <motion.div
-                  onClick={() => {
-                    if (!isActive) setActive(index);
-                  }}
-                  whileHover={
-                    isActive
-                      ? {
-                          y: -8,
-                          boxShadow:
-                            "0 25px 60px rgba(37,99,235,0.35)",
-                        }
-                      : {}
-                  }
-                  className={`
-                    pointer-events-auto
-                    cursor-pointer
+                className={`
+                    absolute
                     w-[380px] h-[470px]
-                    rounded-2xl bg-white border
-                    ${
-                      isActive
-                        ? "border-blue-400 cursor-default"
-                        : "border-gray-200"
-                    }
+                    rounded-2xl bg-white 
+                    cursor-pointer
+                    transition-all duration-700 ease-out
+                    border
+                    ${isActive
+                    ? "border-blue-400 shadow-[0_25px_60px_rgba(37,99,235,0.35)]"
+                    : "border-gray-200 shadow-xl"
+                  }
                   `}
-                >
-                  {/* Image */}
-                  <div className="relative w-full h-60 rounded-t-2xl overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-contain"
-                      priority={isActive}
-                    />
-                  </div>
+              >
+                {/* Image */}
+                <div className="relative w-full h-60 rounded-t-2xl overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className={`object-contain transition-transform duration-1000 ease-out ${isActive ? "scale-105" : "scale-100"}`}
+                    priority={isActive}
+                  />
+                </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3
-                      className="
+                {/* Content */}
+                <div className="p-6">
+                  <h3
+                    className="
                         font-albert
                         font-[700]
                         text-[24px]
@@ -155,12 +147,12 @@ export default function Features() {
                         text-[#3D3D3D]
                         mb-2
                       "
-                    >
-                      {item.title}
-                    </h3>
+                  >
+                    {item.title}
+                  </h3>
 
-                    <p
-                      className="
+                  <p
+                    className="
                         font-albert
                         font-[500]
                         text-[16px]
@@ -168,29 +160,34 @@ export default function Features() {
                         tracking-[0.005em]
                         text-[#454545]
                       "
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              </motion.div>
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* Arrows */}
-        <div className="absolute right-4 bottom-4 flex gap-3">
+        <div className="absolute right-4 -bottom-8 flex gap-3">
           <button
-            onClick={prev}
-            className="w-12 h-12 rounded-full border flex items-center justify-center hover:bg-gray-200 transition bg-white"
+            onClick={() => navigate("left")}
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition border ${activeDirection === "left"
+              ? "bg-[#0C1D37] text-white border-[#0C1D37] hover:bg-[#0C1D37]/90"
+              : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+              }`}
           >
-            &lt;
+            <ChevronLeft className="h-6 w-6" />
           </button>
           <button
-            onClick={next}
-            className="w-12 h-12 rounded-full bg-[#0C1D37] border border-[#0C1D37] text-white flex items-center justify-center transition hover:bg-[#0C1D37]/90"
+            onClick={() => navigate("right")}
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition border ${activeDirection === "right"
+              ? "bg-[#0C1D37] text-white border-[#0C1D37] hover:bg-[#0C1D37]/90"
+              : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+              }`}
           >
-            &gt;
+            <ChevronRight className="h-6 w-6" />
           </button>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function RestaurantOwner() {
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row-reverse items-center gap-12 max-w-6xl mx-auto">
-          
+
           {/* Text Content */}
           <motion.div
             className="lg:w-1/2"
@@ -38,6 +38,16 @@ export default function RestaurantOwner() {
             >
               Are you a Restaurant / Cafe Owner?
             </h2>
+
+            {/* Mobile Image (Visible on mobile, hidden on lg) */}
+            <div className="relative w-full h-64 mb-8 lg:hidden">
+              <Image
+                src="bro.png"
+                alt="Restaurant Owner Illustration"
+                fill
+                className="object-contain"
+              />
+            </div>
 
             {/* Subheading */}
             <p
@@ -93,15 +103,15 @@ export default function RestaurantOwner() {
             </button>
           </motion.div>
 
-          {/* Image */}
+          {/* Desktop Image (Hidden on mobile, block on lg) */}
           <motion.div
-            className="lg:w-1/2 w-full"
+            className="lg:w-1/2 w-full hidden lg:block"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative w-full h-96">
               <Image
                 src="bro.png"
                 alt="Restaurant Owner Illustration"
