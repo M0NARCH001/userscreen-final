@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -51,16 +52,16 @@ export default function UserHeader() {
                     {/* CENTER — NAV */}
                     {/* CENTER — NAV */}
                     <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-10">
-                        <Link className="font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]" href="/">
+                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/">
                             Home
                         </Link>
-                        <Link className="font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]" href="/about">
+                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/about">
                             About Us
                         </Link>
-                        <Link className="font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]" href="/events">
+                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/events">
                             Events
                         </Link>
-                        <Link className="font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]" href="/talent">
+                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/talent">
                             Talent
                         </Link>
                     </nav>
@@ -69,20 +70,20 @@ export default function UserHeader() {
                     <div className="ml-auto hidden md:flex items-center">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <button className="flex items-center gap-1 p-1 rounded-full border border-[#E4E4E4] bg-white/90">
+                                <Button variant="ghost" className="flex items-center gap-1 p-1 rounded-full border border-(--border-light) bg-(--white)/90 h-auto hover:bg-(--white)">
                                     <Avatar className="h-8 w-8 rounded-full">
                                         <AvatarFallback>{getInitials(userProfile.fullName)}</AvatarFallback>
                                     </Avatar>
-                                    <ChevronDown className="h-4 w-4 text-gray-800" />
-                                </button>
+                                    <ChevronDown className="h-4 w-4 text-(--gray-800)" />
+                                </Button>
                             </DropdownMenuTrigger>
 
                             <DropdownMenuContent align="end" className="w-64 p-0">
                                 <div className="px-4 py-3 border-b">
-                                    <p className="font-inter font-[500] text-[18px] leading-[24px] text-[#333333]">
+                                    <p className="font-inter font-medium text-[18px] leading-[24px] text-(--text-body)">
                                         {userProfile.fullName || "User"}
                                     </p>
-                                    <p className="font-inter font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-[#4A4A4A]">
+                                    <p className="font-inter font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--text-body-secondary)">
                                         {userProfile.emailId || "No email set"}
                                     </p>
                                 </div>
@@ -95,7 +96,7 @@ export default function UserHeader() {
                                     >
                                         <Link
                                             href={item.href}
-                                            className="w-full flex px-4 py-3 font-inter font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-[#4A4A4A]"
+                                            className="w-full flex px-4 py-3 font-inter font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--text-body-secondary)"
                                         >
                                             {item.label}
                                         </Link>
@@ -104,7 +105,7 @@ export default function UserHeader() {
 
                                 <DropdownMenuSeparator />
 
-                                <DropdownMenuItem className="px-4 py-3 flex items-center gap-2 font-inter font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-[#FB3748]">
+                                <DropdownMenuItem className="px-4 py-3 flex items-center gap-2 font-inter font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--text-error)">
                                     Logout
                                     <LogOut className="h-4 w-4" />
                                 </DropdownMenuItem>
@@ -113,22 +114,25 @@ export default function UserHeader() {
                     </div>
 
                     {/* MOBILE TOGGLE */}
-                    <button
+                    <Button
+                        variant="ghost"
+                        size="icon"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="ml-auto md:hidden text-2xl"
+                        className="ml-auto md:hidden text-2xl h-auto w-auto hover:bg-transparent"
                     >
                         {isMobileMenuOpen ? "✕" : "☰"}
-                    </button>
+                    </Button>
                 </div>
 
                 {/* MOBILE MENU */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden mt-4 rounded-2xl bg-white shadow-xl overflow-hidden">
+                    <div className="md:hidden mt-4 rounded-2xl bg-(--white) shadow-xl overflow-hidden">
 
                         {/* AVATAR + NAME + EMAIL */}
-                        <button
+                        <Button
+                            variant="ghost"
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
-                            className="w-full flex items-center justify-between px-6 py-4 border-b"
+                            className="w-full flex items-center justify-between px-6 py-4 border-b h-auto hover:bg-transparent rounded-none"
                         >
                             <div className="flex items-center gap-3">
                                 <Avatar className="h-8 w-8 rounded-full">
@@ -136,10 +140,10 @@ export default function UserHeader() {
                                 </Avatar>
 
                                 <div className="text-left">
-                                    <p className="font-inter font-[500] text-[18px] leading-[24px] text-[#333333]">
+                                    <p className="font-inter font-medium text-[18px] leading-[24px] text-(--text-body)">
                                         {userProfile.fullName || "User"}
                                     </p>
-                                    <p className="font-inter font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-[#4A4A4A]">
+                                    <p className="font-inter font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--text-body-secondary) normal-case">
                                         {userProfile.emailId || "No email set"}
                                     </p>
                                 </div>
@@ -149,7 +153,7 @@ export default function UserHeader() {
                                 className={`h-5 w-5 transition-transform ${isProfileOpen ? "rotate-180" : ""
                                     }`}
                             />
-                        </button>
+                        </Button>
 
                         {/* PROFILE DROPDOWN */}
                         {isProfileOpen && (
@@ -159,7 +163,7 @@ export default function UserHeader() {
                                         key={item.label}
                                         href={item.href}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="block w-full text-left px-6 py-4 font-inter font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-[#4A4A4A]"
+                                        className="block w-full text-left px-6 py-4 font-inter font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--text-body-secondary)"
                                     >
                                         {item.label}
                                     </Link>
@@ -168,26 +172,26 @@ export default function UserHeader() {
                         )}
 
                         {/* MAIN NAV */}
-                        <Link href="/" className="block px-6 py-4 font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]">
+                        <Link href="/" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
                             Home
                         </Link>
-                        <Link href="/about" className="block px-6 py-4 font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]">
+                        <Link href="/about" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
                             About Us
                         </Link>
-                        <Link href="/events" className="block px-6 py-4 font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]">
+                        <Link href="/events" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
                             Events
                         </Link>
-                        <Link href="/talent" className="block px-6 py-4 font-poppins font-[500] text-[18px] leading-[24px] text-[#272727]">
+                        <Link href="/talent" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
                             Talent
                         </Link>
 
-                        <div className="h-px bg-gray-200 mx-6 my-2" />
+                        <div className="h-px bg-(--gray-200) mx-6 my-2" />
 
                         {/* LOGOUT */}
-                        <button className="w-full flex items-center gap-2 px-6 py-4 font-inter font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-[#FB3748]">
+                        <Button variant="ghost" className="w-full flex items-center justify-start gap-2 px-6 py-4 font-inter font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--text-error) h-auto hover:bg-transparent hover:text-(--text-error)">
                             Logout
                             <LogOut className="h-4 w-4" />
-                        </button>
+                        </Button>
                     </div>
                 )}
             </div>

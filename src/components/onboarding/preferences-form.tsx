@@ -7,18 +7,15 @@ import { X } from "lucide-react"
 import { useAuth } from "@/context/auth-context"
 
 import { useRouter } from "next/navigation"
-
-type PreferenceCategory = "travel" | "interests" | "food" | "emotional" | "logistics"
-
-interface Preferences {
-    travel: string[]
-    interests: string[]
-    food: string[]
-    emotional: string[]
-    logistics: string[]
-}
-
-const MIN_REQUIRED = 5
+import {
+    type PreferenceCategory,
+    type Preferences,
+    PREFERENCE_CARDS,
+    PREFERENCE_OPTIONS,
+    TAB_TITLES,
+    CATEGORY_ORDER,
+    MIN_REQUIRED,
+} from "@/lib/preferences-data"
 
 interface PreferencesFormProps {
     onComplete: () => void;
@@ -37,30 +34,11 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
         logistics: userPreferences?.logistics || [],
     })
 
-    // Using placeholders as the specific images /1.png etc. are not available
-    const preferenceCards = [
-        { title: "Travel & Local Exploration Style", image: "/placeholder.svg", category: "travel" as PreferenceCategory },
-        { title: "Interests, Hobbies & Activities", image: "/placeholder.svg", category: "interests" as PreferenceCategory },
-        { title: "Food & Dining Preferences", image: "/placeholder.svg", category: "food" as PreferenceCategory },
-        { title: "Emotional Intent & Personality", image: "/placeholder.svg", category: "emotional" as PreferenceCategory },
-        { title: "Logistics & Discovery Style", image: "/placeholder.svg", category: "logistics" as PreferenceCategory },
-    ]
+    const preferenceCards = PREFERENCE_CARDS
 
-    const preferenceOptions = {
-        travel: ["Explorer", "Relaxer", "Spontaneous planner", "Bucket-lister", "City hopper", "Nature seeker", "Weekend cafe finder", "Historical wanderer", "Spiritual tripper", "Group adventure seeker", "Sea food", "Veg"],
-        interests: ["Hiking", "Photography", "Museums", "Nightlife", "Street performances", "Flea markets", "Reading", "Cooking", "Thrifting", "Attending concerts", "Wildlife parks", "Yoga or wellness"],
-        food: ["Street food", "Fancy dining", "Cafes", "South Indian", "Mediterranean", "Vegan-friendly", "Desserts", "No raw food", "Alcohol-friendly", "Coffee addict", "Tea enthusiast", "Food markets", "Cooking classes"],
-        emotional: ["Escape routine", "Recharge solo", "Celebrate love", "Learn something new", "Find hidden gems", "Romantic vibes", "Heal & reflection", "Meet new people", "Surprise me trips", "Go with the flow", "Deep cultural curiosity", "Calm and quiet spaces"],
-        logistics: ["Public transport pro", "Walkable places only", "Cab everywhere", "Plan through Instagram", "Love mystery plans", "Tech-savvy", "Needs Wi-Fi", "Avoids rainy days", "Last-minute planner", "Pet-friendly spaces", "Gourmet", "High protein", "Mocktail", "Indian", "Fried", "Desserts", "Budget-focused", "Group tours welcome", "Offline map preferred"],
-    }
+    const preferenceOptions = PREFERENCE_OPTIONS
 
-    const tabTitles: Record<PreferenceCategory, string> = {
-        travel: "Travel & Local Exploration Style",
-        interests: "Interests, Hobbies & Activities",
-        food: "Food & Dining Preferences",
-        emotional: "Emotional Intent & Personality",
-        logistics: "Logistics & Discovery Style",
-    }
+    const tabTitles = TAB_TITLES
 
     const handleCardClick = (category: PreferenceCategory) => {
         setActiveTab(category)
@@ -81,13 +59,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
 
 
     // Helper to get the order of categories
-    const categoryOrder: PreferenceCategory[] = [
-        "travel",
-        "interests",
-        "food",
-        "emotional",
-        "logistics",
-    ];
+    const categoryOrder = CATEGORY_ORDER;
 
     // Check if all categories are complete
     const isReadyToSave = Object.values(preferences).every(
@@ -132,13 +104,13 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                     <div
                         key={index}
                         onClick={() => handleCardClick(card.category)}
-                        className="cursor-pointer rounded-2xl md:rounded-[28px] border border-gray-200 bg-white p-6 md:p-12 shadow-sm hover:border-gray-300 transition"
+                        className="cursor-pointer rounded-2xl md:rounded-[28px] border border-(--gray-200) bg-(--white) p-6 md:p-12 shadow-sm hover:border-(--gray-300) transition"
                     >
                         <div className="flex flex-col items-center">
                             <div className="mb-6 md:mb-10 w-full h-[120px] sm:h-[180px] md:h-[220px] relative">
-                                <div className="w-full h-full bg-gray-100 rounded-xl"></div>
+                                <div className="w-full h-full bg-(--gray-100) rounded-xl"></div>
                             </div>
-                            <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-center text-gray-900">
+                            <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-center text-(--gray-900)">
                                 {card.title}
                             </h2>
                         </div>
@@ -152,13 +124,13 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                     <div
                         key={index}
                         onClick={() => handleCardClick(card.category)}
-                        className="cursor-pointer rounded-2xl md:rounded-[28px] border border-gray-200 bg-white p-4 md:p-8 shadow-sm hover:border-gray-300 transition"
+                        className="cursor-pointer rounded-2xl md:rounded-[28px] border border-(--gray-200) bg-(--white) p-4 md:p-8 shadow-sm hover:border-(--gray-300) transition"
                     >
                         <div className="flex flex-col items-center">
                             <div className="mb-4 md:mb-6 w-full h-[90px] sm:h-[120px] md:h-[180px] relative">
-                                <div className="w-full h-full bg-gray-100 rounded-xl"></div>
+                                <div className="w-full h-full bg-(--gray-100) rounded-xl"></div>
                             </div>
-                            <h2 className="text-base sm:text-lg md:text-xl font-medium text-center text-gray-900">
+                            <h2 className="text-base sm:text-lg md:text-xl font-medium text-center text-(--gray-900)">
                                 {card.title}
                             </h2>
                         </div>
@@ -168,22 +140,23 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
 
             {/* MODAL */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black/10 backdrop-blur-[2px] flex items-center justify-center z-50 p-2 sm:p-4">
-                    <div className="bg-[#f3f5f7] w-full max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-[1100px] h-[90vh] max-h-[700px] rounded-2xl md:rounded-[32px] shadow-2xl flex flex-col overflow-hidden">
+                <div className="fixed inset-0 bg-(--black)/10 backdrop-blur-[2px] flex items-center justify-center z-50 p-2 sm:p-4">
+                    <div className="bg-(--pref-bg) w-full max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-[1100px] h-[90vh] max-h-[700px] rounded-2xl md:rounded-[32px] shadow-2xl flex flex-col overflow-hidden">
 
                         {/* TABS */}
                         <div className="px-2 sm:px-6 md:px-12 pt-6 md:pt-10 flex flex-wrap gap-2 justify-between">
                             {(Object.keys(tabTitles) as PreferenceCategory[]).map((category) => (
-                                <button
+                                <Button
                                     key={category}
+                                    variant="ghost"
                                     onClick={() => setActiveTab(category)}
-                                    className={`px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[13px] font-bold flex-1 min-w-[120px] max-w-[180px] ${activeTab === category
-                                        ? "bg-[#0b1729] text-white shadow-lg"
-                                        : "text-[#64748b] hover:text-[#0b1729]"
+                                    className={`px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[13px] font-bold flex-1 min-w-[120px] max-w-[180px] h-auto ${activeTab === category
+                                        ? "bg-(--pref-dark) text-(--white) shadow-lg hover:bg-(--pref-dark)/90 hover:text-(--white)"
+                                        : "text-(--pref-tag) hover:text-(--pref-dark) hover:bg-transparent"
                                         }`}
                                 >
                                     {tabTitles[category]}
-                                </button>
+                                </Button>
                             ))}
                         </div>
 
@@ -193,17 +166,18 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                                 {preferenceOptions[activeTab].map((option) => {
                                     const selected = preferences[activeTab].includes(option)
                                     return (
-                                        <button
+                                        <Button
                                             key={option}
+                                            variant="outline"
                                             onClick={() => togglePreference(activeTab, option)}
-                                            className={`flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-[15px] font-medium ${selected
-                                                ? "bg-[#4a6b9d] text-white"
-                                                : "bg-[#e2e8f0] text-[#475569]"
+                                            className={`flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-[15px] font-medium h-auto border-0 ${selected
+                                                ? "bg-(--pref-active) text-(--white) hover:bg-(--pref-active)/90 hover:text-(--white)"
+                                                : "bg-(--slate-200) text-(--pref-muted-text) hover:bg-(--slate-200)/80"
                                                 }`}
                                         >
                                             {option}
                                             <X className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${selected ? "opacity-100" : "opacity-0"}`} />
-                                        </button>
+                                        </Button>
                                     )
                                 })}
                             </div>
@@ -211,24 +185,25 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
 
                         {/* FOOTER */}
                         <div className="px-2 sm:px-6 md:px-12 pb-6 md:pb-10 flex flex-col sm:flex-row justify-between items-center gap-4">
-                            <div className="text-xs text-[#475569]">
+                            <div className="text-xs text-(--pref-muted-text)">
                                 Minimum required: {MIN_REQUIRED} per section
                             </div>
 
                             <div className="flex gap-2 sm:gap-4 w-full sm:w-auto">
-                                <button
+                                <Button
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex-1 sm:flex-none px-6 sm:px-10 py-2.5 sm:py-3.5 rounded-full border-2 border-[#cbd5e1] text-[#475569] font-bold"
+                                    variant="outline"
+                                    className="flex-1 sm:flex-none px-6 sm:px-10 py-2.5 sm:py-3.5 rounded-full border-2 border-(--pref-border) text-(--pref-muted-text) font-bold h-auto hover:bg-transparent"
                                 >
                                     Back
-                                </button>
+                                </Button>
 
-                                <button
+                                <Button
                                     onClick={handleSave}
-                                    className={`flex-1 sm:flex-none px-6 sm:px-8 py-3 sm:py-4 rounded-xl md:rounded-2xl font-bold bg-blue-600 text-white hover:bg-blue-700`}
+                                    className={`flex-1 sm:flex-none px-6 sm:px-8 py-3 sm:py-4 rounded-xl md:rounded-2xl font-bold bg-(--blue-600) text-(--white) hover:bg-(--blue-700) h-auto`}
                                 >
                                     {activeTab === "logistics" && isReadyToSave ? "Finish" : "Save & Continue"}
-                                </button>
+                                </Button>
                             </div>
                         </div>
 

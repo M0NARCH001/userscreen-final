@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export default function RestaurantOwner() {
   return (
@@ -11,7 +12,7 @@ export default function RestaurantOwner() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="py-20 bg-white"
+      className="py-20 bg-(--white)"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row-reverse items-center gap-12 max-w-6xl mx-auto">
@@ -25,17 +26,7 @@ export default function RestaurantOwner() {
             viewport={{ once: true }}
           >
             {/* Heading */}
-            <h2
-              className="
-                font-bricolage
-                font-[700]
-                text-[54px]
-                leading-[72px]
-                tracking-[0]
-                text-[#3A5F94]
-                mb-4
-              "
-            >
+            <h2 className="font-bricolage font-bold text-4xl md:text-5xl tracking-tight text-(--about-heading-color) mb-4">
               Are you a Restaurant / Cafe Owner?
             </h2>
 
@@ -50,32 +41,12 @@ export default function RestaurantOwner() {
             </div>
 
             {/* Subheading */}
-            <p
-              className="
-                font-albert
-                font-[500]
-                text-[28px]
-                leading-[1]
-                tracking-[0.0015em]
-                text-[#3A5F94]
-                mb-6
-              "
-            >
+            <p className="font-albert font-medium text-2xl md:text-3xl leading-tight tracking-tight text-(--about-heading-color) mb-6">
               Attract a Thriving Crowd of Food Lovers!
             </p>
 
             {/* Description */}
-            <p
-              className="
-                font-albert
-                font-[400]
-                text-[18px]
-                leading-[24px]
-                tracking-[0]
-                text-[#333333]
-                mb-8
-              "
-            >
+            <p className="font-albert text-lg leading-relaxed text-(--about-body-text) mb-8">
               Baatasari isn&apos;t just for diners—it&apos;s for culinary creators
               like you! Promote your unique dishes, engage with a larger
               audience, manage reservations effortlessly, and elevate your
@@ -83,24 +54,9 @@ export default function RestaurantOwner() {
             </p>
 
             {/* CTA */}
-            <button
-              className="
-                font-albert
-                font-[500]
-                text-[18px]
-                leading-[24px]
-                tracking-[0]
-                text-[#F6F6F6]
-                bg-[#0C1D37]
-                hover:bg-gray-800
-                px-8
-                py-3
-                rounded-full
-                transition
-              "
-            >
+            <Button className="font-albert font-medium text-lg leading-6 text-(--text-light) bg-(--brand-navy) hover:bg-(--brand-navy)/90 px-8 py-3 rounded-full transition h-auto">
               Become our Restaurant Partner
-            </button>
+            </Button>
           </motion.div>
 
           {/* Desktop Image (Hidden on mobile, block on lg) */}

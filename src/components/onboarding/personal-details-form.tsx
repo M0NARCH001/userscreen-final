@@ -160,7 +160,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
     const showPartnerDetails = formData.relationshipStatus && formData.relationshipStatus !== "single"
 
     // CSS class for the label sitting on the border
-    const labelOnBorderClass = "absolute -top-2 left-3 px-1 bg-white text-[11px] font-medium text-[#8a7ba7] z-10"
+    const labelOnBorderClass = "absolute -top-2 left-3 px-1 bg-(--white) text-[11px] font-medium text-(--pref-label) z-10"
 
     return (
         <main className="mx-auto max-w-7xl px-6 py-12">
@@ -171,9 +171,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                     {/* Profile Image Section */}
                     <div className="flex flex-col items-center lg:items-start">
                         <div className="relative">
-                            <div className="h-52 w-52 rounded-full overflow-hidden bg-yellow-400 border-4 border-white shadow-lg">
+                            <div className="h-52 w-52 rounded-full overflow-hidden bg-(--yellow-400) border-4 border-white shadow-lg">
                                 {/* Using standard placeholder if no image */}
-                                <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                <div className="w-full h-full bg-(--gray-200) flex items-center justify-center text-(--gray-500)">
                                     {profileImage ? (
                                         <Image
                                             src={profileImage}
@@ -188,11 +188,11 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                         </div>
                         <div className="mt-6">
                             <label htmlFor="profile-upload">
-                                <div className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                                <div className="flex items-center gap-2 px-6 py-3 bg-(--gray-900) text-(--white) rounded-lg cursor-pointer hover:bg-(--gray-800) transition-colors">
                                     <Upload className="h-4 w-4" />
                                     <span className="font-medium">Change picture</span>
                                 </div>
-                                <input
+                                <Input
                                     id="profile-upload"
                                     type="file"
                                     accept="image/*"
@@ -216,9 +216,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                     placeholder="Enter your name"
                                     value={formData.fullName}
                                     onChange={(e) => handleInputChange("fullName", e.target.value)}
-                                    className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                    className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                 />
-                                {errors.fullName && <p className="text-red-500 text-xs mt-1 absolute">{errors.fullName}</p>}
+                                {errors.fullName && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.fullName}</p>}
                             </div>
 
                             {/* Mobile Number */}
@@ -236,9 +236,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                         const value = e.target.value.replace(/\D/g, '')
                                         handleInputChange("mobileNumber", value)
                                     }}
-                                    className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                    className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                 />
-                                {errors.mobileNumber && <p className="text-red-500 text-xs mt-1 absolute">{errors.mobileNumber}</p>}
+                                {errors.mobileNumber && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.mobileNumber}</p>}
                             </div>
 
                             {/* Email Id */}
@@ -252,9 +252,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                     placeholder="Enter your email id"
                                     value={formData.emailId}
                                     onChange={(e) => handleInputChange("emailId", e.target.value)}
-                                    className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                    className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                 />
-                                {errors.emailId && <p className="text-red-500 text-xs mt-1 absolute">{errors.emailId}</p>}
+                                {errors.emailId && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.emailId}</p>}
                             </div>
 
                             {/* Date of Birth */}
@@ -267,7 +267,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                         <Button
                                             variant={"outline"}
                                             className={cn(
-                                                "!h-14 w-full justify-start text-left font-normal bg-white border-gray-400 hover:bg-white text-base md:text-sm",
+                                                "!h-14 w-full justify-start text-left font-normal bg-(--white) border-(--gray-400) hover:bg-(--white) text-base md:text-sm",
                                                 !formData.dateOfBirth && "text-muted-foreground"
                                             )}
                                         >
@@ -287,7 +287,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                         />
                                     </PopoverContent>
                                 </Popover>
-                                {errors.dateOfBirth && <p className="text-red-500 text-xs mt-1 absolute">{errors.dateOfBirth}</p>}
+                                {errors.dateOfBirth && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.dateOfBirth}</p>}
                             </div>
 
                             {/* Gender */}
@@ -296,7 +296,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                     Gender
                                 </Label>
                                 <Select value={formData.gender} onValueChange={(value) => handleInputChange("gender", value)}>
-                                    <SelectTrigger id="gender" className="!h-14 w-full bg-white border-gray-400 focus-visible:ring-0 text-base md:text-sm items-center px-3">
+                                    <SelectTrigger id="gender" className="!h-14 w-full bg-(--white) border-(--gray-400) focus-visible:ring-0 text-base md:text-sm items-center px-3">
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -305,7 +305,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                         <SelectItem value="other">Other</SelectItem>
                                     </SelectContent>
                                 </Select>
-                                {errors.gender && <p className="text-red-500 text-xs mt-1 absolute">{errors.gender}</p>}
+                                {errors.gender && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.gender}</p>}
                             </div>
 
                             {/* Relationship Status */}
@@ -317,7 +317,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                     value={formData.relationshipStatus}
                                     onValueChange={(value) => handleInputChange("relationshipStatus", value)}
                                 >
-                                    <SelectTrigger id="relationshipStatus" className="!h-14 w-full bg-white border-gray-400 focus-visible:ring-0 text-base md:text-sm items-center px-3">
+                                    <SelectTrigger id="relationshipStatus" className="!h-14 w-full bg-(--white) border-(--gray-400) focus-visible:ring-0 text-base md:text-sm items-center px-3">
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -326,7 +326,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                         <SelectItem value="in-relationship">In a relationship</SelectItem>
                                     </SelectContent>
                                 </Select>
-                                {errors.relationshipStatus && <p className="text-red-500 text-xs mt-1 absolute">{errors.relationshipStatus}</p>}
+                                {errors.relationshipStatus && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.relationshipStatus}</p>}
                             </div>
 
                             {/* Location */}
@@ -339,9 +339,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                     placeholder="Enter current location"
                                     value={formData.location}
                                     onChange={(e) => handleInputChange("location", e.target.value)}
-                                    className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                    className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                 />
-                                {errors.location && <p className="text-red-500 text-xs mt-1 absolute">{errors.location}</p>}
+                                {errors.location && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.location}</p>}
                             </div>
 
                             {/* Profession */}
@@ -354,9 +354,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                     placeholder="Enter your Profession"
                                     value={formData.profession}
                                     onChange={(e) => handleInputChange("profession", e.target.value)}
-                                    className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                    className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                 />
-                                {errors.profession && <p className="text-red-500 text-xs mt-1 absolute">{errors.profession}</p>}
+                                {errors.profession && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.profession}</p>}
                             </div>
                         </div>
                     </div>
@@ -369,8 +369,8 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
                             <div className="flex flex-col items-center lg:items-start">
                                 <div className="relative">
-                                    <div className="h-52 w-52 rounded-full overflow-hidden bg-yellow-400 border-4 border-white shadow-lg">
-                                        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                    <div className="h-52 w-52 rounded-full overflow-hidden bg-(--yellow-400) border-4 border-white shadow-lg">
+                                        <div className="w-full h-full bg-(--gray-200) flex items-center justify-center text-(--gray-500)">
                                             {partnerProfileImage ? (
                                                 <Image
                                                     src={partnerProfileImage}
@@ -385,11 +385,11 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                 </div>
                                 <div className="mt-6">
                                     <label htmlFor="partner-profile-upload">
-                                        <div className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                                        <div className="flex items-center gap-2 px-6 py-3 bg-(--gray-900) text-(--white) rounded-lg cursor-pointer hover:bg-(--gray-800) transition-colors">
                                             <Upload className="h-4 w-4" />
                                             <span className="font-medium">Change picture</span>
                                         </div>
-                                        <input
+                                        <Input
                                             id="partner-profile-upload"
                                             type="file"
                                             accept="image/*"
@@ -412,9 +412,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                             placeholder="xyz"
                                             value={partnerData.fullName}
                                             onChange={(e) => handlePartnerInputChange("fullName", e.target.value)}
-                                            className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                            className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                         />
-                                        {errors.partner_fullName && <p className="text-red-500 text-xs mt-1 absolute">{errors.partner_fullName}</p>}
+                                        {errors.partner_fullName && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.partner_fullName}</p>}
                                     </div>
 
                                     {/* Partner Mobile Number */}
@@ -431,9 +431,9 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                                 const value = e.target.value.replace(/\D/g, '')
                                                 handlePartnerInputChange("mobileNumber", value)
                                             }}
-                                            className="h-14 bg-white border-gray-400 focus-visible:ring-0"
+                                            className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
                                         />
-                                        {errors.partner_mobileNumber && <p className="text-red-500 text-xs mt-1 absolute">{errors.partner_mobileNumber}</p>}
+                                        {errors.partner_mobileNumber && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.partner_mobileNumber}</p>}
                                     </div>
 
                                     {/* Anniversary Date */}
@@ -446,7 +446,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                                 <Button
                                                     variant={"outline"}
                                                     className={cn(
-                                                        "!h-14 w-full justify-start text-left font-normal bg-white border-gray-400 hover:bg-white text-base md:text-sm",
+                                                        "!h-14 w-full justify-start text-left font-normal bg-(--white) border-(--gray-400) hover:bg-(--white) text-base md:text-sm",
                                                         !partnerData.anniversaryDate && "text-muted-foreground"
                                                     )}
                                                 >
@@ -466,7 +466,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                                 />
                                             </PopoverContent>
                                         </Popover>
-                                        {errors.partner_anniversaryDate && <p className="text-red-500 text-xs mt-1 absolute">{errors.partner_anniversaryDate}</p>}
+                                        {errors.partner_anniversaryDate && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.partner_anniversaryDate}</p>}
                                     </div>
 
                                     {/* Partner Date of Birth */}
@@ -479,7 +479,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                                 <Button
                                                     variant={"outline"}
                                                     className={cn(
-                                                        "!h-14 w-full justify-start text-left font-normal bg-white border-gray-400 hover:bg-white text-base md:text-sm",
+                                                        "!h-14 w-full justify-start text-left font-normal bg-(--white) border-(--gray-400) hover:bg-(--white) text-base md:text-sm",
                                                         !partnerData.dateOfBirth && "text-muted-foreground"
                                                     )}
                                                 >
@@ -499,7 +499,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                                 />
                                             </PopoverContent>
                                         </Popover>
-                                        {errors.partner_dateOfBirth && <p className="text-red-500 text-xs mt-1 absolute">{errors.partner_dateOfBirth}</p>}
+                                        {errors.partner_dateOfBirth && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.partner_dateOfBirth}</p>}
                                     </div>
                                 </div>
                             </div>
@@ -508,10 +508,10 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                 )}
 
                 {/* Submit Button */}
-                <div className="flex justify-center mt-12 pt-8 border-t border-gray-200">
+                <div className="flex justify-center mt-12 pt-8 border-t border-(--gray-200)">
                     <Button
                         type="submit"
-                        className="px-8 py-6 bg-gray-900 text-white hover:bg-gray-800 rounded-lg text-base font-medium"
+                        className="px-8 py-6 bg-(--gray-900) text-(--white) hover:bg-(--gray-800) rounded-lg text-base font-medium"
                     >
                         Save & Continue
                     </Button>

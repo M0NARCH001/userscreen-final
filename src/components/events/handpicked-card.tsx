@@ -1,6 +1,7 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react"
 import Image from "next/image"
@@ -36,7 +37,7 @@ export function HandpickedEventCard({
         <div className="group flex flex-col md:flex-row items-center h-full">
             <Link href={`/events/${id}`} className="block relative z-20">
                 {/* Main Card */}
-                <Card className="w-[300px] md:w-[340px] flex-shrink-0 border-0 shadow-sm transition-all duration-300 rounded-[24px] overflow-hidden bg-white group-hover:-translate-y-2 group-hover:shadow-2xl">
+                <Card className="w-[300px] md:w-[340px] shrink-0 border-0 shadow-sm transition-all duration-300 rounded-[24px] overflow-hidden bg-(--white) group-hover:-translate-y-2 group-hover:shadow-2xl">
                     <CardContent className="p-4">
                         {/* Image Container */}
                         <div className="relative aspect-square w-full mb-4 overflow-hidden rounded-[20px]">
@@ -50,17 +51,17 @@ export function HandpickedEventCard({
 
                         {/* Content */}
                         <div className="space-y-2">
-                            <h3 className="font-poppins font-[600] text-[20px] leading-[30px] text-[#0C1D37] line-clamp-2">
+                            <h3 className="font-poppins font-semibold text-[20px] leading-[30px] text-(--events-card-text) line-clamp-2">
                                 {title}
                             </h3>
 
-                            <p className="font-poppins font-[400] text-[16px] text-[#0C1D37]/80">
+                            <p className="font-poppins font-normal text-[16px] text-(--events-card-text)/80">
                                 {price} onwards
                             </p>
 
                             <Badge
                                 variant="secondary"
-                                className="mt-2 bg-[#E0D9F7] text-[#0C1D37] hover:bg-[#E0D9F7]/80 rounded-full px-4 py-1 font-poppins font-[500] text-[14px]"
+                                className="mt-2 bg-(--events-badge-bg) text-(--events-card-text) hover:bg-(--events-badge-bg)/80 rounded-full px-4 py-1 font-poppins font-medium text-[14px]"
                             >
                                 {category}
                             </Badge>
@@ -70,36 +71,36 @@ export function HandpickedEventCard({
             </Link>
 
             {/* Details Panel - Mobile (Hidden) & Desktop (Slide-out) */}
-            <div className="hidden md:flex w-[300px] md:w-0 opacity-100 md:opacity-0 md:group-hover:w-[340px] md:group-hover:opacity-100 transition-all duration-500 ease-in-out bg-white rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-gray-100 shadow-xl overflow-hidden flex-col md:-ml-6 md:group-hover:ml-0 z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0">
+            <div className="hidden md:flex md:w-0 opacity-100 md:opacity-0 md:group-hover:w-[340px] md:group-hover:opacity-100 transition-all duration-500 ease-in-out bg-(--white) rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-(--gray-100) shadow-xl overflow-hidden flex-col md:-ml-6 md:group-hover:ml-0 z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0">
                 <div className="min-w-[300px] md:min-w-[340px] p-6 flex flex-col h-full justify-between">
                     <div className="space-y-4">
                         {/* Tag */}
-                        <Badge variant="secondary" className="bg-[#E0D9F7] text-[#0C1D37] hover:bg-[#E0D9F7]/80 rounded-full">
+                        <Badge variant="secondary" className="bg-(--events-badge-bg) text-(--events-card-text) hover:bg-(--events-badge-bg)/80 rounded-full">
                             {tag}
                         </Badge>
 
                         {/* Guests & Sponsors */}
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <p className="text-gray-500 text-sm">Chief Guest</p>
-                                <p className="font-semibold text-[#0C1D37]">{chiefGuest}</p>
+                                <p className="text-(--gray-500) text-sm">Chief Guest</p>
+                                <p className="font-semibold text-(--events-card-text)">{chiefGuest}</p>
                             </div>
                             <div>
-                                <p className="text-gray-500 text-sm">Sponsors</p>
-                                <p className="font-semibold text-[#0C1D37]">{sponsors}</p>
+                                <p className="text-(--gray-500) text-sm">Sponsors</p>
+                                <p className="font-semibold text-(--events-card-text)">{sponsors}</p>
                             </div>
                         </div>
 
                         {/* Meta Info */}
-                        <p className="text-gray-600 text-sm font-medium">{eventTime}</p>
+                        <p className="text-(--gray-600) text-sm font-medium">{eventTime}</p>
 
                         {/* Highlights */}
                         <div className="space-y-2">
-                            <h4 className="font-bold text-[#0C1D37]">Event Highlights</h4>
+                            <h4 className="font-bold text-(--events-card-text)">Event Highlights</h4>
                             <ul className="space-y-1">
                                 {highlights.map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                                    <li key={idx} className="flex items-center gap-2 text-sm text-(--gray-700)">
+                                        <CheckCircle className="h-4 w-4 text-(--green-500) shrink-0" />
                                         <span className="truncate">{item}</span>
                                     </li>
                                 ))}
@@ -109,12 +110,12 @@ export function HandpickedEventCard({
 
                     {/* Actions */}
                     <Link href={`/events/${id}`} className="space-y-3 mt-4 block">
-                        <button className="w-full bg-[#FFEad5] text-[#0C1D37] font-semibold py-2 rounded-lg hover:bg-[#FFEad5]/90 transition-colors">
+                        <Button className="w-full bg-(--events-promo-bg) text-(--events-card-text) font-semibold py-2 rounded-lg hover:bg-(--events-promo-bg)/90 transition-colors h-auto">
                             Buy 1 Get 1
-                        </button>
-                        <button className="w-full bg-[#0C1D37] text-white font-semibold py-3 rounded-xl hover:bg-[#0C1D37]/90 transition-colors">
+                        </Button>
+                        <Button className="w-full bg-(--brand-navy) text-(--white) font-semibold py-3 rounded-xl hover:bg-(--brand-navy)/90 transition-colors h-auto">
                             Pay {price}
-                        </button>
+                        </Button>
                     </Link>
                 </div>
             </div>

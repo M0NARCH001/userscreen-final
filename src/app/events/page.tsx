@@ -6,7 +6,7 @@ import Footer from "@/components/about/footer"
 
 export default function EventsPage() {
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-(--white)">
             <SiteHeader darkText={true} />
             <div className="pt-16">
                 <EventsHero />

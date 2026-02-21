@@ -3,6 +3,10 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Combobox } from "@/components/ui/combobox"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+import { LOCATIONS, CATEGORIES, MONTHS } from "@/lib/suggestions-data"
 
 export default function SuggestionsForm() {
   const router = useRouter()
@@ -15,90 +19,26 @@ export default function SuggestionsForm() {
     router.push("/onboarding")
   }
 
-  const locations = [
-    { value: "visakhapatnam", label: "Visakhapatnam" },
-    { value: "hyderabad", label: "Hyderabad" },
-    { value: "bangalore", label: "Bangalore" },
-    { value: "vijayawada", label: "Vijayawada" },
-  ]
-
-  const categories = [
-    { value: "events", label: "Events" },
-    { value: "food", label: "Food" },
-    { value: "movies", label: "Movies" },
-    { value: "comedy", label: "Comedy" },
-    { value: "sports", label: "Sports" },
-  ]
-
-  const months = [
-    { value: "january", label: "January" },
-    { value: "february", label: "February" },
-    { value: "march", label: "March" },
-    { value: "april", label: "April" },
-    { value: "may", label: "May" },
-    { value: "june", label: "June" },
-    { value: "july", label: "July" },
-    { value: "august", label: "August" },
-    { value: "september", label: "September" },
-    { value: "october", label: "October" },
-    { value: "november", label: "November" },
-    { value: "december", label: "December" },
-  ]
-
-  // Reusing the same style logic via className prop on Combobox
-  // h-8 md:h-auto ensures 32px height on mobile
   const inputClass =
-    "w-full px-5 py-1 md:py-3 h-8 md:h-auto rounded-lg bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/40 text-sm md:text-base border-0";
+    "w-full px-5 py-1 md:py-3 h-8 md:h-auto rounded-lg bg-(--white) text-(--gray-800) placeholder-(--gray-500) focus:outline-none focus:ring-2 focus:ring-(--white)/40 text-sm md:text-base border-0";
 
   const labelClass =
-    "font-albert font-[500] text-[16px] leading-[24px] tracking-[0] text-white mb-[14px] block";
+    "font-albert font-medium text-[16px] leading-[24px] tracking-[0] text-(--white) mb-[14px] block";
 
   return (
-    <section className="py-20 bg-[#284878]">
+    <section className="py-20 bg-(--landing-suggestions-bg)">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2
-            className="
-              font-bricolage
-              font-[600]
-              text-3xl md:text-[48px]
-              leading-tight md:leading-[60px]
-              tracking-[-0.02em]
-              text-white
-              mb-4
-            "
-          >
+          <h2 className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-4">
             Have Something to Share!
           </h2>
 
-          <p
-            className="
-              font-bricolage
-              font-[600]
-              text-3xl md:text-[48px]
-              leading-tight md:leading-[60px]
-              tracking-[-0.02em]
-              text-white
-              mb-6
-            "
-          >
+          <p className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-6">
             We are open to suggestions
           </p>
 
-          <p
-            className="
-              font-albert
-              font-[500]
-              text-[20px]
-              leading-[24px]
-              tracking-[0]
-              text-white
-              max-w-3xl
-              mx-auto
-              mb-5
-            "
-          >
+          <p className="font-albert font-medium text-[20px] leading-[24px] tracking-[0] text-(--white) max-w-3xl mx-auto mb-5">
             At Baatasari we aim to give you the best experience in your locality.
             We are open to your suggestions and include what makes your day
             better.
@@ -111,7 +51,7 @@ export default function SuggestionsForm() {
           <div className="grid md:grid-cols-4 gap-6">
             <div>
               <label className={labelClass}>Event Name</label>
-              <input
+              <Input
                 type="text"
                 placeholder="Ex: Prom Night"
                 className={inputClass}
@@ -121,7 +61,7 @@ export default function SuggestionsForm() {
             <div>
               <label className={labelClass}>Location</label>
               <Combobox
-                items={locations}
+                items={LOCATIONS}
                 value={location}
                 onChange={setLocation}
                 placeholder="Select Location"
@@ -132,7 +72,7 @@ export default function SuggestionsForm() {
             <div>
               <label className={labelClass}>Category</label>
               <Combobox
-                items={categories}
+                items={CATEGORIES}
                 value={category}
                 onChange={setCategory}
                 placeholder="Select Category"
@@ -143,7 +83,7 @@ export default function SuggestionsForm() {
             <div>
               <label className={labelClass}>Month</label>
               <Combobox
-                items={months}
+                items={MONTHS}
                 value={month}
                 onChange={setMonth}
                 placeholder="Select Month"
@@ -155,41 +95,21 @@ export default function SuggestionsForm() {
           {/* Description */}
           <div>
             <label className={labelClass}>Describe your suggestion.</label>
-            <textarea
+            <Textarea
               rows={4}
               placeholder="Ex: I would like to have an art event at RK Beach..."
-              className={`${inputClass} resize-none h-auto md:h-auto py-3`} // Override height for textarea
+              className={`${inputClass} resize-none h-auto md:h-auto py-3`}
             />
           </div>
 
           {/* Submit */}
           <div className="pt-8 flex justify-center">
-            <button
+            <Button
               type="submit"
-              className="
-                w-full max-w-[480px]
-                h-[60px]
-                px-5
-                py-[18px]
-                rounded-full
-                bg-[#0C1D37]
-                border
-                border-[#0C1D37]
-                text-white
-                font-inter
-                font-[600]
-                text-[16px]
-                leading-[24px]
-                tracking-[0]
-                flex
-                items-center
-                justify-center
-                transition
-                hover:bg-[#0C1D37]/90
-              "
+              className="w-full max-w-[480px] h-[60px] px-5 py-[18px] rounded-full bg-(--brand-navy) border border-(--brand-navy) text-(--white) font-inter font-semibold text-[16px] leading-[24px] tracking-[0] flex items-center justify-center transition hover:bg-(--brand-navy)/90"
             >
               Let&apos;s Create
-            </button>
+            </Button>
           </div>
         </form>
       </div>

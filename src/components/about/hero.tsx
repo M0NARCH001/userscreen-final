@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui/button";
 export default function Hero() {
   return (
     <section
@@ -6,62 +7,26 @@ export default function Hero() {
       style={{ backgroundImage: "url('/hero-bg.png')" }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-(--black)/40" />
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 mt-24">
+      <div className="relative z-10 text-center text-(--white) px-4 mt-24">
         {/* Heading */}
-        <h1
-          className="
-            font-bricolage
-            font-[600]
-            tracking-[-0.04em]
-            leading-[100%]
-            text-[42px]
-            md:text-[64px]
-            lg:text-[86px]
-            mb-6
-          "
-        >
+        <h1 className="font-bricolage font-bold tracking-tighter leading-none text-5xl md:text-7xl lg:text-8xl mb-6">
           There&apos;s More to Your City than you think!
         </h1>
 
         {/* Sub text */}
-        <p
-          className="
-            font-poppins
-            font-[500]
-            text-[16px]
-            md:text-[24px]
-            leading-[32px]
-            mb-8
-            text-gray-100
-          "
-        >
+        <p className="font-poppins font-medium text-base md:text-2xl leading-8 mb-8 text-(--gray-100)">
           New experiences, restaurants, events and more!
         </p>
 
         {/* CTA */}
-        <button
-          className="
-            font-poppins
-            font-[400]
-            text-[18px]
-            leading-[24px]
-            bg-[#0C1D37]
-            text-white
-            px-8
-            py-3
-            rounded-full
-            transition
-            hover:bg-[#0C1D37]/90
-            inline-flex
-            items-center
-            justify-center
-          "
+        <Button
+          className="font-poppins font-normal text-lg leading-6 bg-(--brand-navy) text-(--white) px-8 py-3 rounded-full transition hover:bg-(--brand-navy)/90 inline-flex items-center justify-center h-auto"
         >
           Join Baatasari &gt;&gt;&gt;
-        </button>
+        </Button>
       </div>
     </section>
   );

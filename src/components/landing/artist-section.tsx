@@ -1,40 +1,19 @@
 "use client";
 
-const artists = [
-  { name: "Karan Aujla", image: "karan+aujla+singer" },
-  { name: "Shreya Ghoshal", image: "shreya+ghoshal+singer" },
-  { name: "Inder Sahani", image: "indian+male+singer" },
-  { name: "Sunidhi Chauhan", image: "sunidhi+chauhan+singer" },
-  { name: "A. R. Rahman", image: "ar+rahman+composer" },
-  { name: "Satinder Sartaaj", image: "satinder+sartaaj+singer" },
-  { name: "Jubin Nautiyal", image: "jubin+nautiyal+singer" },
-  { name: "B Praak", image: "b+praak+singer" },
-  { name: "Ikka", image: "ikka+rapper" },
-  { name: "Mika Singh", image: "mika+singh+singer" },
-  { name: "Usha Uthup", image: "usha+uthup+singer" },
-  { name: "Paradox", image: "dj+paradox" },
-  { name: "Prem Dhillon", image: "prem+dhillon+singer" },
-  { name: "Nucleya", image: "nucleya+dj" },
-  { name: "TIËSTO", image: "tiesto+dj" },
-  { name: "Nanku", image: "indian+artist" },
-  { name: "Alok", image: "alok+dj" },
-  { name: "Ravi Khurana", image: "indian+comedian" },
-  { name: "PANTHER", image: "rapper+panther" },
-  { name: "Hargun Kaur", image: "hargun+kaur+singer" },
-]
+import { ARTISTS_DATA } from "@/lib/landing-data";
 
 export function ArtistSection() {
   return (
     <section className="bg-muted/30 py-8 md:py-12">
       <div className="w-full px-4 text-left">
-        <h2 className="mb-6 text-balance text-2xl font-bold md:text-3xl text-[#174B91]">
+        <h2 className="mb-6 text-balance text-2xl font-bold md:text-3xl text-(--landing-heading-color)">
           Artists in  Baatasari
         </h2>
       </div>
 
       <div className="w-full overflow-x-auto pb-6 px-4 hide-scrollbar">
         <div className="flex gap-4 min-w-max px-4">
-          {artists.map((artist, index) => (
+          {ARTISTS_DATA.map((artist, index) => (
             <a
               key={index}
               href="#"

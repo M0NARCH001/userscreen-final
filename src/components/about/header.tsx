@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,14 +13,7 @@ export default function Header() {
       {/* FULL WIDTH WRAPPER */}
       <div className="px-6 pt-3">
         {/* HEADER FRAME */}
-        <div
-          className="
-            w-full
-            flex items-center justify-between
-            rounded-[12px]
-            px-8 py-[19px]
-          "
-        >
+        <div className="w-full flex items-center justify-between rounded-[12px] px-8 py-[19px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -31,22 +25,22 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10 text-white">
+          <div className="hidden md:flex items-center gap-10 text-(--white)">
             <Link
               href="/about"
-              className="font-poppins text-[18px] leading-[24px] font-[500] hover:text-white/80 transition"
+              className="font-poppins text-[18px] leading-[24px] font-medium hover:text-(--white)/80 transition"
             >
               About us
             </Link>
             <Link
               href="/events"
-              className="font-poppins text-[18px] leading-[24px] font-[500] hover:text-white/80 transition"
+              className="font-poppins text-[18px] leading-[24px] font-medium hover:text-(--white)/80 transition"
             >
               Events
             </Link>
             <Link
               href="/talent"
-              className="font-poppins text-[18px] leading-[24px] font-[500] hover:text-white/80 transition"
+              className="font-poppins text-[18px] leading-[24px] font-medium hover:text-(--white)/80 transition"
             >
               Talent
             </Link>
@@ -54,57 +48,58 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <button className="h-[40px] px-6 rounded-full bg-white/20 text-white hover:bg-white/30 transition font-poppins text-[18px] leading-[24px] font-[500]">
+            <Button variant="ghost" className="h-[40px] px-6 rounded-full bg-(--white)/20 text-(--white) hover:bg-(--white)/30 transition font-poppins text-[18px] leading-[24px] font-medium hover:text-(--white)">
               Sign in
-            </button>
-            <button className="h-[40px] px-6 rounded-full bg-[#0C1D37]/90 text-white hover:bg-[#0C1D37] transition font-poppins text-[18px] leading-[24px] font-[500]">
+            </Button>
+            <Button className="h-[40px] px-6 rounded-full bg-(--brand-navy)/90 text-(--white) hover:bg-(--brand-navy) transition font-poppins text-[18px] leading-[24px] font-medium hover:text-(--white)">
               Sign up
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Toggle */}
-          <button
+          <Button
+            variant="ghost"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-(--white) p-2 h-auto hover:bg-transparent hover:text-(--white)"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? "✕" : "☰"}
-          </button>
+          </Button>
         </div>
 
         {/* MOBILE MENU */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 rounded-[16px] bg-white shadow-xl overflow-hidden">
+          <div className="md:hidden mt-4 rounded-[16px] bg-(--white) shadow-xl overflow-hidden">
             <Link
               href="#"
-              className="block px-6 py-4 text-gray-900 font-poppins text-[18px] leading-[24px] font-[500]"
+              className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
             >
               About us
             </Link>
             <Link
               href="/events"
-              className="block px-6 py-4 text-gray-900 font-poppins text-[18px] leading-[24px] font-[500]"
+              className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
             >
               Events
             </Link>
             <Link
               href="/talent"
-              className="block px-6 py-4 text-gray-900 font-poppins text-[18px] leading-[24px] font-[500]"
+              className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
             >
               Talent
             </Link>
 
             {/* Divider */}
-            <div className="h-px bg-gray-200 mx-6 my-2" />
+            <div className="h-px bg-(--gray-200) mx-6 my-2" />
 
             {/* Auth Actions */}
             <div className="px-6 py-4 flex flex-col gap-3">
-              <button className="w-full h-[44px] rounded-full bg-gray-100 text-gray-900 font-poppins text-[18px] leading-[24px] font-[500]">
+              <Button variant="secondary" className="w-full h-[44px] rounded-full bg-(--gray-100) text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium hover:bg-(--gray-200)">
                 Sign in
-              </button>
-              <button className="w-full h-[44px] rounded-full bg-[#0C1D37] text-white font-poppins text-[18px] leading-[24px] font-[500]">
+              </Button>
+              <Button className="w-full h-[44px] rounded-full bg-(--brand-navy) text-(--white) font-poppins text-[18px] leading-[24px] font-medium hover:bg-(--brand-navy)/90 hover:text-(--white)">
                 Sign up
-              </button>
+              </Button>
             </div>
           </div>
         )}

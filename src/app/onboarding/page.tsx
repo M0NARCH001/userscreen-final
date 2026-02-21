@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PersonalDetailsForm from "@/components/onboarding/personal-details-form";
 import PreferencesForm from "@/components/onboarding/preferences-form";
 import SiteHeader from "@/components/common/site-header";
 import Footer from "@/components/about/footer";
 
-export default function OnboardingPage() {
+function OnboardingContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const initialStep = searchParams.get("step") === "preferences" ? "preferences" : "details";
@@ -28,9 +28,7 @@ export default function OnboardingPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <SiteHeader darkText={true} />
-
+        <>
             <div className="flex-1 pt-24 pb-12">
                 {step === "details" && (
                     <PersonalDetailsForm onContinue={handleDetailsContinue} />
@@ -39,6 +37,17 @@ export default function OnboardingPage() {
                     <PreferencesForm onComplete={handlePreferencesComplete} />
                 )}
             </div>
+        </>
+    );
+}
+
+export default function OnboardingPage() {
+    return (
+        <div className="min-h-screen bg-(--white) flex flex-col">
+            <SiteHeader darkText={true} />
+            <Suspense fallback={<div className="flex-1 pt-24 pb-12" />}>
+                <OnboardingContent />
+            </Suspense>
             <Footer />
         </div>
     );

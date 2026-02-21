@@ -13,12 +13,17 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
+import {
+    SLOT_OPTIONS,
+    AVAILABLE_OPTIONS,
+    SKILL_OPTIONS,
+    EXPERIENCE_LEVEL_OPTIONS,
+    BOOKING_FROM_OPTIONS,
+    PRICE_OPTIONS,
+} from "@/lib/talent-data"
 
 export function TalentInformationForm() {
     const [skills, setSkills] = useState("")
-
-    const SLOT_OPTIONS = ["Everyday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const AVAILABLE_OPTIONS = ["All", "Events", "Pop-ups", "Corporate", "Restaurants", "Cafes"];
     const [experienceLevel, setExperienceLevel] = useState("")
     const [yearOfExperience, setYearOfExperience] = useState("")
     const [bio, setBio] = useState("")
@@ -32,7 +37,7 @@ export function TalentInformationForm() {
     const [customSkill, setCustomSkill] = useState("")
 
     /* 🔒 FIXED SIZE – SAME AS IMAGE */
-    const commonClass = "!h-[56px] !w-full !rounded-md !border !border-gray-300 !px-4 !text-base !text-gray-700 md:!text-base !bg-white !shadow-sm"
+    const commonClass = "!h-[56px] !w-full !rounded-md !border !border-(--gray-300) !px-4 !text-base !text-(--gray-700) md:!text-base !bg-(--white) !shadow-sm"
     const selectClass = `${commonClass} flex items-center`
     const inputClass = `${commonClass} block`
 
@@ -122,7 +127,7 @@ export function TalentInformationForm() {
             {/* Row 1 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-800">Skills</Label>
+                    <Label className="text-sm font-bold text-(--gray-800)">Skills</Label>
                     {skills === "Others" ? (
                         <div className="relative">
                             <Input
@@ -132,16 +137,18 @@ export function TalentInformationForm() {
                                 className={inputClass}
                                 autoFocus
                             />
-                            <button
+                            <Button
                                 type="button"
+                                variant="ghost"
+                                size="icon"
                                 onClick={() => {
                                     setSkills("")
                                     setCustomSkill("")
                                 }}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-(--gray-500) hover:text-(--gray-700) hover:bg-transparent h-6 w-6"
                             >
                                 <X className="h-4 w-4" />
-                            </button>
+                            </Button>
                         </div>
                     ) : (
                         <Select value={skills} onValueChange={setSkills}>
@@ -149,40 +156,30 @@ export function TalentInformationForm() {
                                 <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="Others">Others</SelectItem>
-                                <SelectItem value="photography">Photography</SelectItem>
-                                <SelectItem value="dancing">Dancing</SelectItem>
-                                <SelectItem value="standup">Stand up Comedy</SelectItem>
-                                <SelectItem value="music">Music</SelectItem>
-                                <SelectItem value="painting">Painting</SelectItem>
-                                <SelectItem value="cooking">Cooking/Backing</SelectItem>
-                                <SelectItem value="mehndi">Mehendhi art</SelectItem>
-                                <SelectItem value="crafts">Craft Workshops</SelectItem>
-                                <SelectItem value="makeup">Makeup & Styling</SelectItem>
-                                <SelectItem value="tattoo">Tattoo artist</SelectItem>
-                                <SelectItem value="tours">Custom Tours</SelectItem>
-                                <SelectItem value="talks">Language or Cultural talks</SelectItem>
+                                {SKILL_OPTIONS.map((opt) => (
+                                    <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
                     )}
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-800">Experience level</Label>
+                    <Label className="text-sm font-bold text-(--gray-800)">Experience level</Label>
                     <Select value={experienceLevel} onValueChange={setExperienceLevel}>
                         <SelectTrigger className={selectClass}>
                             <SelectValue placeholder="Select" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="expert">Expert</SelectItem>
-                            <SelectItem value="intermediate">Inter</SelectItem>
-                            <SelectItem value="beginner">Beginner</SelectItem>
+                            {EXPERIENCE_LEVEL_OPTIONS.map((opt) => (
+                                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-800">Year of experience</Label>
+                    <Label className="text-sm font-bold text-(--gray-800)">Year of experience</Label>
                     <Input
                         placeholder="Ex: 3"
                         value={yearOfExperience}
@@ -194,38 +191,39 @@ export function TalentInformationForm() {
 
             {/* Bio */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-gray-800">Bio/Description</Label>
+                <Label className="text-sm font-bold text-(--gray-800)">Bio/Description</Label>
                 <Textarea
                     placeholder="Write a few words describing your talent"
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
-                    className="min-h-[120px] w-full rounded-md border border-gray-300 px-4 py-3 text-base text-gray-700 resize-none"
+                    className="min-h-[120px] w-full rounded-md border border-(--gray-300) px-4 py-3 text-base text-(--gray-700) resize-none"
                 />
             </div>
 
             {/* Slots (Full Width) */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-gray-800">Preferred slots</Label>
+                <Label className="text-sm font-bold text-(--gray-800)">Preferred slots</Label>
                 <div className="flex flex-wrap gap-2">
                     {SLOT_OPTIONS.map((slot) => (
-                        <button
+                        <Button
                             key={slot}
                             type="button"
+                            variant="outline"
                             onClick={() => handleSlotClick(slot)}
-                            className={`rounded-full border px-4 py-2 text-sm transition-colors ${preferredSlots.includes(slot)
-                                ? "bg-[#0C1D37] text-white border-[#0C1D37]"
-                                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                            className={`rounded-full border px-4 py-2 text-sm transition-colors h-auto ${preferredSlots.includes(slot)
+                                ? "bg-(--brand-navy) text-(--white) border-(--brand-navy) hover:bg-(--brand-navy)/90 hover:text-(--white)"
+                                : "bg-(--white) text-(--gray-700) border-(--gray-300) hover:bg-(--gray-50)"
                                 }`}
                         >
                             {slot}
-                        </button>
+                        </Button>
                     ))}
                 </div>
             </div>
 
             {/* Location (Full Width or separate line) */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-gray-800">Location</Label>
+                <Label className="text-sm font-bold text-(--gray-800)">Location</Label>
                 <Input
                     placeholder="Ex: vizag"
                     value={location}
@@ -236,20 +234,21 @@ export function TalentInformationForm() {
 
             {/* Available For (Full Width) */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-gray-800">Available for</Label>
+                <Label className="text-sm font-bold text-(--gray-800)">Available for</Label>
                 <div className="flex flex-wrap gap-2">
                     {AVAILABLE_OPTIONS.map((option) => (
-                        <button
+                        <Button
                             key={option}
                             type="button"
+                            variant="outline"
                             onClick={() => handleAvailableClick(option)}
-                            className={`rounded-full border px-4 py-2 text-sm transition-colors ${availableFor.includes(option)
-                                ? "bg-[#0C1D37] text-white border-[#0C1D37]"
-                                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                            className={`rounded-full border px-4 py-2 text-sm transition-colors h-auto ${availableFor.includes(option)
+                                ? "bg-(--brand-navy) text-(--white) border-(--brand-navy) hover:bg-(--brand-navy)/90 hover:text-(--white)"
+                                : "bg-(--white) text-(--gray-700) border-(--gray-300) hover:bg-(--gray-50)"
                                 }`}
                         >
                             {option}
-                        </button>
+                        </Button>
                     ))}
                 </div>
             </div>
@@ -257,31 +256,29 @@ export function TalentInformationForm() {
             {/* Last Row: Booking & Price */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-800">Accept booking from</Label>
+                    <Label className="text-sm font-bold text-(--gray-800)">Accept booking from</Label>
                     <Select value={acceptBookingFrom} onValueChange={setAcceptBookingFrom}>
                         <SelectTrigger className={selectClass}>
                             <SelectValue placeholder="Select" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="tourists">Tourists</SelectItem>
-                            <SelectItem value="locals">Locals</SelectItem>
-                            <SelectItem value="events">Events</SelectItem>
-                            <SelectItem value="vendors">Vendors</SelectItem>
-                            <SelectItem value="cafes">Cafes</SelectItem>
+                            {BOOKING_FROM_OPTIONS.map((opt) => (
+                                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-800">Price</Label>
+                    <Label className="text-sm font-bold text-(--gray-800)">Price</Label>
                     <Select value={price} onValueChange={setPrice}>
                         <SelectTrigger className={selectClass}>
                             <SelectValue placeholder="Select" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="hourly">Hourly</SelectItem>
-                            <SelectItem value="packages">Packages</SelectItem>
-                            <SelectItem value="custom">Custom Quote</SelectItem>
+                            {PRICE_OPTIONS.map((opt) => (
+                                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                 </div>
@@ -289,32 +286,34 @@ export function TalentInformationForm() {
 
             {/* Upload */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-gray-800">Upload your work</Label>
-                <div className={`!min-h-[56px] !w-full !rounded-md !border !border-gray-300 !px-4 !py-3 !text-base !bg-white !shadow-sm flex flex-wrap gap-2 items-center`}>
+                <Label className="text-sm font-bold text-(--gray-800)">Upload your work</Label>
+                <div className={`min-h-[56px]! w-full! rounded-md! border! border-(--gray-300)! px-4! py-3! text-base! bg-(--white)! shadow-sm! flex flex-wrap gap-2 items-center`}>
                     {workLinks.map((link, index) => (
-                        <div key={index} className="flex items-center gap-1 bg-[#0C1D37] px-2 py-1 rounded text-sm text-white">
+                        <div key={index} className="flex items-center gap-1 bg-(--brand-navy) px-2 py-1 rounded text-sm text-(--white)">
                             <span>{link}</span>
-                            <button
+                            <Button
                                 type="button"
+                                variant="ghost"
+                                size="icon"
                                 onClick={() => removeLink(index)}
-                                className="text-gray-300 hover:text-white"
+                                className="text-(--gray-300) hover:text-(--white) hover:bg-transparent h-4 w-4 p-0"
                             >
                                 <X className="h-3 w-3" />
-                            </button>
+                            </Button>
                         </div>
                     ))}
-                    <input
+                    <Input
                         placeholder={workLinks.length === 0 ? "Paste your Google drive or Youtube link (Space to add)" : ""}
                         value={uploadWork}
                         onChange={handleLinkChange}
-                        className="bg-transparent outline-none flex-1 min-w-[200px] text-gray-700 placeholder:text-gray-500"
+                        className="bg-transparent border-0 shadow-none focus-visible:ring-0 flex-1 min-w-[200px] text-(--gray-700) placeholder:text-(--gray-500) h-auto p-0"
                     />
                 </div>
-                <p className="text-xs text-gray-400">Supporting text</p>
+                <p className="text-xs text-(--gray-400)">Supporting text</p>
             </div>
 
             <div className="pt-4">
-                <Button type="submit" className="w-full md:w-auto px-8 bg-[#0C1D37] hover:bg-[#1a2d4d] text-white">
+                <Button type="submit" className="w-full md:w-auto px-8 bg-(--brand-navy) hover:bg-(--brand-navy)/90 text-(--white)">
                     Submit Application
                 </Button>
             </div>

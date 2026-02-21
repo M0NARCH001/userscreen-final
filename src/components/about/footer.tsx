@@ -6,7 +6,7 @@ import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0C1D37] text-white">
+    <footer className="bg-(--brand-navy) text-(--white)">
       {/* TOP SECTION */}
       <div className="px-16 py-4">
         <div className="flex flex-col lg:flex-row justify-between gap-6">
@@ -23,12 +23,12 @@ export default function Footer() {
 
             <div className="space-y-1">
               {/* Contact Us */}
-              <p className="font-albert font-[500] text-[18px] leading-[24px] text-white">
+              <p className="font-albert font-medium text-[18px] leading-[24px] text-(--white)">
                 Contact Us:
               </p>
 
               {/* Address */}
-              <p className="font-albert font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-white">
+              <p className="font-albert font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--white)">
                 Venture Development Center,
                 <br />
                 Rushikonda,
@@ -36,11 +36,11 @@ export default function Footer() {
                 Visakhapatnam, 530045
               </p>
 
-              <p className="font-albert font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-white">
+              <p className="font-albert font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--white)">
                 contactus@baatasari.com
               </p>
 
-              <p className="font-albert font-[400] text-[14px] leading-[20px] tracking-[0.0025em] text-white">
+              <p className="font-albert font-normal text-[14px] leading-[20px] tracking-[0.0025em] text-(--white)">
                 +91 9578937675
               </p>
             </div>
@@ -51,7 +51,7 @@ export default function Footer() {
 
             {/* COLUMN ONE */}
             <div>
-              <h3 className="font-inter font-[600] text-[16px] leading-[150%] text-white mb-4">
+              <h3 className="font-inter font-semibold text-[16px] leading-[150%] text-(--white) mb-4">
                 Column One
               </h3>
 
@@ -59,7 +59,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="#"
-                    className="font-inter font-[400] text-[14px] leading-[150%] text-white underline-offset-0"
+                    className="font-inter font-normal text-[14px] leading-[150%] text-(--white) underline-offset-0"
                   >
                     Home
                   </Link>
@@ -67,7 +67,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="#"
-                    className="font-inter font-[400] text-[14px] leading-[150%] text-white underline-offset-0"
+                    className="font-inter font-normal text-[14px] leading-[150%] text-(--white) underline-offset-0"
                   >
                     Events
                   </Link>
@@ -77,17 +77,17 @@ export default function Footer() {
 
             {/* FOLLOW US */}
             <div>
-              <h3 className="font-inter font-[600] text-[16px] leading-[150%] text-white mb-4">
+              <h3 className="font-inter font-semibold text-[16px] leading-[150%] text-(--white) mb-4">
                 Follow Us
               </h3>
 
               <ul className="space-y-1">
                 {/* Instagram */}
                 <li className="flex items-center gap-3">
-                  <FaInstagram className="text-white text-[18px]" />
+                  <FaInstagram className="text-(--white) text-[18px]" />
                   <Link
                     href="#"
-                    className="font-inter font-[400] text-[14px] leading-[150%] text-white underline-offset-0"
+                    className="font-inter font-normal text-[14px] leading-[150%] text-(--white) underline-offset-0"
                   >
                     Instagram
                   </Link>
@@ -95,10 +95,10 @@ export default function Footer() {
 
                 {/* LinkedIn */}
                 <li className="flex items-center gap-3">
-                  <FaLinkedinIn className="text-white text-[18px]" />
+                  <FaLinkedinIn className="text-(--white) text-[18px]" />
                   <Link
                     href="#"
-                    className="font-inter font-[400] text-[14px] leading-[150%] text-white underline-offset-0"
+                    className="font-inter font-normal text-[14px] leading-[150%] text-(--white) underline-offset-0"
                   >
                     LinkedIn
                   </Link>
@@ -110,12 +110,12 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM ROW */}
-        <div className="mt-4 pt-2 flex flex-col lg:flex-row justify-between items-center text-white">
+        <div className="mt-4 pt-2 flex flex-col lg:flex-row justify-between items-center text-(--white)">
           <div className="space-y-1">
-            <p className="font-inter font-[600] text-[14px] leading-[150%]">
+            <p className="font-inter font-semibold text-[14px] leading-[150%]">
               © 2025 Baatasari. All rights reserved.
             </p>
-            <p className="font-inter font-[600] text-[14px] leading-[150%]">
+            <p className="font-inter font-semibold text-[14px] leading-[150%]">
               Images and illustrations sourced from Freepik
             </p>
           </div>
@@ -123,13 +123,13 @@ export default function Footer() {
           <div className="flex gap-8 mt-4 lg:mt-0">
             <Link
               href="#"
-              className="font-inter font-[600] text-[14px] leading-[150%] text-white underline"
+              className="font-inter font-semibold text-[14px] leading-[150%] text-(--white) underline"
             >
               Privacy Policy
             </Link>
             <Link
               href="#"
-              className="font-inter font-[600] text-[14px] leading-[150%] text-white underline"
+              className="font-inter font-semibold text-[14px] leading-[150%] text-(--white) underline"
             >
               Terms of Service
             </Link>

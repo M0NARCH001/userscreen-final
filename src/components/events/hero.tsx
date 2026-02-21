@@ -3,28 +3,25 @@
 import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, MapPin, Calendar, Info } from "lucide-react"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import {
+    HERO_SLIDES,
+    LOCATION_FILTERS,
+    PRICE_FILTERS,
+    DATE_FILTERS,
+    EVENT_TYPE_FILTERS,
+} from "@/lib/events-hero-data"
 
 export function EventsHero() {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-    // Carousel images - placeholder URLs for now
-    const slides = [
-        {
-            id: 1,
-            image: "/events/hero.png",
-            alt: "Concert Event 1"
-        },
-        {
-            id: 2,
-            image: "/events/hero.png",
-            alt: "Concert Event 2"
-        },
-        {
-            id: 3,
-            image: "/events/hero.png",
-            alt: "Concert Event 3"
-        },
-    ]
+    const slides = HERO_SLIDES
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
@@ -71,7 +68,7 @@ export function EventsHero() {
                             className="min-w-full h-full relative snap-center"
                         >
                             {/* Dark gradient overlay at bottom for text contrast if needed */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent z-10" />
 
                             <img
                                 src={slide.image}
@@ -83,65 +80,84 @@ export function EventsHero() {
                 </div>
 
                 {/* Navigation Arrows */}
-                <button
+                <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={() => scroll('left')}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 text-white/70 hover:text-white transition-colors"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 text-(--white)/70 hover:text-(--white) hover:bg-transparent transition-colors h-auto w-auto"
                 >
                     <ChevronLeft className="h-10 w-10 md:h-12 md:w-12" />
-                </button>
-                <button
+                </Button>
+                <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={() => scroll('right')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 text-white/70 hover:text-white transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 text-(--white)/70 hover:text-(--white) hover:bg-transparent transition-colors h-auto w-auto"
                 >
                     <ChevronRight className="h-10 w-10 md:h-12 md:w-12" />
-                </button>
+                </Button>
             </div>
 
             {/* Filter Bar - Overlapping the bottom of carousel */}
             <div className="relative z-30 -mt-10 mb-8 container mx-auto px-4">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2 md:p-3 flex flex-col md:flex-row items-center gap-2 md:gap-4 max-w-5xl mx-auto">
+                <div className="bg-(--white) rounded-xl shadow-xl border border-(--gray-100) p-2 md:p-3 flex flex-col md:flex-row items-center gap-2 md:gap-4 max-w-5xl mx-auto">
 
                     {/* Location */}
-                    <div className="flex-1 w-full md:w-auto relative border-b md:border-b-0 md:border-r border-gray-100 px-4 py-2">
+                    <div className="flex-1 w-full md:w-auto relative border-b md:border-b-0 md:border-r border-(--gray-100) px-4 py-2">
                         <div className="flex items-center gap-3">
-                            <MapPin className="h-5 w-5 text-gray-500" />
-                            <div className="flex flex-col">
-                                <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Location</span>
-                                <select className="w-full bg-transparent font-medium text-gray-800 outline-none appearance-none cursor-pointer">
-                                    <option>New York, NY</option>
-                                    <option>Los Angeles, CA</option>
-                                </select>
+                            <MapPin className="h-5 w-5 text-(--gray-500)" />
+                            <div className="flex flex-col w-full">
+                                <span className="text-xs text-(--gray-400) font-medium uppercase tracking-wide">Location</span>
+                                <Select defaultValue={LOCATION_FILTERS[0]?.value}>
+                                    <SelectTrigger className="w-full bg-transparent font-medium text-(--gray-800) border-0 focus:ring-0 p-0 h-auto shadow-none">
+                                        <SelectValue placeholder="Select Location" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {LOCATION_FILTERS.map((opt) => (
+                                            <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
 
                     {/* Price */}
-                    <div className="flex-1 w-full md:w-auto relative border-b md:border-b-0 md:border-r border-gray-100 px-4 py-2">
+                    <div className="flex-1 w-full md:w-auto relative border-b md:border-b-0 md:border-r border-(--gray-100) px-4 py-2">
                         <div className="flex items-center gap-3">
-                            <span className="text-lg font-semibold text-gray-500">₹</span>
-                            <div className="flex flex-col">
-                                <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Price</span>
-                                <select className="w-full bg-transparent font-medium text-gray-800 outline-none appearance-none cursor-pointer">
-                                    <option>Any Price</option>
-                                    <option>Free</option>
-                                    <option>Paid</option>
-                                </select>
+                            <span className="text-lg font-semibold text-(--gray-500)">₹</span>
+                            <div className="flex flex-col w-full">
+                                <span className="text-xs text-(--gray-400) font-medium uppercase tracking-wide">Price</span>
+                                <Select defaultValue={PRICE_FILTERS[0]?.value}>
+                                    <SelectTrigger className="w-full bg-transparent font-medium text-(--gray-800) border-0 focus:ring-0 p-0 h-auto shadow-none">
+                                        <SelectValue placeholder="Select Price" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {PRICE_FILTERS.map((opt) => (
+                                            <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
 
                     {/* Date */}
-                    <div className="flex-1 w-full md:w-auto relative border-b md:border-b-0 md:border-r border-gray-100 px-4 py-2">
+                    <div className="flex-1 w-full md:w-auto relative border-b md:border-b-0 md:border-r border-(--gray-100) px-4 py-2">
                         <div className="flex items-center gap-3">
-                            <Calendar className="h-5 w-5 text-gray-500" />
-                            <div className="flex flex-col">
-                                <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Date</span>
-                                <select className="w-full bg-transparent font-medium text-gray-800 outline-none appearance-none cursor-pointer">
-                                    <option>Select Date</option>
-                                    <option>Today</option>
-                                    <option>Tomorrow</option>
-                                    <option>This Weekend</option>
-                                </select>
+                            <Calendar className="h-5 w-5 text-(--gray-500)" />
+                            <div className="flex flex-col w-full">
+                                <span className="text-xs text-(--gray-400) font-medium uppercase tracking-wide">Date</span>
+                                <Select defaultValue={DATE_FILTERS[0]?.value}>
+                                    <SelectTrigger className="w-full bg-transparent font-medium text-(--gray-800) border-0 focus:ring-0 p-0 h-auto shadow-none">
+                                        <SelectValue placeholder="Select Date" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {DATE_FILTERS.map((opt) => (
+                                            <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
@@ -149,20 +165,25 @@ export function EventsHero() {
                     {/* Event Type */}
                     <div className="flex-1 w-full md:w-auto relative px-4 py-2">
                         <div className="flex items-center gap-3">
-                            <Info className="h-5 w-5 text-gray-500" />
-                            <div className="flex flex-col">
-                                <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Event Type</span>
-                                <select className="w-full bg-transparent font-medium text-gray-800 outline-none appearance-none cursor-pointer">
-                                    <option>All Events</option>
-                                    <option>Music</option>
-                                    <option>Comedy</option>
-                                </select>
+                            <Info className="h-5 w-5 text-(--gray-500)" />
+                            <div className="flex flex-col w-full">
+                                <span className="text-xs text-(--gray-400) font-medium uppercase tracking-wide">Event Type</span>
+                                <Select defaultValue={EVENT_TYPE_FILTERS[0]?.value}>
+                                    <SelectTrigger className="w-full bg-transparent font-medium text-(--gray-800) border-0 focus:ring-0 p-0 h-auto shadow-none">
+                                        <SelectValue placeholder="Select Type" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {EVENT_TYPE_FILTERS.map((opt) => (
+                                            <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
 
                     {/* Search Button */}
-                    <Button className="w-full md:w-auto rounded-full px-8 py-6 bg-[#0C1D37] hover:bg-[#0C1D37]/90 text-white font-medium text-base">
+                    <Button className="w-full md:w-auto rounded-full px-8 py-6 bg-(--brand-navy) hover:bg-(--brand-navy)/90 text-(--white) font-medium text-base">
                         Discover Events
                     </Button>
 

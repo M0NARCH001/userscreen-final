@@ -13,8 +13,8 @@ interface MovieCardProps {
 
 export function MovieCard({ title, rating, language, image }: MovieCardProps) {
   return (
-    <Card className="group flex-shrink-0 w-[160px] md:w-[200px] overflow-hidden border-0 shadow-sm transition-all hover:shadow-xl bg-card text-card-foreground">
-      <div className="relative aspect-[2/3] overflow-hidden bg-muted">
+    <Card className="group shrink-0 w-[160px] md:w-[200px] overflow-hidden border-0 shadow-sm transition-all hover:shadow-xl bg-card text-card-foreground">
+      <div className="relative aspect-2/3 overflow-hidden bg-muted">
         <img
           src="/landing/card-placeholder.png"
           alt={title}

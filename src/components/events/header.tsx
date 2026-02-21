@@ -1,10 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Search, MapPin, Menu } from "lucide-react"
+import { Menu, User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 import {
     DropdownMenu,
@@ -20,7 +21,7 @@ export function EventsHeader() {
     const isActive = (path: string) => pathname === path
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
             <div className="flex h-16 items-center justify-between px-4 container mx-auto">
                 <div className="flex items-center gap-6">
                     <Link href="/" className="flex items-center gap-2">
@@ -58,15 +59,32 @@ export function EventsHeader() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <div className="hidden md:flex items-center gap-3">
-                        <Button variant="ghost" className="rounded-full px-6 text-base font-medium bg-gray-100 hover:bg-gray-200 text-foreground">
-                            Sign in
-                        </Button>
-                        <Button className="rounded-full px-6 text-base font-medium bg-[#0C1D37] hover:bg-[#0C1D37]/90 text-white">
-                            Sign up
-                        </Button>
+                    {/* Desktop Avatar Dropdown */}
+                    <div className="hidden md:flex items-center">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="flex items-center gap-1 p-1 rounded-full border border-(--border-light) bg-(--white)/90 hover:bg-(--white) h-auto">
+                                    <Avatar className="h-8 w-8 rounded-full">
+                                        <AvatarFallback className="bg-(--gray-100) text-(--gray-600)">
+                                            <User className="h-4 w-4" />
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </Button>
+                            </DropdownMenuTrigger>
+
+                            <DropdownMenuContent align="end" className="w-56 p-2 rounded-xl shadow-lg">
+                                <DropdownMenuItem className="cursor-pointer px-4 py-3 font-poppins text-[16px] font-medium rounded-lg">
+                                    Sign in
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="cursor-pointer px-4 py-3 font-poppins text-[16px] font-medium rounded-lg">
+                                    Sign up
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
 
+                    {/* Mobile Menu */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="ghost" size="icon" className="md:hidden">
@@ -86,19 +104,19 @@ export function EventsHeader() {
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="focus:bg-transparent p-0">
-                                    <a href="#" className="text-[16px] font-medium w-full">
+                                    <Link href="#" className="text-[16px] font-medium w-full">
                                         Talent
-                                    </a>
+                                    </Link>
                                 </DropdownMenuItem>
                             </div>
 
-                            <DropdownMenuSeparator className="my-4 bg-gray-100" />
+                            <DropdownMenuSeparator className="my-4 bg-(--gray-100)" />
 
                             <div className="flex flex-col gap-3">
-                                <Button variant="ghost" className="w-full justify-center bg-gray-100/50 hover:bg-gray-100 rounded-full h-12 text-[16px] font-medium">
+                                <Button variant="ghost" className="w-full justify-center bg-(--gray-100)/50 hover:bg-(--gray-100) rounded-full h-12 text-[16px] font-medium">
                                     Sign in
                                 </Button>
-                                <Button className="w-full justify-center bg-[#0C1D37] hover:bg-[#0C1D37]/90 rounded-full h-12 text-[16px] font-medium text-white">
+                                <Button className="w-full justify-center bg-(--brand-navy) hover:bg-(--brand-navy)/90 rounded-full h-12 text-[16px] font-medium text-(--white)">
                                     Sign up
                                 </Button>
                             </div>

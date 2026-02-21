@@ -25,13 +25,13 @@ export function HeroSection() {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
-          <Badge className="mb-4 bg-background/20 text-white hover:bg-background/30">
+          <Badge className="mb-4 bg-background/20 text-(--white) hover:bg-background/30">
             Baatasari Pass
           </Badge>
-          <h1 className="mb-4 max-w-4xl text-balance text-4xl font-bold text-white md:text-5xl">
+          <h1 className="mb-4 max-w-4xl text-balance text-4xl font-bold text-(--white) md:text-5xl">
             Unlimited access to events & movies
           </h1>
-          <p className="mb-6 max-w-2xl text-pretty text-lg text-white/90">
+          <p className="mb-6 max-w-2xl text-pretty text-lg text-(--white)/90">
             Get exclusive discounts and early access to the best experiences in your city
           </p>
           <Button size="lg" variant="secondary" className="font-semibold" onClick={handleExploreClick}>
