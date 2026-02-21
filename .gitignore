@@ -2,3 +2,7 @@ node_modules
 .next/
 node_modules/
 .env
+.DS_Store
+tsconfig.tsbuildinfo
+build_output*.txt
+*.old
