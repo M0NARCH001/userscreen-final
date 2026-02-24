@@ -58,6 +58,9 @@
     --card-active-border: #6FA3FF;
     --badge-purple-bg: #E0D9F7;
     --promo-warm-bg: #FFEad5;
+    --landing-aboutus-bg:#122848;
+    --stroke-back-bg:#6383B1;
+    --eventcard-heading-bg:#203D69;
 
     /* Gray */
     --gray-50: #f9fafb;
@@ -69,7 +72,7 @@
     --gray-600: #4b5563;
     --gray-700: #374151;
     --gray-800: #1f2937;
-    --gray-900: #111827;
+    
 
     /* Slate */
     --slate-100: #f1f5f9;
@@ -103,7 +106,7 @@
 
     /* Preferences / Onboarding */
     --pref-dark: #0b1729;
-    --pref-active: #4a6b9d;
+    --pref-active: #;
     --pref-muted-text: #475569;
     --pref-border: #cbd5e1;
     --pref-label: #8a7ba7;

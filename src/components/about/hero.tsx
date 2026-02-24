@@ -7,18 +7,18 @@ export default function Hero() {
       style={{ backgroundImage: "url('/hero-bg.png')" }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-(--black)/40" />
+      <div className="absolute inset-0 bg-(--black)/50" />
 
       {/* Content */}
       <div className="relative z-10 text-center text-(--white) px-4 mt-24">
         {/* Heading */}
         <h1 className="font-bricolage font-bold tracking-tighter leading-none text-5xl md:text-7xl lg:text-8xl mb-6">
-          There&apos;s More to Your City than you think!
+          Discover the Best Things to Do in Your City
         </h1>
 
         {/* Sub text */}
         <p className="font-poppins font-medium text-base md:text-2xl leading-8 mb-8 text-(--gray-100)">
-          New experiences, restaurants, events and more!
+          Your city has more to offer than you think. Start exploring today.
         </p>
 
         {/* CTA */}

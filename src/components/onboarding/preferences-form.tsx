@@ -96,7 +96,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
     return (
 
         <main className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-8 md:py-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center md:text-left">My Preferences</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center text-(--brand-blue) md:text-left">My Preferences</h1>
 
             {/* ROW 1 – TWO LARGE CARDS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-10">
@@ -108,7 +108,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                     >
                         <div className="flex flex-col items-center">
                             <div className="mb-6 md:mb-10 w-full h-[120px] sm:h-[180px] md:h-[220px] relative">
-                                <div className="w-full h-full bg-(--gray-100) rounded-xl"></div>
+                                <Image src={card.image} alt={card.title} fill className="object-contain rounded-xl" />
                             </div>
                             <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-center text-(--gray-900)">
                                 {card.title}
@@ -128,7 +128,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                     >
                         <div className="flex flex-col items-center">
                             <div className="mb-4 md:mb-6 w-full h-[90px] sm:h-[120px] md:h-[180px] relative">
-                                <div className="w-full h-full bg-(--gray-100) rounded-xl"></div>
+                                <Image src={card.image} alt={card.title} fill className="object-contain rounded-xl" />
                             </div>
                             <h2 className="text-base sm:text-lg md:text-xl font-medium text-center text-(--gray-900)">
                                 {card.title}
@@ -150,7 +150,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                                     key={category}
                                     variant="ghost"
                                     onClick={() => setActiveTab(category)}
-                                    className={`px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[13px] font-bold flex-1 min-w-[120px] max-w-[180px] h-auto ${activeTab === category
+                                    className={`px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[13px] font-bold flex-1 min-w-[120px] max-w-[180px] h-auto line-clamp-2 wrap-break-word whitespace-normal ${activeTab === category
                                         ? "bg-(--pref-dark) text-(--white) shadow-lg hover:bg-(--pref-dark)/90 hover:text-(--white)"
                                         : "text-(--pref-tag) hover:text-(--pref-dark) hover:bg-transparent"
                                         }`}
@@ -171,7 +171,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                                             variant="outline"
                                             onClick={() => togglePreference(activeTab, option)}
                                             className={`flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-[15px] font-medium h-auto border-0 ${selected
-                                                ? "bg-(--pref-active) text-(--white) hover:bg-(--pref-active)/90 hover:text-(--white)"
+                                                ? "bg-(--brand-blue-section) text-(--white) hover:bg-(--brand-blue-section)/90 hover:text-(--white)"
                                                 : "bg-(--slate-200) text-(--pref-muted-text) hover:bg-(--slate-200)/80"
                                                 }`}
                                         >
@@ -193,14 +193,14 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                                 <Button
                                     onClick={() => setIsModalOpen(false)}
                                     variant="outline"
-                                    className="flex-1 sm:flex-none px-6 sm:px-10 py-2.5 sm:py-3.5 rounded-full border-2 border-(--pref-border) text-(--pref-muted-text) font-bold h-auto hover:bg-transparent"
+                                    className="flex-1 sm:flex-none px-6 sm:px-10 py-2.5 sm:py-3.5 rounded-full border-2 border-(--pref-border) font-bold bg-(--stroke-back) text-(--pref-text) h-auto "
                                 >
                                     Back
                                 </Button>
 
                                 <Button
                                     onClick={handleSave}
-                                    className={`flex-1 sm:flex-none px-6 sm:px-8 py-3 sm:py-4 rounded-xl md:rounded-2xl font-bold bg-(--blue-600) text-(--white) hover:bg-(--blue-700) h-auto`}
+                                    className={`flex-1 sm:flex-none px-6 sm:px-8 py-3 sm:py-4 rounded-full  font-bold bg-(--brand-navy) text-(--white) hover:bg-(--brand-navy)/90 h-auto`}
                                 >
                                     {activeTab === "logistics" && isReadyToSave ? "Finish" : "Save & Continue"}
                                 </Button>

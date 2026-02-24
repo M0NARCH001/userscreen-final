@@ -47,8 +47,8 @@ export default function Features() {
     <section id="features" className="pt-6 pb-24 bg-(--white) overflow-hidden relative">
       <div className="container mx-auto px-4 relative">
         {/* Section Heading */}
-        <h2 className="font-bricolage font-bold text-[54px] leading-[64px] tracking-[0] text-(--landing-heading-color) mb-16">
-          What&apos;s so special about us?
+        <h2 className="font-bricolage font-bold text-[54px] leading-[64px] tracking-[0] text-(--brand-blue) mb-16">
+          What makes us stand apart?
         </h2>
 
         {/* 3D Carousel Container */}

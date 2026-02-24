@@ -87,11 +87,11 @@ export default function EventDetailsPage({ params }: PageProps) {
 
                     {/* 3. Right Column: Booking Form */}
                     <div className="flex-1 w-full lg:w-auto">
-                        <h1 className="text-3xl md:text-4xl font-bold text-(--brand-navy) mb-6 text-left font-bricolage">
+                        <h1 className="text-3xl md:text-4xl font-bold text-(--brand-blue) mb-6 text-left font-bricolage">
                             {event.title}
                         </h1>
                         <div className="bg-(--white) border border-(--gray-200) rounded-xl p-6 shadow-sm sticky top-24">
-                            <h2 className="text-xl font-semibold text-(--brand-navy) mb-6">Enter Your Details</h2>
+                            <h2 className="text-xl font-semibold text-(--black) mb-6">Enter Your Details</h2>
                             <form className="space-y-6">
                                 <div className="relative">
                                     <label htmlFor="name" className="absolute -top-2 left-3 bg-(--white) px-1 text-xs font-medium text-(--gray-500) z-10 text-[11px]">Name</label>
@@ -141,22 +141,22 @@ export default function EventDetailsPage({ params }: PageProps) {
                 {/* 4. Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-12 mb-12">
                     <div>
-                        <p className="font-semibold text-(--brand-navy) text-lg mb-1">Date: 21st March 2025</p>
+                        <p className="font-semibold text-(--black) text-lg mb-1">Date: 21st March 2025</p>
                     </div>
                     <div>
-                        <p className="font-semibold text-(--brand-navy) text-lg mb-1">Time: 8 AM Onwards</p>
+                        <p className="font-semibold text-(--black) text-lg mb-1">Time: 8 AM Onwards</p>
                     </div>
                     <div>
-                        <p className="font-semibold text-(--brand-navy) text-lg mb-1">Venue: <span className="underline decoration-1 underline-offset-4">Qubaa, Visakhapatnam</span></p>
+                        <p className="font-semibold text-(--black) text-lg mb-1">Venue: <span className="underline decoration-1 underline-offset-4">Qubaa, Visakhapatnam</span></p>
                     </div>
                     <div>
-                        <p className="font-semibold text-(--brand-navy) text-lg mb-1">Age Eligibility: 21+ Years</p>
+                        <p className="font-semibold text-(--black) text-lg mb-1">Age Eligibility: 21+ Years</p>
                     </div>
                     <div>
-                        <p className="font-semibold text-(--brand-navy) text-lg mb-1">Event Duration: 4hrs</p>
+                        <p className="font-semibold text-(--black) text-lg mb-1">Event Duration: 4hrs</p>
                     </div>
                     <div>
-                        <p className="font-semibold text-(--brand-navy) text-lg mb-1">Entry Time: 7 PM Onwards</p>
+                        <p className="font-semibold text-(--black) text-lg mb-1">Entry Time: 7 PM Onwards</p>
                     </div>
                 </div>
 
@@ -164,13 +164,13 @@ export default function EventDetailsPage({ params }: PageProps) {
                 <div className="space-y-8 max-w-4xl">
                     {/* About & Highlights Card */}
                     <div className="border border-(--gray-200) rounded-xl p-8 bg-(--white) shadow-sm">
-                        <h3 className="font-bold text-lg text-(--brand-navy) mb-4">About the Event</h3>
+                        <h3 className="font-bold text-lg text-(--black) mb-4">About the Event</h3>
                         <p className="text-(--gray-600) mb-6 leading-relaxed">
                             {event.title} is set to be an unforgettable experience. Join us for a day filled with energy, music, and great vibes.
                             Get ready for an electrifying musical transformation as we dive into the world of heavyweight mutations.
                         </p>
 
-                        <h3 className="font-bold text-lg text-(--brand-navy) mb-4">Event Highlights</h3>
+                        <h3 className="font-bold text-lg text-(--black) mb-4">Event Highlights</h3>
                         <ul className="list-disc pl-5 space-y-2 text-(--gray-600)">
                             <li>Get ready for an electrifying musical transformation as we dive into the world of heavyweight mutations</li>
                             {event.highlights?.map((highlight, index) => (
@@ -185,16 +185,16 @@ export default function EventDetailsPage({ params }: PageProps) {
                     {/* Can't make it Card included with Dialog */}
                     <div className="border border-(--gray-200) rounded-xl p-8 bg-(--white) shadow-sm text-center">
                         <div className="flex justify-center mb-4">
-                            <CalendarX2 className="h-10 w-10 text-(--brand-navy)" />
+                            <CalendarX2 className="h-10 w-10 text-(--black)" />
                         </div>
-                        <h3 className="font-bold text-lg text-(--brand-navy) mb-2">Can&apos;t make it this time?</h3>
+                        <h3 className="font-bold text-lg text-(--black) mb-2">Can&apos;t make it this time?</h3>
                         <p className="text-(--gray-600) mb-6 max-w-lg mx-auto">
                             Can&apos;t attend on the scheduled date? You can request a different day that suits you — and also view how many others are interested in the same!
                         </p>
 
                         <Dialog>
                             <DialogTrigger asChild>
-                                <Button className="bg-(--brand-navy) text-(--white) hover:bg-(--brand-navy)/90 rounded-full px-6">
+                                <Button className="bg-(--brand-navy) text-(--white) hover:bg-(--black)/90 rounded-full px-6">
                                     <CalendarPlus className="h-4 w-4 mr-2" /> Request a New Date
                                 </Button>
                             </DialogTrigger>
@@ -204,9 +204,9 @@ export default function EventDetailsPage({ params }: PageProps) {
                                 </VisuallyHidden>
                                 {/* Header */}
                                 <div className="bg-(--white) p-6 pb-2">
-                                    <p className="text-sm font-medium text-(--gray-500) mb-1">Select date</p>
+                                    <p className="text-sm font-medium text-(--black) mb-1">Select date</p>
                                     <div className="flex justify-between items-center">
-                                        <h2 className="text-3xl font-normal text-(--gray-900)">
+                                        <h2 className="text-3xl font-normal text-(--black)">
                                             {date ? format(date, "EEE, MMM d") : "Pick a date"}
                                         </h2>
                                         <Button variant="ghost" size="icon" className="text-(--gray-500) hover:bg-(--gray-100) rounded-full h-10 w-10">
@@ -226,7 +226,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                                             head_cell: "text-(--gray-500) font-medium text-sm w-9",
                                             cell: "text-center text-sm p-0 flex items-center justify-center h-10 w-10 relative [&:has([aria-selected])]:bg-(--brand-navy) [&:has([aria-selected])]:rounded-full focus-within:relative focus-within:z-20",
                                             day: "h-10 w-10 p-0 font-normal text-(--gray-900) aria-selected:opacity-100 hover:bg-(--gray-100) rounded-full",
-                                            day_selected: "bg-(--brand-navy) text-(--white) hover:bg-(--brand-navy) hover:text-(--white) focus:bg-(--brand-navy) focus:text-(--white)",
+                                            day_selected: "bg-(--black) text-(--white) hover:bg-(--black) hover:text-(--white) focus:bg-(--black) focus:text-(--white)",
                                             day_today: "bg-(--gray-100) text-(--gray-900)",
                                             day_outside: "text-(--gray-300) opacity-50",
                                             day_disabled: "text-(--gray-300) opacity-50",
@@ -267,7 +267,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                     <div className="space-y-8">
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="item-1" className="border border-(--gray-200) rounded-xl bg-(--white) px-6 data-[state=open]:pb-4 last:border-b">
-                                <AccordionTrigger className="hover:no-underline font-bold text-(--brand-navy) text-lg py-6">
+                                <AccordionTrigger className="hover:no-underline font-bold text-(--black) text-lg py-6">
                                     Terms & Conditions
                                 </AccordionTrigger>
                                 <AccordionContent className="text-(--gray-600)">
@@ -284,7 +284,7 @@ export default function EventDetailsPage({ params }: PageProps) {
 
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="item-2" className="border border-(--gray-200) rounded-xl bg-(--white) px-6 data-[state=open]:pb-4 last:border-b">
-                                <AccordionTrigger className="hover:no-underline font-bold text-(--brand-navy) text-lg py-6">
+                                <AccordionTrigger className="hover:no-underline font-bold text-(--black) text-lg py-6">
                                     <span className="flex items-center gap-3">
                                         <HelpCircle className="h-5 w-5" />
                                         How to Get Here
@@ -322,7 +322,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                                             <div className="space-y-8">
                                                 {/* First time */}
                                                 <div>
-                                                    <h4 className="font-bold text-(--brand-navy) mb-3 text-base">First time coming?</h4>
+                                                    <h4 className="font-bold text-(--black) mb-3 text-base">First time this way?</h4>
                                                     <ul className="list-disc pl-5 space-y-1.5 text-sm text-(--gray-600)">
                                                         <li>Ola/Uber autos & bikes available widely</li>
                                                         <li>Use The Park Hotel as landmark if drivers are unsure</li>
@@ -332,7 +332,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                                                 {/* Sections */}
                                                 <div className="space-y-6">
                                                     <div>
-                                                        <h4 className="font-bold text-(--brand-navy) mb-2 text-base flex items-center gap-2">
+                                                        <h4 className="font-bold text-(--black) mb-2 text-base flex items-center gap-2">
                                                             <Footprints className="h-4 w-4" /> By Foot
                                                         </h4>
                                                         <ul className="list-disc pl-5 space-y-1.5 text-sm text-(--gray-600)">
@@ -342,7 +342,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                                                     </div>
 
                                                     <div>
-                                                        <h4 className="font-bold text-(--brand-navy) mb-2 text-base flex items-center gap-2">
+                                                        <h4 className="font-bold text-(--black) mb-2 text-base flex items-center gap-2">
                                                             <Car className="h-4 w-4" /> By Car
                                                         </h4>
                                                         <ul className="list-disc pl-5 space-y-1.5 text-sm text-(--gray-600)">
@@ -353,7 +353,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                                                     </div>
 
                                                     <div>
-                                                        <h4 className="font-bold text-(--brand-navy) mb-2 text-base flex items-center gap-2">
+                                                        <h4 className="font-bold text-(--black) mb-2 text-base flex items-center gap-2">
                                                             <Bus className="h-4 w-4" /> By Bus
                                                         </h4>
                                                         <ul className="list-disc pl-5 space-y-1.5 text-sm text-(--gray-600)">

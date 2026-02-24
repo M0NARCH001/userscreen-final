@@ -164,7 +164,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
 
     return (
         <main className="mx-auto max-w-7xl px-6 py-12">
-            <h1 className="text-4xl font-bold mb-12">Personal Details</h1>
+            <h1 className="text-4xl font-bold mb-12 text-(--brand-blue)">Personal Details</h1>
 
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
@@ -188,7 +188,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                         </div>
                         <div className="mt-6">
                             <label htmlFor="profile-upload">
-                                <div className="flex items-center gap-2 px-6 py-3 bg-(--gray-900) text-(--white) rounded-lg cursor-pointer hover:bg-(--gray-800) transition-colors">
+                                <div className="flex items-center gap-2 px-6 py-3 bg-(--brand-navy) text-(--white) rounded-full cursor-pointer hover:bg-(--gray-800) transition-colors">
                                     <Upload className="h-4 w-4" />
                                     <span className="font-medium">Change picture</span>
                                 </div>
@@ -349,13 +349,33 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                 <Label htmlFor="profession" className={labelOnBorderClass}>
                                     Profession
                                 </Label>
-                                <Input
-                                    id="profession"
-                                    placeholder="Enter your Profession"
-                                    value={formData.profession}
-                                    onChange={(e) => handleInputChange("profession", e.target.value)}
-                                    className="h-14 bg-(--white) border-(--gray-400) focus-visible:ring-0"
-                                />
+                                <Select value={formData.profession} onValueChange={(value) => handleInputChange("profession", value)}>
+                                    <SelectTrigger id="profession" className="!h-14 w-full bg-(--white) border-(--gray-400) focus-visible:ring-0 text-base md:text-sm items-center px-3">
+                                        <SelectValue placeholder="Select your profession" />
+                                    </SelectTrigger>
+                                    <SelectContent side="bottom" sideOffset={8}>
+                                        <SelectItem value="software-engineer">Software Engineer</SelectItem>
+                                        <SelectItem value="product-manager">Product Manager</SelectItem>
+                                        <SelectItem value="designer">Designer</SelectItem>
+                                        <SelectItem value="consultant">Consultant</SelectItem>
+                                        <SelectItem value="doctor">Doctor</SelectItem>
+                                        <SelectItem value="engineer">Engineer</SelectItem>
+                                        <SelectItem value="lawyer">Lawyer</SelectItem>
+                                        <SelectItem value="accountant">Accountant</SelectItem>
+                                        <SelectItem value="teacher">Teacher</SelectItem>
+                                        <SelectItem value="entrepreneur">Entrepreneur</SelectItem>
+                                        <SelectItem value="marketing-executive">Marketing Executive</SelectItem>
+                                        <SelectItem value="sales-executive">Sales Executive</SelectItem>
+                                        <SelectItem value="financial-analyst">Financial Analyst</SelectItem>
+                                        <SelectItem value="hr-executive">HR Executive</SelectItem>
+                                        <SelectItem value="data-scientist">Data Scientist</SelectItem>
+                                        <SelectItem value="journalist">Journalist</SelectItem>
+                                        <SelectItem value="student">Student</SelectItem>
+                                        <SelectItem value="homemaker">Homemaker</SelectItem>
+                                        <SelectItem value="retired">Retired</SelectItem>
+                                        <SelectItem value="other">Other</SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 {errors.profession && <p className="text-(--red-500) text-xs mt-1 absolute">{errors.profession}</p>}
                             </div>
                         </div>
@@ -385,7 +405,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                                 </div>
                                 <div className="mt-6">
                                     <label htmlFor="partner-profile-upload">
-                                        <div className="flex items-center gap-2 px-6 py-3 bg-(--gray-900) text-(--white) rounded-lg cursor-pointer hover:bg-(--gray-800) transition-colors">
+                                        <div className="flex items-center gap-2 px-6 py-3 bg-(--brand-navy) text-(--white) rounded-full cursor-pointer hover:bg-(--gray-800) transition-colors">
                                             <Upload className="h-4 w-4" />
                                             <span className="font-medium">Change picture</span>
                                         </div>
@@ -511,7 +531,7 @@ export default function PersonalDetailsForm({ onContinue }: PersonalDetailsFormP
                 <div className="flex justify-center mt-12 pt-8 border-t border-(--gray-200)">
                     <Button
                         type="submit"
-                        className="px-8 py-6 bg-(--gray-900) text-(--white) hover:bg-(--gray-800) rounded-lg text-base font-medium"
+                        className="px-8 py-6 bg-(--brand-navy) text-(--white) hover:bg-(--gray-800) rounded-full text-base font-medium"
                     >
                         Save & Continue
                     </Button>

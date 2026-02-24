@@ -15,11 +15,11 @@ export interface PreferenceCard {
 }
 
 export const PREFERENCE_CARDS: PreferenceCard[] = [
-    { title: "Travel & Local Exploration Style", image: "/placeholder.svg", category: "travel" },
-    { title: "Interests, Hobbies & Activities", image: "/placeholder.svg", category: "interests" },
-    { title: "Food & Dining Preferences", image: "/placeholder.svg", category: "food" },
-    { title: "Emotional Intent & Personality", image: "/placeholder.svg", category: "emotional" },
-    { title: "Logistics & Discovery Style", image: "/placeholder.svg", category: "logistics" },
+    { title: "Travel & Local Exploration Style", image: "/onboard1.svg", category: "travel" },
+    { title: "Interests, Hobbies & Activities", image: "/onboard2.svg", category: "interests" },
+    { title: "Food & Dining Preferences", image: "/onboard3.svg", category: "food" },
+    { title: "Emotional Intent & Personality", image: "/onboard4.svg", category: "emotional" },
+    { title: "Logistics & Discovery Style", image: "/onboard5.svg", category: "logistics" },
 ];
 
 export const PREFERENCE_OPTIONS: Record<PreferenceCategory, string[]> = {

@@ -27,7 +27,7 @@ export default function RestaurantOwner() {
           >
             {/* Heading */}
             <h2 className="font-bricolage font-bold text-4xl md:text-5xl tracking-tight text-(--about-heading-color) mb-4">
-              Are you a Restaurant / Cafe Owner?
+              Are You a Restaurant or Cafe Owner ?
             </h2>
 
             {/* Mobile Image (Visible on mobile, hidden on lg) */}
@@ -42,20 +42,30 @@ export default function RestaurantOwner() {
 
             {/* Subheading */}
             <p className="font-albert font-medium text-2xl md:text-3xl leading-tight tracking-tight text-(--about-heading-color) mb-6">
-              Attract a Thriving Crowd of Food Lovers!
+              Turn Hungry Searches Into Full Tables.
             </p>
 
             {/* Description */}
-            <p className="font-albert text-lg leading-relaxed text-(--about-body-text) mb-8">
-              Baatasari isn&apos;t just for diners—it&apos;s for culinary creators
-              like you! Promote your unique dishes, engage with a larger
-              audience, manage reservations effortlessly, and elevate your
-              restaurant—all in one platform.
-            </p>
+            <div className="font-albert text-base leading-relaxed text-(--about-body-text) mb-8">
+              <p className="mb-3">
+                Baatasari isn&apos;t just for diners – it&apos;s built for passionate culinary creators like you. When people search for places to eat, cafes near them, or new food experiences, your restaurant deserves to be seen.
+              </p>
+              <p className="mb-2">We help you</p>
+              <ul className="list-disc pl-5 mt-2 space-y-1">
+                <li>Showcase your unique dishes and vibe</li>
+                <li>Reach customers actively looking for food experiences</li>
+                <li>Promote special menus, events, and offers.</li>
+                <li>Manage bookings with ease</li>
+                <li>Increase visibility without marketing chaos</li>
+              </ul>
+              <p className="mt-3">
+                No complicated tools. No wasted reach. Just real people discovering your place.
+              </p>
+            </div>
 
             {/* CTA */}
             <Button className="font-albert font-medium text-lg leading-6 text-(--text-light) bg-(--brand-navy) hover:bg-(--brand-navy)/90 px-8 py-3 rounded-full transition h-auto">
-              Become our Restaurant Partner
+              Become a Restaurant Partner.
             </Button>
           </motion.div>
 

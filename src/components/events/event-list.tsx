@@ -39,15 +39,15 @@ function EventRow({ title, events }: EventRowProps) {
     return (
         <div className="mb-12 last:mb-0">
             <div className="flex justify-between items-center mb-8">
-                <h2 className="text-3xl font-bold text-(--events-heading-color) font-bricolage">{title}</h2>
-                <a href="#" className="text-(--blue-600) hover:underline font-medium text-sm md:text-base">
+                <h2 className="text-3xl font-bold text-(--brand-blue) font-bricolage">{title}</h2>
+                <a href="#" className="text-(--badge-purple-bg) hover:underline font-medium text-sm md:text-base">
                     View All
                 </a>
             </div>
 
             <div
                 ref={scrollContainerRef}
-                className="flex gap-6 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] snap-x snap-mandatory scroll-smooth"
+                className="flex gap-8 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] snap-x snap-mandatory scroll-smooth"
             >
                 {events.map((event, index) => (
                     <div key={index} className="snap-start shrink-0">

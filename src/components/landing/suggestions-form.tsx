@@ -31,17 +31,13 @@ export default function SuggestionsForm() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-4">
-            Have Something to Share!
+            Got an Event Idea? Let&apos;s Make It Happen.
           </h2>
 
-          <p className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-6">
-            We are open to suggestions
-          </p>
-
-          <p className="font-albert font-medium text-[20px] leading-[24px] tracking-[0] text-(--white) max-w-3xl mx-auto mb-5">
-            At Baatasari we aim to give you the best experience in your locality.
-            We are open to your suggestions and include what makes your day
-            better.
+          <p className="font-albert font-normal text-[20px] leading-[24px] tracking-[0.5px] text-(--white) mb-5">
+            At Baatasari, We believe that your city isn&apos;t shaped by the organizers alone – it&apos;s
+            shaped by you.
+            Have something you&apos;d love to see? A beach art night? A food festival? A music jam? A fitness meetup? Submit your idea below. If enough people are interested, local organizers can bring it to life. Because great events start with great ideas.
           </p>
         </div>
 

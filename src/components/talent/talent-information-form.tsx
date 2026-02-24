@@ -127,7 +127,7 @@ export function TalentInformationForm() {
             {/* Row 1 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-(--gray-800)">Skills</Label>
+                    <Label className="text-sm font-bold text-(--black)">Skills</Label>
                     {skills === "Others" ? (
                         <div className="relative">
                             <Input
@@ -165,7 +165,7 @@ export function TalentInformationForm() {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-(--gray-800)">Experience level</Label>
+                    <Label className="text-sm font-bold text-(--black)">Experience level</Label>
                     <Select value={experienceLevel} onValueChange={setExperienceLevel}>
                         <SelectTrigger className={selectClass}>
                             <SelectValue placeholder="Select" />
@@ -179,7 +179,7 @@ export function TalentInformationForm() {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-(--gray-800)">Year of experience</Label>
+                    <Label className="text-sm font-bold text-(--black)">Year of experience</Label>
                     <Input
                         placeholder="Ex: 3"
                         value={yearOfExperience}
@@ -191,7 +191,7 @@ export function TalentInformationForm() {
 
             {/* Bio */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-(--gray-800)">Bio/Description</Label>
+                <Label className="text-sm font-bold text-(--black)">Bio/Description</Label>
                 <Textarea
                     placeholder="Write a few words describing your talent"
                     value={bio}
@@ -202,7 +202,7 @@ export function TalentInformationForm() {
 
             {/* Slots (Full Width) */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-(--gray-800)">Preferred slots</Label>
+                <Label className="text-sm font-bold text-(--black)">Preferred slots</Label>
                 <div className="flex flex-wrap gap-2">
                     {SLOT_OPTIONS.map((slot) => (
                         <Button
@@ -223,7 +223,7 @@ export function TalentInformationForm() {
 
             {/* Location (Full Width or separate line) */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-(--gray-800)">Location</Label>
+                <Label className="text-sm font-bold text-(--black)">Location</Label>
                 <Input
                     placeholder="Ex: vizag"
                     value={location}
@@ -234,7 +234,7 @@ export function TalentInformationForm() {
 
             {/* Available For (Full Width) */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-(--gray-800)">Available for</Label>
+                <Label className="text-sm font-bold text-(--black)">Available for</Label>
                 <div className="flex flex-wrap gap-2">
                     {AVAILABLE_OPTIONS.map((option) => (
                         <Button
@@ -256,7 +256,7 @@ export function TalentInformationForm() {
             {/* Last Row: Booking & Price */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-(--gray-800)">Accept booking from</Label>
+                    <Label className="text-sm font-bold text-(--black)">Accept booking from</Label>
                     <Select value={acceptBookingFrom} onValueChange={setAcceptBookingFrom}>
                         <SelectTrigger className={selectClass}>
                             <SelectValue placeholder="Select" />
@@ -270,7 +270,7 @@ export function TalentInformationForm() {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-sm font-bold text-(--gray-800)">Price</Label>
+                    <Label className="text-sm font-bold text-(--black)">Price</Label>
                     <Select value={price} onValueChange={setPrice}>
                         <SelectTrigger className={selectClass}>
                             <SelectValue placeholder="Select" />
@@ -286,7 +286,7 @@ export function TalentInformationForm() {
 
             {/* Upload */}
             <div className="space-y-2">
-                <Label className="text-sm font-bold text-(--gray-800)">Upload your work</Label>
+                <Label className="text-sm font-bold text-(--black)">Upload your work</Label>
                 <div className={`min-h-[56px]! w-full! rounded-md! border! border-(--gray-300)! px-4! py-3! text-base! bg-(--white)! shadow-sm! flex flex-wrap gap-2 items-center`}>
                     {workLinks.map((link, index) => (
                         <div key={index} className="flex items-center gap-1 bg-(--brand-navy) px-2 py-1 rounded text-sm text-(--white)">
@@ -313,7 +313,7 @@ export function TalentInformationForm() {
             </div>
 
             <div className="pt-4">
-                <Button type="submit" className="w-full md:w-auto px-8 bg-(--brand-navy) hover:bg-(--brand-navy)/90 text-(--white)">
+                <Button type="submit" className="w-full md:w-auto px-8 bg-(--brand-navy) rounded-full hover:bg-(--brand-navy)/90 text-(--white)">
                     Submit Application
                 </Button>
             </div>

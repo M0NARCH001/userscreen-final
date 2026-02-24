@@ -14,19 +14,19 @@ export const FEATURES_DATA: Feature[] = [
     {
         title: "Inclusive events in seconds!",
         description:
-            "Discover hidden gems, unique experiences, and trending events tailored to your interests with just a click.",
+            "Discover Real Experiences in Seconds. Not just events or restaurants. But experiences that actually match what you feel like doing.",
         image: "event-1.png",
     },
     {
         title: "Plan your day in minutes",
         description:
-            "Get customized itineraries, real-time updates, and explore stress-free!",
+            "From live music and creative workshops to food spots, meetups, fitness sessions, and cultural happenings — Batasari helps you.",
         image: "event-2.png",
     },
     {
         title: "Beyond travel!",
         description:
-            "Enjoy special discounts, deals and explore with like-minded people!",
+            "No endless searching. No scattered information. Just curated recommendations tailored to you.",
         image: "event-3.png",
     },
 ];
@@ -38,7 +38,7 @@ export const PERFORMERS_DATA: Performer[] = [
         image: "per-1.png",
     },
     {
-        title: "Singers!",
+        title: "Singers",
         description: "Captivate the crowd and let your voice be heard.",
         image: "per-2.png",
     },

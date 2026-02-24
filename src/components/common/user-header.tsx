@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -19,6 +20,9 @@ export default function UserHeader() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const { logout, userProfile } = useAuth();
+    const pathname = usePathname();
+
+    const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
     // Helper to get user initials for avatar
     const getInitials = (name: string) => {
@@ -52,18 +56,20 @@ export default function UserHeader() {
                     {/* CENTER — NAV */}
                     {/* CENTER — NAV */}
                     <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-10">
-                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/">
-                            Home
-                        </Link>
-                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/about">
-                            About Us
-                        </Link>
-                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/events">
-                            Events
-                        </Link>
-                        <Link className="font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)" href="/talent">
-                            Talent
-                        </Link>
+                        {[
+                            { label: "Home", href: "/" },
+                            { label: "About Us", href: "/about" },
+                            { label: "Events", href: "/events" },
+                            { label: "Talent", href: "/talent" },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                className={`font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav) ${isActive(link.href) ? "underline underline-offset-4 decoration-2 font-bold opacity-100" : "opacity-80"}`}
+                                href={link.href}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </nav>
 
                     {/* RIGHT — DESKTOP AVATAR */}
@@ -172,18 +178,20 @@ export default function UserHeader() {
                         )}
 
                         {/* MAIN NAV */}
-                        <Link href="/" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
-                            Home
-                        </Link>
-                        <Link href="/about" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
-                            About Us
-                        </Link>
-                        <Link href="/events" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
-                            Events
-                        </Link>
-                        <Link href="/talent" className="block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav)">
-                            Talent
-                        </Link>
+                        {[
+                            { label: "Home", href: "/" },
+                            { label: "About Us", href: "/about" },
+                            { label: "Events", href: "/events" },
+                            { label: "Talent", href: "/talent" },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`block px-6 py-4 font-poppins font-medium text-[18px] leading-[24px] text-(--text-nav) ${isActive(link.href) ? "bg-(--gray-100) font-bold" : ""}`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
 
                         <div className="h-px bg-(--gray-200) mx-6 my-2" />
 

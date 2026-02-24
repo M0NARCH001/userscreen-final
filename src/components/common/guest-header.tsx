@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useAuth } from "@/context/auth-context";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,9 @@ interface GuestHeaderProps {
 export default function GuestHeader({ darkText = false }: GuestHeaderProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { login } = useAuth();
+    const pathname = usePathname();
+
+    const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
     // Helper to determine text color class
     const textColorClass = darkText ? "text-(--gray-900) hover:text-(--gray-700)" : "text-(--white) hover:text-(--white)/80";
@@ -39,30 +43,20 @@ export default function GuestHeader({ darkText = false }: GuestHeaderProps) {
 
                     {/* Desktop Nav */}
                     <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-10 ${darkText ? 'text-(--gray-900)' : 'text-white'}`}>
-                        <Link
-                            href="/"
-                            className={`font-poppins text-[18px] leading-[24px] font-medium transition ${textColorClass}`}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/about"
-                            className={`font-poppins text-[18px] leading-[24px] font-medium transition ${textColorClass}`}
-                        >
-                            About us
-                        </Link>
-                        <Link
-                            href="/events"
-                            className={`font-poppins text-[18px] leading-[24px] font-medium transition ${textColorClass}`}
-                        >
-                            Events
-                        </Link>
-                        <Link
-                            href="/talent"
-                            className={`font-poppins text-[18px] leading-[24px] font-medium transition ${textColorClass}`}
-                        >
-                            Talent
-                        </Link>
+                        {[
+                            { label: "Home", href: "/" },
+                            { label: "About us", href: "/about" },
+                            { label: "Events", href: "/events" },
+                            { label: "Talent", href: "/talent" },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`font-poppins text-[18px] leading-[24px] font-medium transition ${textColorClass} ${isActive(link.href) ? "underline underline-offset-4 decoration-2 font-bold opacity-100" : "opacity-80"}`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
 
                     {/* Desktop Actions */}
@@ -95,30 +89,20 @@ export default function GuestHeader({ darkText = false }: GuestHeaderProps) {
                 {/* MOBILE MENU */}
                 {isMobileMenuOpen && (
                     <div className="md:hidden mt-4 rounded-[16px] bg-(--white) shadow-xl overflow-hidden">
-                        <Link
-                            href="/"
-                            className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/about"
-                            className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
-                        >
-                            About us
-                        </Link>
-                        <Link
-                            href="/events"
-                            className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
-                        >
-                            Events
-                        </Link>
-                        <Link
-                            href="/talent"
-                            className="block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium"
-                        >
-                            Talent
-                        </Link>
+                        {[
+                            { label: "Home", href: "/" },
+                            { label: "About us", href: "/about" },
+                            { label: "Events", href: "/events" },
+                            { label: "Talent", href: "/talent" },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`block px-6 py-4 text-(--gray-900) font-poppins text-[18px] leading-[24px] font-medium ${isActive(link.href) ? "bg-(--gray-100) font-bold" : ""}`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
 
                         {/* Divider */}
                         <div className="h-px bg-(--gray-200) mx-6 my-2" />

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useRef, useCallback } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -33,11 +34,32 @@ export function HandpickedEventCard({
     eventTime = "Telugu | 6yrs + | 4hrs",
     highlights = ["Rockstar Devi Sri Prasad", "Rockstar Devi Sri Prasad", "Rockstar Devi Sri Prasad"]
 }: HandpickedEventCardProps) {
+    const [showDetails, setShowDetails] = useState(false)
+    const timerRef = useRef<NodeJS.Timeout | null>(null)
+
+    const handleMouseEnter = useCallback(() => {
+        timerRef.current = setTimeout(() => {
+            setShowDetails(true)
+        }, 600)
+    }, [])
+
+    const handleMouseLeave = useCallback(() => {
+        if (timerRef.current) {
+            clearTimeout(timerRef.current)
+            timerRef.current = null
+        }
+        setShowDetails(false)
+    }, [])
+
     return (
-        <div className="group flex flex-col md:flex-row items-center h-full">
+        <div
+            className="flex flex-col md:flex-row items-center h-full"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <Link href={`/events/${id}`} className="block relative z-20">
                 {/* Main Card */}
-                <Card className="w-[300px] md:w-[340px] shrink-0 border-0 shadow-sm transition-all duration-300 rounded-[24px] overflow-hidden bg-(--white) group-hover:-translate-y-2 group-hover:shadow-2xl">
+                <Card className={`w-[300px] md:w-[340px] shrink-0 border-0 shadow-sm transition-all duration-300 rounded-[24px] overflow-hidden bg-(--white) ${showDetails ? "-translate-y-2 shadow-2xl" : ""}`}>
                     <CardContent className="p-4">
                         {/* Image Container */}
                         <div className="relative aspect-square w-full mb-4 overflow-hidden rounded-[20px]">
@@ -45,13 +67,13 @@ export function HandpickedEventCard({
                                 src={image}
                                 alt={title}
                                 fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                className={`object-cover transition-transform duration-500 ${showDetails ? "scale-105" : ""}`}
                             />
                         </div>
 
                         {/* Content */}
                         <div className="space-y-2">
-                            <h3 className="font-poppins font-semibold text-[20px] leading-[30px] text-(--events-card-text) line-clamp-2">
+                            <h3 className="font-poppins font-semibold text-[20px] leading-[30px] text-(--eventcard-heading-bg) line-clamp-2">
                                 {title}
                             </h3>
 
@@ -71,11 +93,11 @@ export function HandpickedEventCard({
             </Link>
 
             {/* Details Panel - Mobile (Hidden) & Desktop (Slide-out) */}
-            <div className="hidden md:flex md:w-0 opacity-100 md:opacity-0 md:group-hover:w-[340px] md:group-hover:opacity-100 transition-all duration-500 ease-in-out bg-(--white) rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-(--gray-100) shadow-xl overflow-hidden flex-col md:-ml-6 md:group-hover:ml-0 z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0">
+            <div className={`hidden md:flex transition-all duration-500 ease-in-out bg-(--white) rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-(--gray-100) shadow-xl overflow-hidden flex-col z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0 ${showDetails ? "md:w-[340px] md:opacity-100 md:ml-0" : "md:w-0 md:opacity-0 md:-ml-6"}`}>
                 <div className="min-w-[300px] md:min-w-[340px] p-6 flex flex-col h-full justify-between">
                     <div className="space-y-4">
                         {/* Tag */}
-                        <Badge variant="secondary" className="bg-(--events-badge-bg) text-(--events-card-text) hover:bg-(--events-badge-bg)/80 rounded-full">
+                        <Badge variant="secondary" className="bg-(--events-badge-bg) text-(--events-card-text)/80 hover:bg-(--events-badge-bg)/80 rounded-full">
                             {tag}
                         </Badge>
 
@@ -110,10 +132,10 @@ export function HandpickedEventCard({
 
                     {/* Actions */}
                     <Link href={`/events/${id}`} className="space-y-3 mt-4 block">
-                        <Button className="w-full bg-(--events-promo-bg) text-(--events-card-text) font-semibold py-2 rounded-lg hover:bg-(--events-promo-bg)/90 transition-colors h-auto">
+                        <Button className="w-full bg-(--events-promo-bg) text-(--events-card-text) font-semibold py-2 rounded-full hover:bg-(--events-promo-bg)/90 transition-colors h-auto">
                             Buy 1 Get 1
                         </Button>
-                        <Button className="w-full bg-(--brand-navy) text-(--white) font-semibold py-3 rounded-xl hover:bg-(--brand-navy)/90 transition-colors h-auto">
+                        <Button className="w-full bg-(--brand-navy) text-(--white) font-semibold py-3 rounded-full hover:bg-(--brand-navy)/90 transition-colors h-auto">
                             Pay {price}
                         </Button>
                     </Link>

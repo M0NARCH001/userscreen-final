@@ -27,7 +27,7 @@ export default function EventOrganizer() {
           >
             {/* Heading */}
             <h2 className="font-bricolage font-bold text-4xl md:text-5xl tracking-tight text-(--about-heading-color) mb-4">
-              Are you an Event Organizer?
+              Are You an Event Organizer or Local Business?
             </h2>
 
             {/* Mobile Image (Visible on mobile, hidden on lg) */}
@@ -42,19 +42,28 @@ export default function EventOrganizer() {
 
             {/* Subheading */}
             <p className="font-albert font-medium text-2xl md:text-3xl leading-tight tracking-tight text-(--about-heading-color) mb-6">
-              Reach Thousands of Excited Travelers!
+              Reach the right audience – Effortlessly
             </p>
 
             {/* Description */}
             <p className="font-albert text-lg leading-relaxed text-(--about-body-text) mb-8">
-              Baatasari isn&apos;t just for travelers—it&apos;s for creators like
-              you! Showcase your events, connect with a wider audience, manage
-              bookings seamlessly, and grow your business—all in one place.
+              Baatasari isn&apos;t just for explorers.
+              It&apos;s built for creators, organizers, performers, cafes,
+              communities, and experience curators.
+              List your events.
+              Connect with people actively looking for things to
+              do.
+              Manage bookings and visibility – all in one place.
+              No noise.
+              Just meaningful reach.
+              Grow your audience.
+              Fill your events.
+              Build your presence.
             </p>
 
             {/* CTA */}
             <Button className="font-albert font-medium text-lg leading-6 text-(--text-light) bg-(--brand-navy) hover:bg-(--brand-navy)/90 px-8 py-3 rounded-full transition h-auto">
-              Join as our Vendor Partner
+              Partner with us….
             </Button>
           </motion.div>
 
