@@ -40,7 +40,7 @@ function EventRow({ title, events }: EventRowProps) {
         <div className="mb-12 last:mb-0">
             <div className="flex justify-between items-center mb-8">
                 <h2 className="text-3xl font-bold text-(--brand-blue) font-bricolage">{title}</h2>
-                <a href="#" className="text-(--badge-purple-bg) hover:underline font-medium text-sm md:text-base">
+                <a href="#" className="bg-(--events-badge-bg) text-(--events-card-text) hover:bg-(--events-badge-bg)/80 rounded-full px-4 py-1 font-poppins font-medium text-sm md:text-base transition-colors">
                     View All
                 </a>
             </div>
