@@ -73,7 +73,7 @@ export default function EventDetailsPage({ params }: PageProps) {
 
                 <div className="flex flex-col lg:flex-row items-start gap-6 mb-16">
                     {/* 2. Left Column: Poster Image */}
-                    <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-start">
+                    <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end lg:pr-6">
                         <div className="relative w-full max-w-[400px] aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
                             <Image
                                 src={event.image}
@@ -198,7 +198,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                                     <CalendarPlus className="h-4 w-4 mr-2" /> Request a New Date
                                 </Button>
                             </DialogTrigger>
-                            <DialogContent className="p-0 overflow-hidden max-w-[360px] rounded-3xl bg-(--white) border-0">
+                            <DialogContent className="p-0 overflow-hidden w-[90vw] max-w-sm rounded-3xl bg-(--white) border-0">
                                 <VisuallyHidden>
                                     <DialogTitle>Select Date</DialogTitle>
                                 </VisuallyHidden>
@@ -209,33 +209,19 @@ export default function EventDetailsPage({ params }: PageProps) {
                                         <h2 className="text-3xl font-normal text-(--black)">
                                             {date ? format(date, "EEE, MMM d") : "Pick a date"}
                                         </h2>
-                                        <Button variant="ghost" size="icon" className="text-(--gray-500) hover:bg-(--gray-100) rounded-full h-10 w-10">
+                                        <Button variant="ghost" size="icon" className="text-(--gray-500) hover:bg-(--gray-100) rounded-full">
                                             <Pencil className="h-5 w-5" />
                                         </Button>
                                     </div>
                                 </div>
 
                                 {/* Calendar */}
-                                <div className="px-4">
+                                <div className="px-4 flex justify-center">
                                     <Calendar
                                         mode="single"
                                         selected={date}
                                         onSelect={setDate}
-                                        className="rounded-md border-0 w-full"
-                                        classNames={{
-                                            head_cell: "text-(--gray-500) font-medium text-sm w-9",
-                                            cell: "text-center text-sm p-0 flex items-center justify-center h-10 w-10 relative [&:has([aria-selected])]:bg-(--brand-navy) [&:has([aria-selected])]:rounded-full focus-within:relative focus-within:z-20",
-                                            day: "h-10 w-10 p-0 font-normal text-(--gray-900) aria-selected:opacity-100 hover:bg-(--gray-100) rounded-full",
-                                            day_selected: "bg-(--black) text-(--white) hover:bg-(--black) hover:text-(--white) focus:bg-(--black) focus:text-(--white)",
-                                            day_today: "bg-(--gray-100) text-(--gray-900)",
-                                            day_outside: "text-(--gray-300) opacity-50",
-                                            day_disabled: "text-(--gray-300) opacity-50",
-                                            day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
-                                            day_hidden: "invisible",
-                                            nav_button: "border-0 hover:bg-(--gray-100) rounded-full h-8 w-8 text-(--gray-500)",
-                                            caption: "flex justify-start pt-1 pl-2 relative items-center gap-1",
-                                            caption_label: "text-sm font-medium text-(--gray-700)",
-                                        }}
+                                        className="rounded-md border-0"
                                     />
                                 </div>
 

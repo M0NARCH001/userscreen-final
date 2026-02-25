@@ -26,7 +26,7 @@ export default function RestaurantOwner() {
             viewport={{ once: true }}
           >
             {/* Heading */}
-            <h2 className="font-bricolage font-bold text-4xl md:text-5xl tracking-tight text-(--about-heading-color) mb-4">
+            <h2 className="font-bricolage font-bold text-4xl md:text-5xl tracking-tight text-(--brand-blue) mb-4">
               Are You a Restaurant or Cafe Owner ?
             </h2>
 
