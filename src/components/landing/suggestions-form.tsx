@@ -26,10 +26,10 @@ export default function SuggestionsForm() {
     "font-albert font-medium text-[16px] leading-[24px] tracking-[0] text-(--white) mb-[14px] block";
 
   return (
-    <section className="py-20 bg-(--brand-blue)">
+    <section className="py-10 bg-(--brand-blue)">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-4">
             Got an Event Idea? Let&apos;s Make It Happen.
           </h2>
@@ -99,7 +99,7 @@ export default function SuggestionsForm() {
           </div>
 
           {/* Submit */}
-          <div className="pt-8 flex justify-center">
+          <div className="pt-6 flex justify-center">
             <Button
               type="submit"
               className="w-full max-w-[480px] h-[60px] px-5 py-[18px] rounded-full bg-(--brand-navy) border border-(--brand-navy) text-(--white) font-inter font-semibold text-[16px] leading-[24px] tracking-[0] flex items-center justify-center transition hover:bg-(--brand-navy)/90"

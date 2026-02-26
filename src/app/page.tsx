@@ -1,25 +1,48 @@
-import SiteHeader from "@/components/common/site-header"
-import { HeroSection } from "@/components/landing/hero-section"
-import { EventSection } from "@/components/landing/event-section"
-import { MovieSection } from "@/components/landing/movie-section"
-import { ArtistSection } from "@/components/landing/artist-section"
-import Footer from "@/components/about/footer"
-import SuggestionsForm from "@/components/landing/suggestions-form"
+"use client";
+
+import { useState } from "react";
+import SiteHeader from "@/components/common/site-header";
+import { HeroSection } from "@/components/landing/hero-section";
+import { CategoryFilter } from "@/components/landing/category-filter";
+import { EventSection } from "@/components/landing/event-section";
+import { ArtistSection } from "@/components/landing/artist-section";
+import SuggestionsForm from "@/components/landing/suggestions-form";
+import Footer from "@/components/about/footer";
 
 export default function Home() {
+  // 1. Create the state to track the category
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   return (
     <div className="min-h-screen">
       <SiteHeader darkText={true} />
-      <main className="pt-16">
+      <main className="flex flex-col gap-2 pt-16">
         <HeroSection />
 
-        <MovieSection title="Top Hindi movies near you" />
-        <SuggestionsForm />
-        <EventSection title="India's Top Events" type="events" />
-        <EventSection title="Best in Comedy" type="comedy" />
+        {/* 2. Pass the state and the setter function as props */}
+        <CategoryFilter
+          activeCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
+
+        {/* 3. Pass the state to EventSection so it knows what to show */}
+        <EventSection
+          title="Experiences for You"
+          activeCategory={selectedCategory}
+        />
+
         <ArtistSection />
+
+        <SuggestionsForm />
+
+        {/* 4. This section also reacts to the same filter */}
+        <EventSection
+          title="Pocket-Friendly (Under ₹499)"
+          activeCategory={selectedCategory}
+          maxPrice={499}
+        />
       </main>
       <Footer />
     </div>
-  )
+  );
 }

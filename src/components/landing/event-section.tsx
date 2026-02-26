@@ -1,29 +1,96 @@
-"use client"
+"use client";
 
-import { EventCard } from "@/components/landing/event-card"
-import { LANDING_EVENT_DATA } from "@/lib/landing-data"
+import { motion, AnimatePresence } from "framer-motion";
+import { EventCard } from "./event-card";
+import Link from "next/link";
+import { EXPERIENCES_DATA } from "@/lib/landing-data";
 
 interface EventSectionProps {
-  title: string
-  type: "activities" | "events" | "comedy" | "nightlife" | "music" | "sports" | "weekly"
+  title: string;
+  activeCategory: string;
+  sectionCategory?: string;
+  maxPrice?: number;
 }
 
-export function EventSection({ title, type }: EventSectionProps) {
-  const events = LANDING_EVENT_DATA[type] || LANDING_EVENT_DATA.events
+export function EventSection({
+  title,
+  activeCategory,
+  sectionCategory,
+  maxPrice
+}: EventSectionProps) {
+  const filteredEvents = EXPERIENCES_DATA.filter((event) => {
+    const effectiveCategory =
+      activeCategory === "All" ? sectionCategory : activeCategory;
+
+    const categoryMatch =
+      !effectiveCategory || event.category === effectiveCategory;
+
+    const priceMatch =
+      !maxPrice || event.numericPrice <= maxPrice;
+
+    return categoryMatch && priceMatch;
+  });
 
   return (
-    <section className="py-8 md:py-12">
-      <div className="w-full px-4 text-left">
-        <h2 className="mb-6 text-balance text-2xl font-bold md:text-3xl text-(--landing-heading-color)">{title}</h2>
+    <section
+      className="py-6 font-switzer"
+      style={{ backgroundColor: "var(--event-section-bg)" }}
+    >
+      <div className="flex items-center justify-between px-6 md:px-10 mb-4">
+        <h2
+          className="text-2xl md:text-3xl font-medium tracking-tight"
+          style={{ color: "var(--event-section-title)" }}
+        >
+          {title}
+        </h2>
+
+        <Link
+          href="/experiences"
+          className="text-sm font-semibold transition-colors"
+          style={{ color: "var(--event-section-link)" }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color =
+              "var(--event-section-link-hover)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color =
+              "var(--event-section-link)")
+          }
+        >
+          View all experiences →
+        </Link>
       </div>
 
-      <div className="w-full overflow-x-auto pb-6 px-4 hide-scrollbar">
-        <div className="flex gap-4 min-w-max px-4">
-          {events.map((event, index) => (
-            <EventCard key={index} {...event} />
-          ))}
-        </div>
+      <div className="overflow-x-auto px-6 md:px-10 no-scrollbar">
+        <motion.div
+          layout
+          className="flex gap-8 md:gap-10 min-w-max pb-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredEvents.map((exp) => (
+              <motion.div
+                key={exp.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <EventCard {...exp} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {filteredEvents.length === 0 && (
+          <div
+            className="py-10 text-center w-full"
+            style={{ color: "var(--event-section-empty)" }}
+          >
+            No events found for "{activeCategory}" in this section.
+          </div>
+        )}
       </div>
     </section>
-  )
+  );
 }

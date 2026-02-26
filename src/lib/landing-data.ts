@@ -2,9 +2,10 @@ export interface EventItem {
     title: string;
     location: string;
     price: string;
-    discount?: string;
     date: string;
     image: string;
+    category: string;
+    numericPrice: number;
 }
 
 export interface Artist {
@@ -12,245 +13,71 @@ export interface Artist {
     image: string;
 }
 
-export const LANDING_EVENT_DATA: Record<string, EventItem[]> = {
-    activities: [
-        {
-            title: "F9 Go Karting | Sector 59",
-            location: "F9 Go Karting Sector 59, Gurugram",
-            price: "₹675",
-            discount: "Flat 35% off on select tickets",
-            date: "Daily, Multiple slots",
-            image: "go+karting+track",
-        },
-        {
-            title: "The Game Palacio | Delhi Ansal Plaza",
-            location: "The Game Palacio, Delhi/NCR",
-            price: "₹650",
-            discount: "20% off up to ₹125",
-            date: "Sat, 13 Dec – Wed, 31 Dec",
-            image: "arcade+games",
-        },
-        {
-            title: "Chokhi Dhani | Sonipat",
-            location: "Chokhi Dhani Sonipat, Haryana",
-            price: "₹700",
-            discount: "20% off up to ₹125",
-            date: "Daily, 6:00 PM onwards",
-            image: "cultural+village+resort",
-        },
-        {
-            title: "Museum of Illusions | New Delhi",
-            location: "Museum of Illusions, Delhi/NCR",
-            price: "₹590",
-            discount: "20% off up to ₹150",
-            date: "Daily, Multiple slots",
-            image: "optical+illusions+museum",
-        },
-    ],
-    events: [
-        {
-            title: "BAN Kafila | Masoom Sharma",
-            location: "Gymkhana Club, Gurugram",
-            price: "₹999",
-            date: "Sat, 10 Jan, 4:00 PM",
-            image: "live+concert+stage",
-        },
-        {
-            title: "New Year's Eve 2026 at SMAAASH",
-            location: "SMAAASH, Gurugram",
-            price: "₹849",
-            date: "Wed, 31 Dec, 7:30 PM",
-            image: "new+year+party",
-        },
-        {
-            title: "Songs of the Stone | Qutub Minar",
-            location: "Qutub Minar, Delhi/NCR",
-            price: "₹5400",
-            date: "Sat, 13 Dec, 7:00 PM",
-            image: "qutub+minar+night",
-        },
-        {
-            title: "Coke Studio Bharat Live | Delhi",
-            location: "NSIC Exhibition Ground, Delhi/NCR",
-            price: "₹999",
-            date: "Sun, 11 Jan, 5:30 PM",
-            image: "live+music+festival",
-        },
-    ],
-    comedy: [
-        {
-            title: "The Late Night Comedy Show",
-            location: "Guftagu Cafe, Gurugram",
-            price: "₹299",
-            date: "Sat, 13 Dec – Wed, 31 Dec",
-            image: "comedy+show+stage",
-        },
-        {
-            title: "Urban Desi - A Standup Comedy Show",
-            location: "Faridabad Comedy Club",
-            price: "₹149",
-            date: "Sat, 13 Dec, 7:30 PM",
-            image: "standup+comedy",
-        },
-        {
-            title: "Comedy In Hauz Khas",
-            location: "LIGHT ROOM, Delhi/NCR",
-            price: "₹299",
-            date: "Multiple slots",
-            image: "comedy+club+interior",
-        },
-        {
-            title: "ALOK's Hairy Situation Comedy Tour",
-            location: "NCUI Auditorium, Delhi/NCR",
-            price: "₹499",
-            date: "Sun, 18 Jan, 7:00 PM",
-            image: "comedy+tour+poster",
-        },
-    ],
-    nightlife: [
-        {
-            title: "A very Besharam Jumma Ki Raat",
-            location: "AURO | Hauz Khas, New Delhi",
-            price: "₹1499",
-            date: "Sat, 20 Dec, 8:00 PM",
-            image: "nightclub+party",
-        },
-        {
-            title: "Mahaul | Goa | New Years Edition",
-            location: "Dynamo, Goa",
-            price: "₹2000",
-            date: "Tue, 30 Dec – Sun, 4 Jan",
-            image: "goa+beach+party",
-        },
-        {
-            title: "Pyramid Ibiza | Goa",
-            location: "Thalassa Beach Boutique Resort",
-            price: "₹2499",
-            date: "Sun, 28 Dec, 4:00 PM",
-            image: "ibiza+style+party",
-        },
-        {
-            title: "Circoloco",
-            location: "Jio World Garden, Mumbai",
-            price: "₹3500",
-            date: "Sun, 19 Apr, 2:00 PM",
-            image: "electronic+music+festival",
-        },
-    ],
-    music: [
-        {
-            title: "Heritage India Tour | Dr. Satinder Sartaaj",
-            location: "Jawaharlal Nehru Stadium, Delhi",
-            price: "₹499",
-            date: "Sat, 14 Feb, 7:00 PM",
-            image: "indian+classical+concert",
-        },
-        {
-            title: "Echoes of Earth, 2025",
-            location: "Embassy Riding School, Bengaluru",
-            price: "₹3299",
-            date: "Sat, 13 Dec – Sun, 14 Dec",
-            image: "music+festival+crowd",
-        },
-        {
-            title: "Tiësto India Tour 2026 | Delhi",
-            location: "Jawaharlal Nehru Stadium",
-            price: "₹999",
-            date: "Sat, 24 Jan, 8:00 PM",
-            image: "edm+concert+lights",
-        },
-        {
-            title: "A.R. Rahman - Harmony of Hearts",
-            location: "Indira Gandhi Indoor Stadium",
-            price: "₹6999",
-            date: "Sat, 20 Dec, 7:00 PM",
-            image: "ar+rahman+concert",
-        },
-    ],
-    sports: [
-        {
-            title: "Motorfest V2",
-            location: "WorldMark Gurgaon, Gurugram",
-            price: "₹799",
-            date: "Sat, 24 Jan – Sun, 25 Jan",
-            image: "motor+sports+festival",
-        },
-        {
-            title: "G.O.A.T India Tour 2025 | Meet & Greet",
-            location: "The Leela Palace, New Delhi",
-            price: "₹1000000",
-            date: "Mon, 15 Dec, 12:00 PM",
-            image: "cricket+meet+and+greet",
-        },
-        {
-            title: "WFL Football Bootcamp for Women",
-            location: "GD Goenka Sports Arena",
-            price: "₹400",
-            date: "Sun, 14 Dec, 4:00 PM",
-            image: "women+football+training",
-        },
-        {
-            title: "CanterWoods Equestrian Centre",
-            location: "CanterWoods, Gurugram",
-            price: "₹800",
-            date: "Multiple Dates",
-            image: "horse+riding+arena",
-        },
-    ],
-    weekly: [
-        {
-            title: "Giggles N Joy",
-            location: "Giggles N Joy, Gurugram",
-            price: "₹699",
-            discount: "20% off up to ₹150",
-            date: "Daily, 12:00 AM onwards",
-            image: "kids+play+area",
-        },
-        {
-            title: "Paramotoring | Para Sports Club",
-            location: "Para Sports Club, Gurugram",
-            price: "₹1499",
-            discount: "20% off up to ₹200",
-            date: "Multiple slots",
-            image: "paramotoring+adventure",
-        },
-        {
-            title: "Hot Air Balloon Adventure",
-            location: "Nature's Retreat, Gurugram",
-            price: "₹1999",
-            date: "Daily, Multiple slots",
-            image: "hot+air+balloon+ride",
-        },
-        {
-            title: "Day Outing at Madhavgarh Farms",
-            location: "MadhavGarh Farms, Gurugram",
-            price: "₹690",
-            discount: "20% off up to ₹150",
-            date: "Daily, 9:00 AM onwards",
-            image: "farm+resort+outdoor",
-        },
-    ],
-};
+export interface Movie {
+    title: string;
+    rating: string;
+    language: string;
+    image: string;
+}
+
+export const EXPERIENCES_DATA: EventItem[] = [
+    {
+        title: "Holi Sundowner Fest",
+        location: "Hauz Khas, Delhi",
+        price: "₹999",
+        date: "25 Mar 2026",
+        image: "/images/e3.png",
+        category: "Festival",
+        numericPrice: 999
+    },
+    {
+        title: "Live Music Night",
+        location: "Hyderabad",
+        price: "₹499",
+        date: "26 Mar 2026",
+        image: "/images/event1.png",
+        category: "Music",
+        numericPrice: 499
+    },
+    {
+        title: "Standup Comedy",
+        location: "Bangalore",
+        price: "₹699",
+        date: "28 Mar 2026",
+        image: "/images/e2.png",
+        category: "Comedy",
+        numericPrice: 699
+    },
+    {
+        title: "Tech Workshop",
+        location: "Visakhapatnam",
+        price: "Free",
+        date: "05 Apr 2026",
+        image: "/images/e3.png",
+        category: "Education",
+        numericPrice: 0
+    },
+    {
+        title: "Coke Studio Bharat Live | Delhi",
+        location: "NSIC Exhibition Ground, Delhi/NCR",
+        price: "₹999",
+        date: "Sun, 11 Jan, 5:30 PM",
+        image: "/images/event1.png",
+        category: "Music",
+        numericPrice: 999,
+    },
+];
 
 export const ARTISTS_DATA: Artist[] = [
-    { name: "Karan Aujla", image: "karan+aujla+singer" },
-    { name: "Shreya Ghoshal", image: "shreya+ghoshal+singer" },
-    { name: "Inder Sahani", image: "indian+male+singer" },
-    { name: "Sunidhi Chauhan", image: "sunidhi+chauhan+singer" },
-    { name: "A. R. Rahman", image: "ar+rahman+composer" },
-    { name: "Satinder Sartaaj", image: "satinder+sartaaj+singer" },
-    { name: "Jubin Nautiyal", image: "jubin+nautiyal+singer" },
-    { name: "B Praak", image: "b+praak+singer" },
-    { name: "Ikka", image: "ikka+rapper" },
-    { name: "Mika Singh", image: "mika+singh+singer" },
-    { name: "Usha Uthup", image: "usha+uthup+singer" },
-    { name: "Paradox", image: "dj+paradox" },
-    { name: "Prem Dhillon", image: "prem+dhillon+singer" },
-    { name: "Nucleya", image: "nucleya+dj" },
-    { name: "TIËSTO", image: "tiesto+dj" },
-    { name: "Nanku", image: "indian+artist" },
-    { name: "Alok", image: "alok+dj" },
-    { name: "Ravi Khurana", image: "indian+comedian" },
-    { name: "PANTHER", image: "rapper+panther" },
-    { name: "Hargun Kaur", image: "hargun+kaur+singer" },
+    { name: "Anirudh", image: "/images/a1.png" },
+    { name: "Arijit Troop", image: "/images/a2.png" },
+    { name: "Shreya Ghoshal", image: "/images/a3.png" },
+    { name: "Sid Sriram", image: "/images/a4.png" },
+];
+
+export const MOVIES_DATA: Movie[] = [
+    { title: "Dhurandhar", rating: "A", language: "Hindi", image: "action+movie+poster" },
+    { title: "Kis Kisko Pyaar Karoon 2", rating: "UA16+", language: "Hindi", image: "comedy+movie+poster" },
+    { title: "Tere Ishk Mein", rating: "UA16+", language: "Hindi", image: "romance+movie+poster" },
+    { title: "Sholay: The Final Cut (1975)", rating: "UA", language: "Hindi", image: "classic+bollywood+poster" },
 ];

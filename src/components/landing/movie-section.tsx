@@ -1,7 +1,7 @@
 "use client"
 
 import { MovieCard } from "@/components/landing/movie-card"
-import { MOVIES_DATA } from "@/lib/movie-data"
+import { MOVIES_DATA } from "@/lib/landing-data"
 
 interface MovieSectionProps {
   title: string
@@ -9,9 +9,9 @@ interface MovieSectionProps {
 
 export function MovieSection({ title }: MovieSectionProps) {
   return (
-    <section className="bg-muted/30 py-8 md:py-12">
+    <section className="bg-muted/30 py-4 md:py-6">
       <div className="w-full px-4 text-left">
-        <h2 className="mb-6 text-balance text-2xl font-bold md:text-3xl text-(--brand-blue-heading)">{title}</h2>
+        <h2 className="mb-4 text-balance text-2xl font-bold md:text-3xl text-(--brand-blue-heading)">{title}</h2>
       </div>
 
       <div className="w-full overflow-x-auto pb-6 px-4 hide-scrollbar">

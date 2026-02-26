@@ -227,15 +227,157 @@
   --stall-revoke-bg: #dc2626;
   --stall-revoke-hover-bg: #b91c1c;
 
-    --pref-dark: #0b1729;
-    --pref-active: #;
-    --pref-muted-text: #475569;
-    --pref-border: #cbd5e1;
-    --pref-label: #8a7ba7;
-    --pref-bg: #f3f5f7;
-    --pref-tag: #64748b;
+  --pref-dark: #0b1729;
+  --pref-active: #2563eb;
+  --pref-muted-text: #475569;
+  --pref-border: #cbd5e1;
+  --pref-label: #8a7ba7;
+  --pref-bg: #f3f5f7;
+  --pref-tag: #64748b;
+
+  /* =========================
+     Artist Brand Extensions
+     ========================= */
+
+  --brand-deep-blue: #122848;
+
+  --brand-soft-glow: color-mix(in srgb, var(--blue-soft) 40%, transparent);
+  --brand-deep-glow: color-mix(in srgb, var(--brand-deep-blue) 40%, transparent);
+
+  /* Artist Feature Alignment */
+  --artist-card-bg: var(--card);
+  --artist-card-border: var(--border);
+  --artist-name-color: var(--brand-deep-blue);
+  --artist-role-color: var(--blue-soft);
+
+  /* =========================
+   Category Filter Tokens
+   ========================= */
+
+  --glass-bg: color-mix(in srgb, var(--white) 70%, transparent);
+  --glass-border: color-mix(in srgb, var(--white) 40%, transparent);
+  --glass-soft-bg: color-mix(in srgb, var(--white) 50%, transparent);
+
+  --category-divider: color-mix(in srgb, var(--gray-200) 50%, transparent);
+
+  --category-active-bg: var(--brand-deep-blue);
+  --category-active-shadow: color-mix(in srgb, var(--brand-deep-blue) 20%, transparent);
+
+  --category-inactive-text: var(--gray-600);
+  --category-hover-text: var(--black);
+  --category-hover-bg: color-mix(in srgb, var(--white) 80%, transparent);
+
+  --live-dot-soft: var(--green-100);
+  --live-dot-solid: var(--green-700);
+  --location-text: var(--brand-deep-blue);
+
+  /* =========================
+   Event Card Tokens
+   ========================= */
+
+  --event-card-bg: var(--card);
+  --event-card-shadow: 0 8px 30px color-mix(in srgb, var(--black) 4%, transparent);
+  --event-card-shadow-hover: 0 20px 40px color-mix(in srgb, var(--black) 8%, transparent);
+
+  --event-overlay-gradient: linear-gradient(to top,
+      color-mix(in srgb, var(--black) 40%, transparent),
+      transparent,
+      transparent);
+
+  --event-badge-bg: color-mix(in srgb, var(--white) 90%, transparent);
+  --event-badge-text: var(--black);
+
+  --event-fav-bg: color-mix(in srgb, var(--white) 20%, transparent);
+  --event-fav-bg-hover: var(--white);
+  --event-fav-text: var(--white);
+  --event-fav-hover-text: var(--destructive);
+
+  --event-date-color: var(--blue-soft);
+
+  --event-title-color: var(--black);
+  --event-title-hover: var(--brand-deep-blue);
+
+  --event-divider: var(--gray-50);
+
+  --event-location-text: var(--gray-500);
+  --event-location-icon: var(--gray-400);
+
+  --event-price-color: var(--black);
+
+  /* =========================
+     10) Feature tokens: Hero
+     ========================= */
+  --hero-bg: transparent;
+  --hero-container-border: #e2e8f0;
+  --hero-container-gradient: linear-gradient(180deg,
+      #e8f0f8 0%,
+      #f8fafc 100%);
+  --hero-container-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+
+  --hero-divider: #e2e8f0;
+
+  --hero-button-bg: #0c1D37;
+  --hero-button-text: #ffffff;
+  --hero-button-hover: #1a2e4a;
+  --hero-button-hover-shadow: 0 10px 20px rgba(12, 29, 55, 0.2);
+
+  --hero-blob-1: rgba(186, 215, 255, 0.4);
+  --hero-blob-2: rgba(219, 234, 254, 0.3);
+
+  --hero-badge-bg: #ffffff;
+  --hero-badge-border: #f1f5f9;
+  --hero-badge-icon: #64748b;
+  --hero-badge-text: #64748b;
+
+  --hero-title: #0c1D37;
+  --hero-title-highlight: #1e40af;
+
+  --hero-description: #475569;
+
+  --hero-search-bg: #ffffff;
+  --hero-search-border: #f1f5f9;
+  --hero-search-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+  --hero-search-hover-bg: #fafafa;
+
+  --hero-label-where: #94a3b8;
+  --hero-label-activity: #94a3b8;
+  --hero-label-budget: #94a3b8;
+
+  --hero-input-text: #1e2937;
+  --hero-placeholder: #cbd5e1;
+
+  --bg-muted-strong: transparent;
+
+  /* =========================
+     11) Movie Card Tokens
+     ========================= */
+
+  --movie-card-bg: var(--card);
+  --movie-card-border: var(--border);
+
+  --movie-card-shadow: 0 1px 2px color-mix(in srgb, var(--black) 6%, transparent);
+  --movie-card-shadow-hover: 0 20px 40px color-mix(in srgb, var(--black) 12%, transparent);
+
+  --movie-image-bg: var(--gray-100);
+
+  --movie-badge-bg: var(--black);
+  --movie-badge-text: var(--white);
+
+  --movie-language-text: var(--gray-500);
+
+  /* Movie Card */
+
+  .movie-card {
+    background-color: var(--movie-card-bg);
+    border: 1px solid var(--movie-card-border);
+    box-shadow: var(--movie-card-shadow);
+    transition: all 0.3s ease;
+  }
+
 
 }
+
+
 
 /* =========================
    Tailwind v4 theme mapping
@@ -313,7 +455,7 @@
   html,
   body {
     width: 100%;
-    overflow-x: hidden;
+    position: relative;
   }
 
   body {
@@ -395,6 +537,98 @@
   .text-section-title {
     @apply text-base font-semibold mb-2;
     color: var(--blue-900);
+  }
+
+  /* =========================
+     Hero Section Utilities
+     ========================= */
+
+  .hero-section {
+    background-color: var(--hero-bg);
+  }
+
+  .hero-container {
+    border: 1px solid var(--hero-container-border);
+    background: var(--hero-container-gradient);
+    box-shadow: var(--hero-container-shadow);
+  }
+
+  .hero-input-group {
+    border-right: 1px solid var(--hero-divider);
+  }
+
+  .hero-button:hover {
+    background-color: var(--hero-button-hover);
+    box-shadow: var(--hero-button-hover-shadow);
+  }
+
+  .hero-blob-1 {
+    background-color: var(--hero-blob-1);
+  }
+
+  .hero-blob-2 {
+    background-color: var(--hero-blob-2);
+  }
+
+  .hero-badge {
+    background-color: var(--hero-badge-bg);
+    border: 1px solid var(--hero-badge-border);
+  }
+
+  .hero-badge-icon {
+    color: var(--hero-badge-icon);
+  }
+
+  .hero-badge-text {
+    color: var(--hero-badge-text);
+  }
+
+  .hero-title {
+    color: var(--hero-title);
+  }
+
+  .hero-title-highlight {
+    color: var(--hero-title-highlight);
+  }
+
+  .hero-description {
+    color: var(--hero-description);
+  }
+
+  .hero-search {
+    background-color: var(--hero-search-bg);
+    border: 1px solid var(--hero-search-border);
+    box-shadow: var(--hero-search-shadow);
+  }
+
+  .hero-input-group:hover {
+    background-color: var(--hero-search-hover-bg);
+  }
+
+  .hero-label-where {
+    color: var(--hero-label-where);
+  }
+
+  .hero-label-activity {
+    color: var(--hero-label-activity);
+  }
+
+  .hero-label-budget {
+    color: var(--hero-label-budget);
+  }
+
+  .hero-input-text {
+    color: var(--hero-input-text);
+  }
+
+  .hero-input-text::placeholder {
+    color: var(--hero-placeholder);
+    opacity: 1;
+  }
+
+  .hero-button {
+    background-color: var(--hero-button-bg);
+    color: var(--hero-button-text);
   }
 }
 

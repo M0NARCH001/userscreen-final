@@ -75,7 +75,7 @@ export default function EventDetailsPage({ params }: PageProps) {
                 <div className="flex flex-col lg:flex-row items-start gap-6 mb-16">
                     {/* 2. Left Column: Poster Image */}
                     <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end lg:pr-6">
-                        <div className="relative w-full max-w-[400px] aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                        <div className="relative w-full max-w-[400px] aspect-3/4 rounded-2xl overflow-hidden shadow-lg">
                             <Image
                                 src={event.image}
                                 alt={event.title}

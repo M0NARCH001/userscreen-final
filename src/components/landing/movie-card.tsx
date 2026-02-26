@@ -1,32 +1,41 @@
-"use client"
-
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import img from "next/image"
+"use client";
 
 interface MovieCardProps {
-  title: string
-  rating: string
-  language: string
-  image: string
+  title: string;
+  rating: string;
+  language: string;
+  image: string;
 }
 
-export function MovieCard({ title, rating, language, image }: MovieCardProps) {
+export function MovieCard({
+  title,
+  rating,
+  language,
+  image,
+}: MovieCardProps) {
   return (
-    <Card className="group shrink-0 w-[160px] md:w-[200px] overflow-hidden border-0 shadow-sm transition-all hover:shadow-xl bg-card text-card-foreground">
-      <div className="relative aspect-2/3 overflow-hidden bg-muted">
+    <div className="movie-card group shrink-0 w-[160px] md:w-[200px] overflow-hidden rounded-xl transition-all">
+      
+      <div className="movie-image-wrapper relative aspect-[2/3] overflow-hidden">
         <img
-          src="/landing/card-placeholder.png"
+          src={image || "/landing/card-placeholder.png"}
           alt={title}
-
           className="h-full w-full object-cover transition-transform group-hover:scale-105"
         />
-        <Badge className="absolute top-3 left-3 bg-background/90 text-foreground">{rating}</Badge>
+
+        <span className="movie-badge absolute top-3 left-3 px-2 py-1 text-xs rounded-full">
+          {rating}
+        </span>
       </div>
+
       <div className="p-3">
-        <h3 className="mb-1 text-pretty font-semibold leading-tight line-clamp-2">{title}</h3>
-        <p className="text-xs text-muted-foreground">{language}</p>
+        <h3 className="mb-1 font-semibold leading-tight line-clamp-2">
+          {title}
+        </h3>
+        <p className="movie-language text-xs">
+          {language}
+        </p>
       </div>
-    </Card>
-  )
+    </div>
+  );
 }
