@@ -38,6 +38,7 @@ import {
     DialogClose,
     DialogTitle
 } from "@/components/ui/dialog"
+import { DateReviewsSection } from "@/components/events/date-reviews-section"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface PageProps {
@@ -198,52 +199,12 @@ export default function EventDetailsPage({ params }: PageProps) {
                                     <CalendarPlus className="h-4 w-4 mr-2" /> Request a New Date
                                 </Button>
                             </DialogTrigger>
-                            <DialogContent className="p-0 overflow-hidden w-[90vw] max-w-sm rounded-3xl bg-(--white) border-0">
+                            <DialogContent className="p-0 overflow-hidden w-[95vw] max-w-5xl rounded-3xl bg-(--white) border-0 max-h-[85vh] flex flex-col items-center justify-center">
                                 <VisuallyHidden>
-                                    <DialogTitle>Select Date</DialogTitle>
+                                    <DialogTitle>Select Date and View Reviews</DialogTitle>
                                 </VisuallyHidden>
-                                {/* Header */}
-                                <div className="bg-(--white) p-6 pb-2">
-                                    <p className="text-sm font-medium text-(--black) mb-1">Select date</p>
-                                    <div className="flex justify-between items-center">
-                                        <h2 className="text-3xl font-normal text-(--black)">
-                                            {date ? format(date, "EEE, MMM d") : "Pick a date"}
-                                        </h2>
-                                        <Button variant="ghost" size="icon" className="text-(--gray-500) hover:bg-(--gray-100) rounded-full">
-                                            <Pencil className="h-5 w-5" />
-                                        </Button>
-                                    </div>
-                                </div>
-
-                                {/* Calendar */}
-                                <div className="px-4 flex justify-center">
-                                    <Calendar
-                                        mode="single"
-                                        selected={date}
-                                        onSelect={setDate}
-                                        className="rounded-md border-0"
-                                    />
-                                </div>
-
-                                {/* Footer */}
-                                <div className="p-4 flex justify-between items-center bg-(--white)">
-                                    <DialogClose asChild>
-                                        <Button variant="ghost" className="text-(--brand-navy) font-medium hover:bg-(--gray-50) text-sm">
-                                            Close
-                                        </Button>
-                                    </DialogClose>
-                                    <div className="flex gap-2">
-                                        <DialogClose asChild>
-                                            <Button variant="ghost" className="text-(--brand-navy) font-medium hover:bg-(--gray-50) text-sm">
-                                                Cancel
-                                            </Button>
-                                        </DialogClose>
-                                        <DialogClose asChild>
-                                            <Button className="text-(--brand-navy) font-medium bg-transparent hover:bg-(--gray-50) text-sm px-4">
-                                                OK
-                                            </Button>
-                                        </DialogClose>
-                                    </div>
+                                <div className="w-full h-full overflow-y-auto p-6 md:p-8 flex items-center justify-center">
+                                    <DateReviewsSection />
                                 </div>
                             </DialogContent>
                         </Dialog>

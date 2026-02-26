@@ -171,7 +171,7 @@ export default function PreferencesForm({ onComplete }: PreferencesFormProps) {
                                             variant="outline"
                                             onClick={() => togglePreference(activeTab, option)}
                                             className={`flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-[15px] font-medium h-auto border-0 ${selected
-                                                ? "bg-(--brand-blue-section) text-(--white) hover:bg-(--brand-blue-section)/90 hover:text-(--white)"
+                                                ? "bg-(--blue-soft) text-(--white) hover:bg-(--blue-soft)/90 hover:text-(--white)"
                                                 : "bg-(--slate-200) text-(--pref-muted-text) hover:bg-(--slate-200)/80"
                                                 }`}
                                         >

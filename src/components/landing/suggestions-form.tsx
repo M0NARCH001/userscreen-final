@@ -26,7 +26,7 @@ export default function SuggestionsForm() {
     "font-albert font-medium text-[16px] leading-[24px] tracking-[0] text-(--white) mb-[14px] block";
 
   return (
-    <section className="py-20 bg-(--landing-suggestions-bg)">
+    <section className="py-20 bg-(--brand-blue)">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Header */}
         <div className="text-center mb-12">

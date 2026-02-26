@@ -137,7 +137,7 @@ export default function Performers() {
         {/* CTA */}
         <div className="flex justify-center mt-20">
           <Link href="/talent">
-            <Button className="font-albert font-medium text-[18px] leading-[24px] tracking-[0] text-(--text-light) px-10 py-4 rounded-full bg-(--brand-navy) hover:bg-(--brand-navy)/90 transition h-auto">
+            <Button className="font-albert font-medium text-[18px] leading-[24px] tracking-[0] text-(--white) px-10 py-4 rounded-full bg-(--brand-navy) hover:bg-(--brand-navy)/90 transition h-auto">
               Showcase your Talent
             </Button>
           </Link>

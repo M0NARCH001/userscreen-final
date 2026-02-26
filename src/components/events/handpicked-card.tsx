@@ -73,7 +73,7 @@ export function HandpickedEventCard({
 
                         {/* Content */}
                         <div className="space-y-2">
-                            <h3 className="font-poppins font-semibold text-[20px] leading-[30px] text-(--eventcard-heading-bg) line-clamp-2">
+                            <h3 className="font-poppins font-semibold text-[20px] leading-[30px] text-(--upcoming-primary-800) line-clamp-2">
                                 {title}
                             </h3>
 
@@ -83,7 +83,7 @@ export function HandpickedEventCard({
 
                             <Badge
                                 variant="secondary"
-                                className="mt-2 bg-(--events-badge-bg) text-(--events-card-text) hover:bg-(--events-badge-bg)/80 rounded-full px-4 py-1 font-poppins font-medium text-[14px]"
+                                className="mt-2 bg-(--white) text-(--blue-600) hover:bg-(--white)/80 rounded-full px-4 py-1 font-poppins font-medium text-[14px]"
                             >
                                 {category}
                             </Badge>
@@ -132,7 +132,7 @@ export function HandpickedEventCard({
 
                     {/* Actions */}
                     <Link href={`/events/${id}`} className="space-y-3 mt-4 block">
-                        <Button className="w-full bg-(--events-promo-bg) text-(--events-card-text) font-semibold py-2 rounded-full hover:bg-(--events-promo-bg)/90 transition-colors h-auto">
+                        <Button className="w-full bg-(--promo-warm-bg) text-(--events-card-text) font-semibold py-2 rounded-full hover:bg-(--promo-warm-bg)/90 transition-colors h-auto">
                             Buy 1 Get 1
                         </Button>
                         <Button className="w-full bg-(--brand-navy) text-(--white) font-semibold py-3 rounded-full hover:bg-(--brand-navy)/90 transition-colors h-auto">

@@ -62,7 +62,7 @@ export default function EventOrganizer() {
             </p>
 
             {/* CTA */}
-            <Button className="font-albert font-medium text-lg leading-6 text-(--text-light) bg-(--brand-navy) hover:bg-(--brand-navy)/90 px-8 py-3 rounded-full transition h-auto">
+            <Button className="font-albert font-medium text-lg leading-6 text-(--white) bg-(--brand-navy) hover:bg-(--brand-navy)/90 px-8 py-3 rounded-full transition h-auto">
               Partner with us….
             </Button>
           </motion.div>
