@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { EventCard } from "./event-card";
+import { HandpickedEventCard } from "@/components/events/handpicked-card";
 import Link from "next/link";
-import { EXPERIENCES_DATA } from "@/lib/landing-data";
+import { getAllEvents } from "@/lib/events-data";
 
 interface EventSectionProps {
   title: string;
@@ -18,7 +18,8 @@ export function EventSection({
   sectionCategory,
   maxPrice
 }: EventSectionProps) {
-  const filteredEvents = EXPERIENCES_DATA.filter((event) => {
+  const allEvents = getAllEvents();
+  const filteredEvents = allEvents.filter((event) => {
     const effectiveCategory =
       activeCategory === "All" ? sectionCategory : activeCategory;
 
@@ -49,12 +50,12 @@ export function EventSection({
           className="text-sm font-semibold transition-colors"
           style={{ color: "var(--event-section-link)" }}
           onMouseEnter={(e) =>
-            (e.currentTarget.style.color =
-              "var(--event-section-link-hover)")
+          (e.currentTarget.style.color =
+            "var(--event-section-link-hover)")
           }
           onMouseLeave={(e) =>
-            (e.currentTarget.style.color =
-              "var(--event-section-link)")
+          (e.currentTarget.style.color =
+            "var(--event-section-link)")
           }
         >
           View all experiences →
@@ -69,14 +70,14 @@ export function EventSection({
           <AnimatePresence mode="popLayout">
             {filteredEvents.map((exp) => (
               <motion.div
-                key={exp.title}
+                key={exp.id}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
               >
-                <EventCard {...exp} />
+                <HandpickedEventCard {...exp} />
               </motion.div>
             ))}
           </AnimatePresence>

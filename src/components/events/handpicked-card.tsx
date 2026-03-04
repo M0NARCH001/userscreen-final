@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle } from "lucide-react"
+import { CheckCircle, Calendar, Tag } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -14,6 +14,8 @@ interface HandpickedEventCardProps {
     title: string
     price: string
     category: string
+    date: string
+    location: string
     tag?: string
     chiefGuest?: string
     sponsors?: string
@@ -28,6 +30,8 @@ export function HandpickedEventCard({
     title,
     price,
     category,
+    date,
+    location,
     tag = "Music Festival",
     chiefGuest = "Allu Arjun",
     sponsors = "aata events",
@@ -53,7 +57,7 @@ export function HandpickedEventCard({
 
     return (
         <div
-            className="flex flex-col md:flex-row items-center h-full"
+            className="flex flex-col md:flex-row items-center h-full mr-4 mb-4"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -72,28 +76,50 @@ export function HandpickedEventCard({
                         </div>
 
                         {/* Content */}
-                        <div className="space-y-2">
-                            <h3 className="font-poppins font-semibold text-[20px] leading-[30px] text-(--upcoming-primary-800) line-clamp-2">
+                        <div className="space-y-4">
+                            {/* Date */}
+                            <div className="flex items-center gap-2 text-(--upcoming-primary-800) font-poppins font-semibold text-[14px] uppercase tracking-wider">
+                                <Calendar className="h-4 w-4" />
+                                <span>{date}</span>
+                            </div>
+
+                            {/* Title */}
+                            <h3 className="font-poppins font-bold text-[24px] leading-tight text-(--upcoming-primary-800) line-clamp-2">
                                 {title}
                             </h3>
 
-                            <p className="font-poppins font-normal text-[16px] text-(--events-card-text)/80">
-                                {price} onwards
-                            </p>
+                            {/* Divider */}
+                            <div className="h-px w-full bg-gray-100" />
 
-                            <Badge
-                                variant="secondary"
-                                className="mt-2 bg-(--white) text-(--blue-600) hover:bg-(--white)/80 rounded-full px-4 py-1 font-poppins font-medium text-[14px]"
-                            >
-                                {category}
-                            </Badge>
+                            {/* Bottom Info: Category & Price */}
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-1.5 text-gray-500 font-poppins font-medium text-[16px]">
+                                    <Tag className="h-4 w-4 shrink-0" />
+                                    <span className="truncate max-w-[150px]">{category}</span>
+                                </div>
+                                <div className="font-poppins font-bold text-[22px] text-(--upcoming-primary-800)">
+                                    {price.replace('₹', 'Rs')}
+                                </div>
+                            </div>
+
+                            {/* Category Badge - Hidden based on design or placed elsewhere? Keeping it small and subtle if needed */}
+                            <div className="hidden">
+                                <Badge
+                                    variant="secondary"
+                                    className="bg-(--white) text-(--blue-600) hover:bg-(--white)/80 rounded-full px-4 py-1 font-poppins font-medium text-[14px]"
+                                >
+                                    {category}
+                                </Badge>
+                            </div>
                         </div>
                     </CardContent>
                 </Card>
             </Link>
 
             {/* Details Panel - Mobile (Hidden) & Desktop (Slide-out) */}
-            <div className={`hidden md:flex transition-all duration-500 ease-in-out bg-(--white) rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-(--gray-100) shadow-xl overflow-hidden flex-col z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0 ${showDetails ? "md:w-[340px] md:opacity-100 md:ml-0" : "md:w-0 md:opacity-0 md:-ml-6"}`}>
+            <div
+                className={`hidden md:flex transition-all duration-500 ease-in-out bg-(--white) rounded-b-[24px] md:rounded-b-none md:rounded-r-[24px] border border-t-0 md:border-t md:border-l-0 border-(--gray-100) shadow-xl overflow-hidden flex-col z-10 relative md:h-[95%] md:my-auto mt-[-20px] pt-[20px] md:mt-0 md:pt-0 ${showDetails ? "md:w-[340px] md:opacity-100 md:ml-0" : "md:w-0 md:opacity-0 md:-ml-6"}`}
+            >
                 <div className="min-w-[300px] md:min-w-[340px] p-6 flex flex-col h-full justify-between">
                     <div className="space-y-4">
                         {/* Tag */}

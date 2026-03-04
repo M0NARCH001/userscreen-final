@@ -69,10 +69,10 @@ export const EXPERIENCES_DATA: EventItem[] = [
 ];
 
 export const ARTISTS_DATA: Artist[] = [
-    { name: "Anirudh", image: "/images/a1.png" },
-    { name: "Arijit Troop", image: "/images/a2.png" },
-    { name: "Shreya Ghoshal", image: "/images/a3.png" },
-    { name: "Sid Sriram", image: "/images/a4.png" },
+    { name: "Anirudh", image: "/images/artists/anirudh.png" },
+    { name: "Arijit Troop", image: "/images/artists/arijit.png" },
+    { name: "Shreya Ghoshal", image: "/images/artists/shreya.png" },
+    { name: "Sid Sriram", image: "/images/artists/sid.png" },
 ];
 
 export const MOVIES_DATA: Movie[] = [

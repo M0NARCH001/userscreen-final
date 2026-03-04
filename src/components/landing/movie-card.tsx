@@ -15,8 +15,8 @@ export function MovieCard({
 }: MovieCardProps) {
   return (
     <div className="movie-card group shrink-0 w-[160px] md:w-[200px] overflow-hidden rounded-xl transition-all">
-      
-      <div className="movie-image-wrapper relative aspect-[2/3] overflow-hidden">
+
+      <div className="movie-image-wrapper relative aspect-2/3 overflow-hidden">
         <img
           src={image || "/landing/card-placeholder.png"}
           alt={title}
