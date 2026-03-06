@@ -26,88 +26,96 @@ export default function SuggestionsForm() {
     "font-albert font-medium text-[16px] leading-[24px] tracking-[0] text-(--white) mb-[14px] block";
 
   return (
-    <section className="py-10 bg-(--brand-blue)">
-      <div className="container mx-auto px-4 max-w-5xl">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-4">
-            Got an Event Idea? Let&apos;s Make It Happen.
-          </h2>
+    <section className="py-16 md:py-24 px-4 flex justify-center items-center overflow-hidden">
+      <div className="w-full max-w-7xl bg-(--brand-blue) rounded-[32px] md:rounded-[48px] p-8 md:p-14 lg:p-20 shadow-[0_30px_60px_-15px_rgba(12,29,55,0.4)] relative">
 
-          <p className="font-albert font-normal text-[20px] leading-[24px] tracking-[0.5px] text-(--white) mb-5">
-            At Baatasari, We believe that your city isn&apos;t shaped by the organizers alone – it&apos;s
-            shaped by you.
-            Have something you&apos;d love to see? A beach art night? A food festival? A music jam? A fitness meetup? Submit your idea below. If enough people are interested, local organizers can bring it to life. Because great events start with great ideas.
-          </p>
+        {/* Decorative subtle background blobs for the card */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+
+        {/* Content Wrapper */}
+        <div className="relative z-10">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h2 className="font-bricolage font-semibold text-3xl md:text-[48px] leading-tight md:leading-[60px] tracking-[-0.02em] text-(--white) mb-4">
+              Got an Event Idea? Let&apos;s Make It Happen.
+            </h2>
+
+            <p className="font-albert font-normal text-[20px] leading-[24px] tracking-[0.5px] text-(--white) mb-5">
+              At Baatasari, We believe that your city isn&apos;t shaped by the organizers alone – it&apos;s
+              shaped by you.
+              Have something you&apos;d love to see? A beach art night? A food festival? A music jam? A fitness meetup? Submit your idea below. If enough people are interested, local organizers can bring it to life. Because great events start with great ideas.
+            </p>
+          </div>
+
+          {/* Form */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {/* Top row */}
+            <div className="grid md:grid-cols-4 gap-6">
+              <div>
+                <label className={labelClass}>Event Name</label>
+                <Input
+                  type="text"
+                  placeholder="Ex: Prom Night"
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>Location</label>
+                <Combobox
+                  items={LOCATIONS}
+                  value={location}
+                  onChange={setLocation}
+                  placeholder="Select Location"
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>Category</label>
+                <Combobox
+                  items={CATEGORIES}
+                  value={category}
+                  onChange={setCategory}
+                  placeholder="Select Category"
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>Month</label>
+                <Combobox
+                  items={MONTHS}
+                  value={month}
+                  onChange={setMonth}
+                  placeholder="Select Month"
+                  className={inputClass}
+                />
+              </div>
+            </div>
+
+            {/* Description */}
+            <div>
+              <label className={labelClass}>Describe your suggestion.</label>
+              <Textarea
+                rows={4}
+                placeholder="Ex: I would like to have an art event at RK Beach..."
+                className={`${inputClass} resize-none h-auto md:h-auto py-3`}
+              />
+            </div>
+
+            {/* Submit */}
+            <div className="pt-6 flex justify-center">
+              <Button
+                type="submit"
+                className="w-full max-w-[480px] h-[60px] px-5 py-[18px] rounded-full bg-(--brand-navy) border border-(--brand-navy) text-(--white) font-inter font-semibold text-[16px] leading-[24px] tracking-[0] flex items-center justify-center transition hover:bg-(--brand-navy)/90"
+              >
+                Let&apos;s Create
+              </Button>
+            </div>
+          </form>
         </div>
-
-        {/* Form */}
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          {/* Top row */}
-          <div className="grid md:grid-cols-4 gap-6">
-            <div>
-              <label className={labelClass}>Event Name</label>
-              <Input
-                type="text"
-                placeholder="Ex: Prom Night"
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label className={labelClass}>Location</label>
-              <Combobox
-                items={LOCATIONS}
-                value={location}
-                onChange={setLocation}
-                placeholder="Select Location"
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label className={labelClass}>Category</label>
-              <Combobox
-                items={CATEGORIES}
-                value={category}
-                onChange={setCategory}
-                placeholder="Select Category"
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label className={labelClass}>Month</label>
-              <Combobox
-                items={MONTHS}
-                value={month}
-                onChange={setMonth}
-                placeholder="Select Month"
-                className={inputClass}
-              />
-            </div>
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className={labelClass}>Describe your suggestion.</label>
-            <Textarea
-              rows={4}
-              placeholder="Ex: I would like to have an art event at RK Beach..."
-              className={`${inputClass} resize-none h-auto md:h-auto py-3`}
-            />
-          </div>
-
-          {/* Submit */}
-          <div className="pt-6 flex justify-center">
-            <Button
-              type="submit"
-              className="w-full max-w-[480px] h-[60px] px-5 py-[18px] rounded-full bg-(--brand-navy) border border-(--brand-navy) text-(--white) font-inter font-semibold text-[16px] leading-[24px] tracking-[0] flex items-center justify-center transition hover:bg-(--brand-navy)/90"
-            >
-              Let&apos;s Create
-            </Button>
-          </div>
-        </form>
       </div>
     </section >
   );

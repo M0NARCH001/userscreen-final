@@ -70,7 +70,7 @@ export default function Performers() {
                 className={`
                     absolute
                     w-[380px] h-[420px]
-                    rounded-2xl bg-(--white) 
+                    rounded-[64px] bg-(--white) 
                     cursor-pointer
                     transition-all duration-700 ease-out
                     border

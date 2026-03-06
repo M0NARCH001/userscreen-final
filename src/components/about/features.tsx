@@ -44,7 +44,7 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="pt-6 pb-24 bg-(--white) overflow-hidden relative">
+    <section id="features" className="pt-16 pb-24 bg-(--white) overflow-hidden relative">
       <div className="container mx-auto px-4 relative">
         {/* Section Heading */}
         <h2 className="font-bricolage font-bold text-[54px] leading-[64px] tracking-[0] text-(--brand-blue) mb-16">
@@ -69,7 +69,7 @@ export default function Features() {
                 className={`
                     absolute
                     w-[380px] h-[470px]
-                    rounded-2xl bg-(--white) 
+                    rounded-[64px] bg-(--white) 
                     cursor-pointer
                     transition-all duration-700 ease-out
                     border

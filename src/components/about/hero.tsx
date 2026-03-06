@@ -1,33 +1,119 @@
-"use client"
-import { Button } from "@/components/ui/button";
-export default function Hero() {
-  return (
-    <section
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/hero-bg.png')" }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-(--black)/50" />
+"use client";
 
-      {/* Content */}
-      <div className="relative z-10 text-center text-(--white) px-4 mt-24">
-        {/* Heading */}
-        <h1 className="font-bricolage font-bold tracking-tighter leading-none text-5xl md:text-7xl lg:text-8xl mb-6">
-          Discover the Best Things to Do in Your City
+import { motion } from "framer-motion";
+
+export default function Hero() {
+  const titleText = "Discover the Best Things to Do in Your City!";
+
+  return (
+    <section className="hero-section relative min-h-[85vh] flex items-center justify-center px-6 pt-60 pb-20 overflow-hidden">
+
+      {/* Film Grain */}
+      <div className="absolute inset-0 z-1 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+      {/* Ambient Glow */}
+      <motion.div
+        animate={{
+          rotate: [0, 180, 360],
+          scale: [1, 1.06, 1],
+        }}
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute z-0 inset-0 -top-1/2 -left-1/2 w-[200%] h-[200%] opacity-40 blur-[150px] pointer-events-none"
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="relative z-10 w-full max-w-6xl text-center"
+      >
+
+        {/* Badge */}
+
+        {/* Title */}
+        <h1 className="hero-title font-bricolage tracking-tight leading-[1.05] text-5xl md:text-7xl lg:text-8xl mb-10">
+
+          {titleText.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 0.06,
+                delay: index * 0.045,
+                ease: "easeOut",
+              }}
+            >
+              {char}
+            </motion.span>
+          ))}
+
+          <motion.span
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{
+              duration: 1.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="inline-block w-[4px] h-10 md:h-16 lg:h-20 ml-2 align-middle"
+            style={{ backgroundColor: "var(--border)" }}
+          />
+
         </h1>
 
-        {/* Sub text */}
-        <p className="font-poppins font-medium text-base md:text-2xl leading-8 mb-8 text-(--gray-100)">
-          Your city has more to offer than you think. Start exploring today.
-        </p>
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 2.2,
+            duration: 1,
+            ease: "easeOut",
+          }}
+          className="hero-description font-poppins font-medium text-lg md:text-2xl leading-relaxed mb-14 max-w-3xl mx-auto"
+        >
+           Your city has more to offer than you think.
+          <br className="hidden md:block" />
+          Start exploring today.
+        </motion.p>
 
         {/* CTA */}
-        <Button
-          className="font-poppins font-normal text-lg leading-6 bg-(--brand-navy) text-(--white) px-8 py-3 rounded-full transition hover:bg-(--brand-navy)/90 inline-flex items-center justify-center h-auto"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            delay: 2.8,
+            duration: 0.6,
+            ease: "easeOut",
+          }}
         >
-          Join Baatasari &gt;&gt;&gt;
-        </Button>
-      </div>
+
+          <button
+            type="button"
+            className="hero-button group relative font-poppins font-bold text-lg px-15 py-5 rounded-full transition-all duration-500 hover:scale-[1.04] cursor-pointer overflow-hidden"
+          >
+
+            <span className="relative z-10 flex items-center gap-3">
+              Explore the City
+              <span className="group-hover:translate-x-2 transition-transform duration-300">
+                »
+              </span>
+            </span>
+
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-1400 ease-out" />
+
+          </button>
+
+        </motion.div>
+
+      </motion.div>
     </section>
   );
 }

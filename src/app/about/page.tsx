@@ -12,13 +12,10 @@ import Footer from "@/components/about/footer"
 export default function AboutPage() {
     return (
         <main className="min-h-screen">
-            <SiteHeader />
+            <SiteHeader darkText={true} />
             <Hero />
             <Features />
             <SuggestionsForm />
-
-
-
             <EventOrganizer />
             <RestaurantOwner />
             <Performers />
