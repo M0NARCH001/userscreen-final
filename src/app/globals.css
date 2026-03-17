@@ -365,6 +365,78 @@
 
   --movie-language-text: var(--gray-500);
 
+  /* =========================
+     12) Feature tokens: Talent
+     ========================= */
+  --talent-page-bg: var(--white);
+  --talent-page-grid: color-mix(in srgb, var(--blue-100) 25%, transparent);
+  --talent-section-border: color-mix(in srgb, var(--slate-200) 70%, transparent);
+
+  --talent-surface: var(--white);
+  --talent-surface-soft: color-mix(in srgb, var(--white) 92%, var(--blue-50));
+  --talent-surface-tint: color-mix(in srgb, var(--white) 88%, var(--green-100));
+  --talent-surface-alt: color-mix(in srgb, var(--white) 96%, var(--gray-100));
+
+  --talent-title: var(--brand-blue);
+  --talent-body: var(--gray-600);
+  --talent-muted: var(--gray-500);
+  --talent-highlight-start: var(--blue-500);
+  --talent-highlight-end: color-mix(in srgb, var(--blue-100) 90%, var(--white));
+
+  --talent-pill-bg: var(--white);
+  --talent-pill-border: color-mix(in srgb, var(--slate-200) 85%, transparent);
+  --talent-pill-text: color-mix(in srgb, var(--blue-soft-light) 90%, var(--gray-400));
+
+  --talent-card-bg: var(--white);
+  --talent-card-bg-accent: color-mix(in srgb, var(--green-100) 20%, var(--white));
+  --talent-card-border: color-mix(in srgb, var(--slate-200) 75%, transparent);
+  --talent-card-border-accent: color-mix(in srgb, var(--green-100) 65%, var(--blue-100));
+  --talent-card-title: var(--gray-900);
+  --talent-card-text: var(--talent-muted);
+  --talent-card-icon-bg: color-mix(in srgb, var(--blue-50) 75%, var(--white));
+  --talent-card-icon-fg: var(--royal-blue);
+  --talent-card-icon-success-bg: color-mix(in srgb, var(--green-100) 45%, var(--white));
+  --talent-card-icon-success-fg: var(--green-700);
+
+  --talent-primary-btn-bg: var(--brand-navy);
+  --talent-primary-btn-text: var(--white);
+  --talent-primary-btn-hover: var(--brand-navy-hover);
+  --talent-primary-btn-shadow: 0 14px 32px color-mix(in srgb, var(--brand-navy) 18%, transparent);
+
+  --talent-scroll-indicator-bg: color-mix(in srgb, var(--blue-50) 85%, var(--white));
+  --talent-scroll-indicator-fg: var(--royal-blue);
+
+  --talent-form-shell-bg: var(--white);
+  --talent-form-shell-border: color-mix(in srgb, var(--slate-200) 70%, transparent);
+  --talent-form-shell-top: var(--blue-600);
+  --talent-form-shadow: 0 34px 90px color-mix(in srgb, var(--brand-navy) 10%, transparent);
+  --talent-form-shadow-soft: 0 16px 48px color-mix(in srgb, var(--brand-navy) 6%, transparent);
+
+  --talent-section-title: var(--gray-900);
+  --talent-section-subtitle: var(--gray-600);
+  --talent-section-kicker: var(--gray-400);
+
+  --talent-input-bg: color-mix(in srgb, var(--white) 94%, var(--gray-100));
+  --talent-input-border: color-mix(in srgb, var(--slate-200) 85%, transparent);
+  --talent-input-text: var(--gray-700);
+  --talent-input-placeholder: var(--gray-400);
+  --talent-input-icon: var(--gray-400);
+
+  --talent-chip-bg: var(--white);
+  --talent-chip-border: color-mix(in srgb, var(--slate-200) 85%, transparent);
+  --talent-chip-text: var(--gray-600);
+  --talent-chip-active-bg: color-mix(in srgb, var(--blue-50) 85%, var(--white));
+  --talent-chip-active-border: color-mix(in srgb, var(--blue-200) 80%, var(--blue-100));
+  --talent-chip-active-text: var(--royal-blue);
+
+  --talent-callout-bg: color-mix(in srgb, var(--blue-50) 36%, var(--white));
+  --talent-callout-border: color-mix(in srgb, var(--slate-200) 75%, transparent);
+  --talent-callout-text: var(--gray-600);
+  --talent-callout-star: #f4b400;
+
+  --talent-footer-text: var(--gray-500);
+  --talent-footer-strong: var(--brand-blue);
+
   /* Movie Card */
 
   .movie-card {

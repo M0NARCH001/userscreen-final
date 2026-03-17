@@ -3,24 +3,17 @@ import Footer from "@/components/about/footer"
 import { TalentInformationForm } from "@/components/talent/talent-information-form"
 
 export default function TalentPage() {
-    return (
-        <main className="min-h-screen bg-(--gray-50)">
-            <SiteHeader darkText={true} />
+  return (
+    <main className="min-h-screen bg-[var(--talent-page-bg)]">
+      <SiteHeader darkText={true} />
 
-            <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
-                <div className="mb-12">
-                    <h1 className="text-4xl font-bold text-(--brand-blue) mb-4">Talent Information</h1>
-                    <p className="text-(--gray-600) max-w-2xl">
-                        Join our community of talented individuals. Tell us about your skills and experience to get started.
-                    </p>
-                </div>
+      <div className="px-4 pb-0 pt-14 sm:px-6 sm:pt-16 lg:px-10 lg:pt-18">
+        <div className="mx-auto max-w-[110rem]">
+          <TalentInformationForm />
+        </div>
+      </div>
 
-                <div className="bg-(--white) p-8 rounded-2xl shadow-sm border border-(--gray-100)">
-                    <TalentInformationForm />
-                </div>
-            </div>
-
-            <Footer />
-        </main>
-    )
+      <Footer />
+    </main>
+  )
 }
